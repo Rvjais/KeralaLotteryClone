@@ -1,0 +1,3115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport"/>
+<title>Kerala Lottery – Official Government Lottery Portal</title>
+<meta content="Kerala Government Lottery – Check live results, verify winning tickets, and download official winner certificates." name="description"/>
+<link href="../_external/fonts.googleapis.com/css2_e58246e7.css" rel="stylesheet"/>
+<link href="../_external/cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="../_external/unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+<style>
+/* =========================================================
+   DESIGN SYSTEM & CSS VARIABLES
+   ========================================================= */
+:root {
+  /* Royal Emerald Palette */
+  --emerald-950: #041408;
+  --emerald-900: #082410;
+  --emerald-850: #0d3318;
+  --emerald-800: #134622;
+  --emerald-700: #1a5c2e;
+  --emerald-600: #22783c;
+  --emerald-500: #2d964d;
+  --emerald-400: #3eb565;
+
+  /* Luxury Champagne Gold */
+  --gold-100: #fdf7d6;
+  --gold-200: #fbeea8;
+  --gold-300: #f7e070;
+  --gold-400: #f5cf38;
+  --gold-500: #d4af37;
+  --gold-600: #b89225;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+
+  /* Surface & Neutral */
+  --bg-main: #f5f8f5;
+  --bg-card: #ffffff;
+  --text-dark: #0a180e;
+  --text-muted: #485c4d;
+  --border-light: rgba(19, 70, 34, 0.1);
+  --border-gold: rgba(212, 175, 55, 0.35);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+}
+
+/* =========================================================
+   RESET & STRICT OVERFLOW LOCK
+   ========================================================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--emerald-950);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold-400), var(--gold-600));
+  border-radius: 3px;
+}
+
+/* =========================================================
+   HEADER & NAVBAR
+   ========================================================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100vw;
+  z-index: 1000;
+  background: linear-gradient(135deg, rgba(4, 20, 8, 0.98) 0%, rgba(13, 51, 24, 0.96) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Marquee Bar */
+.marquee-bar {
+  background: linear-gradient(90deg, #134622 0%, #1a5c2e 50%, #134622 100%);
+  color: #fff;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 5px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.72rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-left: 100%;
+  animation: marquee-scroll 36s linear infinite;
+}
+
+.marquee-inner:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.marquee-item i {
+  color: var(--gold-400);
+}
+
+.marquee-item b {
+  color: var(--gold-300);
+  font-weight: 600;
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-100%); }
+}
+
+/* Main Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 62px;
+  max-width: 1340px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-img-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+  flex-shrink: 0;
+}
+
+.logo-img-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--emerald-950);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text .lm {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--gold-400);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+}
+
+.logo-text .ls {
+  font-size: 0.52rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Nav Menu Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  align-items: center;
+}
+
+.nav-links li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.nav-links li a i {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--gold-300);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.nav-links li a:hover i,
+.nav-links li a.active i {
+  color: var(--gold-400);
+}
+
+/* CTA Result Button */
+.nav-cta {
+  background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%) !important;
+  color: var(--emerald-950) !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
+  box-shadow: 0 4px 14px rgba(245, 175, 25, 0.4);
+}
+
+.nav-cta i {
+  color: var(--emerald-950) !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 175, 25, 0.6);
+}
+
+/* Mobile Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 10px;
+  padding: 7px;
+  transition: all 0.3s ease;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--gold-400);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 20, 8, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1400;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.open {
+  display: block;
+  opacity: 1;
+}
+
+/* =========================================================
+   HERO SECTION (RESPONSIVE & TOUCH-AWARE)
+   ========================================================= */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  background: var(--emerald-950);
+}
+
+.slides-wrap {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 24px 16px;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(8, 36, 16, 0.72) 0%, rgba(4, 20, 8, 0.94) 100%);
+  z-index: 2;
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.08);
+  transition: transform 8s ease;
+  will-change: transform;
+  z-index: 1;
+}
+
+.slide.active .slide-bg {
+  transform: scale(1);
+}
+
+.s1 .slide-bg { background-image: url('../assets/images/about_lottery.png'); }
+.s2 .slide-bg { background-image: url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&w=1600'); }
+.s3 .slide-bg { background-image: url('https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&w=1600'); }
+
+.slide-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.08;
+  background-image: radial-gradient(circle at 1px 1px, var(--gold-400) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Glass Card Centered in Hero */
+.slide-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 36px 28px;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  background: rgba(4, 20, 8, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 175, 55, 0.16);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: var(--gold-300);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero-badge i {
+  color: var(--gold-400);
+  font-size: 0.85rem;
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title span {
+  display: block;
+  background: linear-gradient(135deg, #ffe066 0%, #ffd700 50%, #e6a100 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
+}
+
+.hero-sub {
+  font-size: clamp(0.82rem, 1.8vw, 0.98rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 22px;
+  line-height: 1.65;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prize-chips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.pchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.pchip i { color: var(--gold-400); }
+.pchip b { color: var(--gold-300); font-weight: 700; }
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%);
+  color: var(--emerald-950);
+  padding: 13px 32px;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(245, 175, 25, 0.45);
+  transition: all 0.3s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(245, 175, 25, 0.65);
+  background: linear-gradient(135deg, #ffe033 0%, #f5b82e 100%);
+}
+
+/* Hero Controls & Dots */
+.hero-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.slide-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.dot.on {
+  background: var(--gold-400);
+  width: 28px;
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.sl-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(4, 20, 8, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.sl-arrow:hover {
+  background: var(--gold-400);
+  color: var(--emerald-950);
+  border-color: var(--gold-400);
+}
+
+.a-prev { left: 16px; }
+.a-next { right: 16px; }
+
+/* =========================================================
+   STATS BAR
+   ========================================================= */
+.stats-bar {
+  background: linear-gradient(135deg, var(--emerald-950) 0%, var(--emerald-900) 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+}
+
+.stats-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.s-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.45rem;
+  color: var(--gold-400);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.s-lbl {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   COMMON SECTION STYLES
+   ========================================================= */
+.section {
+  padding: 70px 16px;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.sec-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sec-head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(34, 120, 60, 0.12);
+  color: var(--emerald-700);
+  border: 1px solid rgba(34, 120, 60, 0.25);
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.sec-tag i { color: var(--emerald-600); }
+
+.sec-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--emerald-950);
+  line-height: 1.25;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.sec-title span { color: var(--emerald-600); }
+
+.sec-desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.divider {
+  width: 54px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--emerald-600), var(--gold-400));
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* =========================================================
+   CHECK RESULT SECTION
+   ========================================================= */
+#check-result {
+  background: linear-gradient(135deg, var(--emerald-950) 0%, #092e13 50%, var(--emerald-900) 100%);
+}
+
+#check-result .sec-tag {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-300);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+#check-result .sec-tag i { color: var(--gold-400); }
+#check-result .sec-title { color: #ffffff; }
+#check-result .sec-title span { color: var(--gold-400); }
+#check-result .sec-desc { color: rgba(255, 255, 255, 0.7); }
+
+.result-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: var(--radius-lg);
+  padding: 34px 24px;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.result-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold-400);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.rc-sub {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 0.8rem;
+  margin-bottom: 22px;
+}
+
+.inp-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  margin-bottom: 12px;
+}
+
+.inp-wrap {
+  flex: 1;
+  position: relative;
+}
+
+.inp-wrap i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-400);
+  font-size: 0.92rem;
+  pointer-events: none;
+}
+
+.phone-inp {
+  width: 100%;
+  padding: 13px 14px 13px 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-md);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.phone-inp::placeholder { color: rgba(255, 255, 255, 0.35); }
+.phone-inp:focus {
+  border-color: var(--gold-400);
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.check-btn {
+  padding: 13px 26px;
+  background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%);
+  color: var(--emerald-950);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(245, 175, 25, 0.4);
+}
+
+.check-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(245, 175, 25, 0.6);
+}
+
+.check-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.rc-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  margin-top: 10px;
+}
+
+.rc-note i { color: var(--gold-400); }
+
+#result-out { margin-top: 22px; }
+
+.spin {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(4, 20, 8, 0.3);
+  border-top: 2px solid var(--emerald-950);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =========================================================
+   WINNER CARD & NO-WIN CARD
+   ========================================================= */
+.win-card {
+  background: linear-gradient(145deg, rgba(8, 36, 16, 0.92) 0%, rgba(13, 51, 24, 0.95) 100%);
+  border: 2px solid var(--gold-400);
+  border-radius: var(--radius-lg);
+  padding: 26px 20px;
+  text-align: center;
+  display: none;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.win-card.show {
+  display: block;
+  animation: popIn 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.88); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.w-top-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ffd700, #f5af19);
+  color: var(--emerald-950);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.76rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.w-badge-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 2px solid var(--gold-400);
+  color: var(--gold-300);
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.w-congrats {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.35rem;
+  color: var(--gold-400);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.w-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.w-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.w-lbl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.64rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.w-lbl i { color: var(--gold-400); font-size: 0.7rem; }
+.w-val { color: #ffffff; font-weight: 600; font-size: 0.88rem; }
+.w-val.big {
+  color: var(--gold-400);
+  font-size: 1.18rem;
+  font-weight: 800;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.w-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.w-note i { color: var(--gold-400); font-size: 0.95rem; margin-top: 2px; flex-shrink: 0; }
+
+.seller-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.74rem;
+}
+
+.seller-box i { color: var(--gold-400); }
+.seller-box b { color: var(--gold-300); }
+
+/* No-Win Card */
+.no-win {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 28px 16px;
+  text-align: center;
+  display: none;
+}
+
+.no-win.show { display: block; animation: popIn 0.45s ease; }
+
+.nw-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  margin: 0 auto 12px;
+}
+
+.nw-title { color: #ffffff; font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+.nw-msg { color: rgba(255, 255, 255, 0.55); font-size: 0.82rem; line-height: 1.6; max-width: 400px; margin: 0 auto; }
+
+/* =========================================================
+   ROYAL WINNER CERTIFICATE
+   ========================================================= */
+#cert-section {
+  display: none;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.cert-outer {
+  max-width: 740px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cert-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 14px;
+  color: var(--gold-400);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.certificate {
+  position: relative;
+  width: 100%;
+  background: #fdfbf7;
+  border: 10px solid #0d3318;
+  border-radius: 12px;
+  padding: 34px 28px 26px;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+  color: #1a2e1c;
+  box-sizing: border-box;
+}
+
+.certificate::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 2px solid #d4af37;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.certificate::after {
+  content: '';
+  position: absolute;
+  inset: 11px;
+  border: 1px dashed rgba(212, 175, 55, 0.6);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cert-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  z-index: 3;
+  color: #d4af37;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-corner.tl { top: 14px; left: 14px; }
+.cert-corner.tr { top: 14px; right: 14px; }
+.cert-corner.bl { bottom: 14px; left: 14px; }
+.cert-corner.br { bottom: 14px; right: 14px; }
+
+.cert-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  height: 220px;
+  background: url('../assets/images/logo.png') no-repeat center;
+  background-size: contain;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cert-body {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.cert-emblem {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 8px;
+  padding: 2px;
+  background: linear-gradient(135deg, #d4af37, #937119);
+}
+
+.cert-emblem img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cert-dept {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0d3318;
+  margin-bottom: 2px;
+}
+
+.cert-heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.85rem);
+  font-weight: 800;
+  color: #0d3318;
+  letter-spacing: 1.5px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.cert-subheading {
+  font-size: clamp(0.7rem, 1.6vw, 0.82rem);
+  color: #b89225;
+  letter-spacing: 2.5px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cert-divider {
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 6px auto 12px;
+}
+
+.cert-present {
+  font-size: clamp(0.65rem, 1.4vw, 0.76rem);
+  color: #485c4d;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.cert-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.4rem, 3.8vw, 2.1rem);
+  color: #0d3318;
+  font-weight: 800;
+  border-bottom: 2px solid #d4af37;
+  padding: 3px 24px 5px;
+  display: inline-block;
+  min-width: 240px;
+  margin: 5px 0 12px;
+}
+
+.cert-body-text {
+  font-size: clamp(0.7rem, 1.5vw, 0.82rem);
+  color: #2b3d2e;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 12px;
+  font-weight: 500;
+}
+
+.cert-ticket-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(13, 51, 24, 0.07);
+  border: 1px solid rgba(13, 51, 24, 0.2);
+  padding: 5px 16px;
+  border-radius: var(--radius-full);
+  font-size: clamp(0.72rem, 1.5vw, 0.85rem);
+  color: #0d3318;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.cert-ticket-line span { color: #b89225; font-weight: 800; font-family: monospace; }
+
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 12px;
+  padding: 0 12px;
+  gap: 16px;
+}
+
+.cert-seal-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px dashed #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b89225;
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cert-seal-badge i { font-size: 1rem; margin-bottom: 2px; }
+
+.cert-date-area, .cert-sig-area { text-align: center; flex: 1; }
+
+.cert-footer-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #0d3318;
+  text-transform: uppercase;
+  border-top: 1.5px solid #0d3318;
+  padding-top: 4px;
+  margin-top: 5px;
+}
+
+.cert-date-val { font-size: 0.82rem; font-weight: 700; color: #0d3318; margin-bottom: 3px; }
+.cert-sig-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.7rem;
+  color: #0d3318;
+  line-height: 1;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.cert-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px auto 0;
+  padding: 12px 26px;
+  background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%);
+  color: var(--emerald-950);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(245, 175, 25, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cert-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(245, 175, 25, 0.6);
+}
+
+/* =========================================================
+   TODAY'S WINNERS LIVE DRAW SECTION
+   ========================================================= */
+#tw-section {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  margin-top: 36px;
+  max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.tw-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tw-head h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cinzel Decorative', serif;
+  color: var(--gold-400);
+  font-size: 1rem;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  letter-spacing: 1px;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: live-blink 1.2s infinite;
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+.tw-lock-box { text-align: center; padding: 32px 12px; }
+.tw-lock-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+  font-size: 1.25rem;
+  margin: 0 auto 10px;
+}
+
+.tw-lock-box p { color: rgba(255, 255, 255, 0.65); font-size: 0.84rem; }
+
+.prize-row {
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.prize-hdr {
+  background: linear-gradient(90deg, var(--emerald-850) 0%, var(--emerald-700) 100%);
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-pos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold-400);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.p-amt { color: rgba(255, 255, 255, 0.9); font-size: 0.78rem; font-weight: 600; }
+
+.tickets { padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 7px; }
+
+.t-chip {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.t-chip.lit {
+  background: linear-gradient(135deg, #ffd700, #f5af19);
+  color: var(--emerald-950);
+  border-color: #ffd700;
+  font-weight: 800;
+  box-shadow: 0 0 14px rgba(255, 215, 0, 0.8);
+}
+
+/* =========================================================
+   ABOUT SECTION
+   ========================================================= */
+#about { background: #ffffff; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-img-wrap { position: relative; }
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(4, 20, 8, 0.12);
+  border: 1px solid var(--border-light);
+}
+
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.float-stat {
+  position: absolute;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(19, 70, 34, 0.1);
+  border-left: 4px solid var(--gold-500);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fs-1 { bottom: -16px; right: -12px; }
+.fs-2 { top: -16px; left: -12px; }
+
+.fs-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(34, 120, 60, 0.1);
+  color: var(--emerald-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.fs-num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.15rem;
+  color: var(--emerald-950);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.fs-txt {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.about-text .sec-head { text-align: left; margin-bottom: 20px; }
+.about-text .divider { margin: 10px 0 0; }
+.about-text p {
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+}
+
+.feat-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-main);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.feat-ico {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-400);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.feat-title { font-size: 0.82rem; font-weight: 700; color: var(--emerald-950); }
+.feat-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+/* =========================================================
+   SERVICES SECTION
+   ========================================================= */
+#services { background: linear-gradient(180deg, #f0f6f0 0%, var(--bg-main) 100%); }
+
+.sv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sv-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 30px 22px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(4, 20, 8, 0.05);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sv-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--emerald-600), var(--gold-400));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.sv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(4, 20, 8, 0.1);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.sv-card:hover::after { transform: scaleX(1); }
+
+.sv-ico {
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, var(--emerald-900), var(--emerald-700));
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.4rem;
+  color: var(--gold-400);
+  box-shadow: 0 6px 16px rgba(8, 36, 16, 0.22);
+}
+
+.sv-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.94rem;
+  color: var(--emerald-950);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.sv-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.65; }
+
+/* =========================================================
+   RECENT WINNERS SLIDER
+   ========================================================= */
+#winners {
+  background: linear-gradient(135deg, var(--emerald-950) 0%, #0a2e12 100%);
+}
+
+#winners .sec-tag {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-300);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+#winners .sec-tag i { color: var(--gold-400); }
+#winners .sec-title { color: #ffffff; }
+#winners .sec-title span { color: var(--gold-400); }
+#winners .sec-desc { color: rgba(255, 255, 255, 0.65); }
+
+.sl-outer {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.sl-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.w-slide {
+  min-width: 240px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 22px 16px;
+  text-align: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.w-corner-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--gold-400);
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.w-avtr {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  border: 3px solid var(--gold-400);
+  padding: 2px;
+  overflow: hidden;
+}
+
+.w-avtr img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.w-name { color: #ffffff; font-weight: 700; font-size: 0.92rem; margin-bottom: 3px; }
+
+.w-pos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-300);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.w-pos-badge i { color: var(--gold-400); }
+.w-prize {
+  color: var(--gold-400);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.w-tkt { color: rgba(255, 255, 255, 0.5); font-size: 0.7rem; font-family: monospace; }
+
+.sl-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.sl-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.sl-btn.gold {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--gold-400);
+}
+
+.sl-btn.gold:hover {
+  background: var(--gold-400);
+  color: var(--emerald-950);
+}
+
+.sl-btn.green {
+  background: rgba(34, 120, 60, 0.12);
+  border: 1px solid rgba(34, 120, 60, 0.3);
+  color: var(--emerald-700);
+}
+
+.sl-btn.green:hover { background: var(--emerald-700); color: #ffffff; }
+
+/* =========================================================
+   GALLERY SECTION
+   ========================================================= */
+#gallery { background: #ffffff; }
+
+.g-item {
+  min-width: 260px;
+  height: 190px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.g-item:hover img { transform: scale(1.06); }
+
+.g-cap-wrap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 20, 8, 0.9) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.g-item:hover .g-cap-wrap { opacity: 1; }
+
+.g-caption {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.g-caption i { color: var(--gold-400); }
+
+/* =========================================================
+   TESTIMONIALS SECTION
+   ========================================================= */
+#testimonials { background: linear-gradient(180deg, #f0f6f0 0%, var(--bg-main) 100%); }
+
+.t-card {
+  min-width: 290px;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  box-shadow: 0 4px 16px rgba(4, 20, 8, 0.06);
+  border: 1px solid var(--border-light);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stars { display: flex; gap: 3px; margin-bottom: 10px; }
+.stars i { color: var(--gold-400); font-size: 0.78rem; }
+.t-text {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.t-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+.t-avtr {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--gold-400);
+}
+
+.t-avtr img { width: 100%; height: 100%; object-fit: cover; }
+.t-name { font-weight: 700; font-size: 0.84rem; color: var(--emerald-950); }
+.t-role {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  color: var(--emerald-700);
+  font-weight: 500;
+}
+
+.t-role i { color: var(--gold-500); font-size: 0.62rem; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  background: linear-gradient(135deg, #020d05 0%, var(--emerald-950) 100%);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 56px 16px 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.foot-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 36px;
+  width: 100%;
+}
+
+.foot-brand .f-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.foot-brand p { font-size: 0.8rem; line-height: 1.75; margin-bottom: 16px; }
+
+.foot-col h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold-400);
+  font-weight: 700;
+  font-size: 0.84rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.foot-col ul { list-style: none; }
+.foot-col ul li { margin-bottom: 8px; }
+
+.foot-col ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.25s ease;
+}
+
+.foot-col ul li a i { font-size: 0.68rem; color: rgba(212, 175, 55, 0.4); }
+.foot-col ul li a:hover { color: var(--gold-300); }
+
+.foot-contact p {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.78rem;
+  margin-bottom: 9px;
+  line-height: 1.55;
+}
+
+.foot-contact i { color: var(--gold-400); margin-top: 3px; width: 14px; flex-shrink: 0; }
+
+.socials { display: flex; gap: 8px; margin-top: 14px; }
+.soc-btn {
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.soc-btn:hover {
+  background: var(--gold-400);
+  color: var(--emerald-950);
+  border-color: var(--gold-400);
+}
+
+.foot-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 18px;
+  text-align: center;
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.foot-bottom span { color: var(--gold-400); }
+
+.foot-disclaimer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.foot-disclaimer i { color: var(--gold-400); }
+
+/* =========================================================
+   BACK TO TOP BUTTON & CONFETTI
+   ========================================================= */
+.btt {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #ffd700, #f5af19);
+  color: var(--emerald-950);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 18px rgba(245, 175, 25, 0.4);
+  z-index: 900;
+  opacity: 0;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.btt.show { opacity: 1; pointer-events: auto; }
+
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+}
+
+/* =========================================================
+   PERFECT MOBILE RESPONSIVE MEDIA QUERIES
+   ========================================================= */
+@media (max-width: 1024px) {
+  .sv-grid { grid-template-columns: repeat(2, 1fr); }
+  .foot-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .foot-brand { grid-column: 1 / -1; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(85vw, 300px);
+    background: linear-gradient(180deg, var(--emerald-950) 0%, var(--emerald-900) 100%);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 72px 20px 32px;
+    gap: 8px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+    border-left: 1px solid rgba(212, 175, 55, 0.25);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    visibility: hidden;
+    z-index: 1500;
+  }
+  .nav-links.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .nav-links li { width: 100%; }
+  .nav-links li a {
+    font-size: 0.92rem;
+    padding: 12px 14px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-text .sec-head { text-align: center; }
+  .about-text .divider { margin: 10px auto 0; }
+  .feat-grid { grid-template-columns: 1fr; }
+  .sl-arrow { display: none; } /* Hide overlay side arrows on mobile to prevent text overlap */
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0 14px; height: 56px; }
+  .logo-img-wrap { width: 36px; height: 36px; }
+  .logo-text .lm { font-size: 0.88rem; }
+  .logo-text .ls { display: none; }
+  .marquee-bar { font-size: 0.66rem; padding: 4px 0; }
+  
+  /* Hero on mobile */
+  .hero-wrapper {
+    min-height: calc(100svh - 90px);
+    display: flex;
+    align-items: center;
+  }
+  .slide {
+    padding: 18px 12px 48px;
+  }
+  .slide-content {
+    padding: 24px 16px;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+  }
+  .hero-badge { font-size: 0.65rem; padding: 4px 12px; margin-bottom: 12px; }
+  .hero-title { font-size: 1.55rem; margin-bottom: 10px; }
+  .hero-sub { font-size: 0.8rem; margin-bottom: 18px; line-height: 1.55; }
+  .prize-chips { display: none; }
+  .hero-cta { padding: 11px 24px; font-size: 0.86rem; }
+  .hero-controls { bottom: 14px; }
+  
+  .section { padding: 48px 14px; }
+  .stats-inner { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-box { padding: 10px; gap: 8px; }
+  .stat-icon { width: 36px; height: 36px; font-size: 0.95rem; }
+  .s-num { font-size: 1.25rem; }
+  .s-lbl { font-size: 0.62rem; }
+  
+  .result-card { padding: 22px 14px; }
+  .inp-row { flex-direction: column; gap: 10px; }
+  .check-btn { width: 100%; justify-content: center; }
+  .w-grid { grid-template-columns: 1fr; }
+  
+  .certificate { padding: 20px 14px 18px; border-width: 7px; }
+  .cert-heading { font-size: 1.2rem; }
+  .cert-subheading { font-size: 0.68rem; }
+  .cert-name { font-size: 1.3rem; min-width: 180px; }
+  .cert-footer { flex-direction: column; align-items: center; gap: 12px; }
+  .cert-date-area, .cert-sig-area { width: 100%; }
+  
+  .sv-grid { grid-template-columns: 1fr; }
+  .foot-inner { grid-template-columns: 1fr; gap: 24px; }
+  .fs-1, .fs-2 { display: none; }
+}
+
+@media (max-width: 380px) {
+  .logo-text .lm { font-size: 0.78rem; }
+  .hero-title { font-size: 1.35rem; }
+  .hero-sub { font-size: 0.76rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<!-- =========================================================
+     HEADER & NAVBAR
+     ========================================================= -->
+<header id="mainHeader">
+  <div class="marquee-bar">
+    <div class="marquee-inner">
+      <div class="marquee-item"><i class="fa-solid fa-award"></i> Kerala Government Lotteries — Official Directorate Portal</div>
+      <div class="marquee-item"><i class="fa-solid fa-bolt"></i> Instant Digital Result Verification</div>
+      <div class="marquee-item"><i class="fa-solid fa-crown"></i> 1st Prize ₹25 Crores Bumper</div>
+      <div class="marquee-item"><i class="fa-solid fa-shield-halved"></i> 100% Transparent & State Governed</div>
+      <div class="marquee-item"><i class="fa-solid fa-store"></i> Authorized Retailer: <b>Shree Shakti Lottery Result 2026</b></div>
+      <div class="marquee-item"><i class="fa-solid fa-phone-volume"></i> Official Helpline: <b>0471-2305230</b></div>
+      <div class="marquee-item"><i class="fa-solid fa-scale-balanced"></i> Play Responsibly — 18+ Only</div>
+    </div>
+  </div>
+  <nav>
+    <a class="logo" href="#home">
+      <div class="logo-img-wrap">
+        <img alt="Kerala Lottery Seal" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="../assets/images/logo.png"/>
+      </div>
+      <div class="logo-text">
+        <div class="lm">Kerala Lottery</div>
+        <div class="ls">Government of Kerala</div>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" onclick="closeNav()"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#about" onclick="closeNav()"><i class="fa-solid fa-circle-info"></i> About</a></li>
+      <li><a href="#services" onclick="closeNav()"><i class="fa-solid fa-cubes"></i> Services</a></li>
+      <li><a href="#winners" onclick="closeNav()"><i class="fa-solid fa-trophy"></i> Winners</a></li>
+      <li><a href="#gallery" onclick="closeNav()"><i class="fa-solid fa-images"></i> Gallery</a></li>
+      <li><a href="#testimonials" onclick="closeNav()"><i class="fa-solid fa-star"></i> Reviews</a></li>
+      <li><a class="nav-cta" href="#check-result" onclick="closeNav()"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a></li>
+    </ul>
+    <button aria-label="Toggle navigation" class="hamburger" id="menuBtn" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- =========================================================
+     HERO SECTION
+     ========================================================= -->
+<div class="hero-wrapper" id="home">
+  <div class="slides-wrap" id="slidesWrap">
+    <!-- Slide 1 -->
+    <div class="slide s1 active">
+      <div class="slide-bg"></div>
+      <div class="slide-pattern"></div>
+      <div class="slide-content">
+        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Official Kerala State Directorate Portal</div>
+        <h1 class="hero-title">Win Life-Changing <span>₹25 Crores!</span></h1>
+        <p class="hero-sub">Join millions of verified winners across India. Your gateway to transparent, government-backed fortune starts here.</p>
+        <div class="prize-chips">
+          <div class="pchip"><i class="fa-solid fa-crown"></i> 1st Prize <b>₹25 Cr</b></div>
+          <div class="pchip"><i class="fa-solid fa-medal"></i> 2nd Prize <b>₹10 Cr</b></div>
+          <div class="pchip"><i class="fa-solid fa-award"></i> 3rd Prize <b>₹75 L</b></div>
+        </div>
+        <a class="hero-cta" href="#check-result"><i class="fa-solid fa-magnifying-glass"></i> Verify Your Ticket</a>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide s2">
+      <div class="slide-bg"></div>
+      <div class="slide-pattern"></div>
+      <div class="slide-content">
+        <div class="hero-badge"><i class="fa-solid fa-certificate"></i> Verified Digital Winner Certificates</div>
+        <h1 class="hero-title">Instant Results & <span>State Honor</span></h1>
+        <p class="hero-sub">Enter your registered mobile number to check real-time draw results and download your official state honor certificate instantly.</p>
+        <div class="prize-chips">
+          <div class="pchip"><i class="fa-solid fa-circle-check"></i> Gov. Certified</div>
+          <div class="pchip"><i class="fa-solid fa-shield-halved"></i> 100% Encrypted & Safe</div>
+          <div class="pchip"><i class="fa-solid fa-bolt"></i> Real-time Draw Feed</div>
+        </div>
+        <a class="hero-cta" href="#check-result"><i class="fa-solid fa-trophy"></i> Check My Result</a>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide s3">
+      <div class="slide-bg"></div>
+      <div class="slide-pattern"></div>
+      <div class="slide-content">
+        <div class="hero-badge"><i class="fa-solid fa-landmark"></i> 57 Years of Unbroken Trust</div>
+        <h1 class="hero-title">India's Most Trusted <span>State Lottery</span></h1>
+        <p class="hero-sub">Over ₹1,000+ Crores distributed under strict government auditing. Over 50 Lakh+ active participants trust our transparent system.</p>
+        <div class="prize-chips">
+          <div class="pchip"><i class="fa-solid fa-users"></i> 50L+ Players</div>
+          <div class="pchip"><i class="fa-solid fa-indian-rupee-sign"></i> ₹1000Cr+ Awarded</div>
+          <div class="pchip"><i class="fa-solid fa-calendar-check"></i> Established 1967</div>
+        </div>
+        <a class="hero-cta" href="#check-result"><i class="fa-solid fa-star"></i> Check Today's Draw</a>
+      </div>
+    </div>
+  </div>
+  <button aria-label="Previous slide" class="sl-arrow a-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+  <button aria-label="Next slide" class="sl-arrow a-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+  <div class="hero-controls">
+    <div class="slide-dots">
+      <button aria-label="Slide 1" class="dot on" onclick="goSlide(0)"></button>
+      <button aria-label="Slide 2" class="dot" onclick="goSlide(1)"></button>
+      <button aria-label="Slide 3" class="dot" onclick="goSlide(2)"></button>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     STATS BAR
+     ========================================================= -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-box" data-aos="fade-up" data-aos-delay="0">
+      <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+      <div class="stat-info">
+        <div class="s-num" data-target="50">0</div>
+        <div class="s-lbl">Lakh+ Players</div>
+      </div>
+    </div>
+    <div class="stat-box" data-aos="fade-up" data-aos-delay="60">
+      <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+      <div class="stat-info">
+        <div class="s-num" data-target="1000">0</div>
+        <div class="s-lbl">Cr Distributed</div>
+      </div>
+    </div>
+    <div class="stat-box" data-aos="fade-up" data-aos-delay="120">
+      <div class="stat-icon"><i class="fa-solid fa-landmark"></i></div>
+      <div class="stat-info">
+        <div class="s-num" data-target="57">0</div>
+        <div class="s-lbl">Years of Trust</div>
+      </div>
+    </div>
+    <div class="stat-box" data-aos="fade-up" data-aos-delay="180">
+      <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <div class="stat-info">
+        <div class="s-num" data-target="100">0</div>
+        <div class="s-lbl">% Transparent</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     CHECK RESULT SECTION
+     ========================================================= -->
+<section class="section" id="check-result">
+  <div class="sec-wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="sec-tag"><i class="fa-solid fa-magnifying-glass-chart"></i> Result Verification</div>
+      <h2 class="sec-title">Check Your <span>Winning Status</span></h2>
+      <p class="sec-desc">Enter your registered mobile number to instantly verify if you have won today's draw and download your official winner certificate.</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="result-card" data-aos="zoom-in">
+      <h3><i class="fa-solid fa-mobile-screen-button"></i> Enter Registered Mobile Number</h3>
+      <p class="rc-sub">Instant verification across all authorized Kerala state lottery draws</p>
+      <div class="inp-row">
+        <div class="inp-wrap">
+          <i class="fa-solid fa-phone"></i>
+          <input class="phone-inp" id="phoneInput" inputmode="numeric" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')" placeholder="Enter 10-digit mobile number" type="tel"/>
+        </div>
+        <button class="check-btn" id="checkBtn" onclick="checkResult()">
+          <span id="btnLabel"><i class="fa-solid fa-magnifying-glass"></i> Check Result</span>
+          <span class="spin" id="btnSpin"></span>
+        </button>
+      </div>
+      <p class="rc-note"><i class="fa-solid fa-lock"></i> 256-Bit Encrypted Verification • Official State Database</p>
+
+      <div id="result-out">
+        <!-- Winner Card -->
+        <div class="win-card" id="winCard">
+          <div class="w-top-badge"><i class="fa-solid fa-crown"></i> OFFICIAL WINNER CONFIRMATION</div>
+          <div class="w-badge-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="w-congrats">Congratulations, You Won!</div>
+          <div class="w-grid">
+            <div class="w-box">
+              <div class="w-lbl"><i class="fa-solid fa-user"></i> Full Name</div>
+              <div class="w-val" id="rName">—</div>
+            </div>
+            <div class="w-box">
+              <div class="w-lbl"><i class="fa-solid fa-phone"></i> Mobile No.</div>
+              <div class="w-val" id="rPhone">—</div>
+            </div>
+            <div class="w-box">
+              <div class="w-lbl"><i class="fa-solid fa-ticket"></i> Ticket No.</div>
+              <div class="w-val" id="rTicket">—</div>
+            </div>
+            <div class="w-box">
+              <div class="w-lbl"><i class="fa-solid fa-medal"></i> Prize Position</div>
+              <div class="w-val" id="rPos">—</div>
+            </div>
+            <div class="w-box" style="grid-column:1/-1">
+              <div class="w-lbl"><i class="fa-solid fa-indian-rupee-sign"></i> Winning Amount</div>
+              <div class="w-val big" id="rAmt">—</div>
+            </div>
+            <div class="w-box" style="grid-column:1/-1">
+              <div class="w-lbl"><i class="fa-solid fa-calendar-check"></i> Draw Date</div>
+              <div class="w-val" id="rDate">—</div>
+            </div>
+          </div>
+          <div class="w-note">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>Please present your original winning ticket and valid government photo ID at the authorized state lottery office to complete prize processing.</div>
+          </div>
+          <div class="seller-box">
+            <i class="fa-solid fa-store"></i> Ticket Seller: <b>Shree Shakti Lottery result 2026</b>
+          </div>
+        </div>
+
+        <!-- No-Win Card -->
+        <div class="no-win" id="noWinCard">
+          <div class="nw-icon"><i class="fa-solid fa-ticket-simple"></i></div>
+          <div class="nw-title">No Winning Ticket Found Today</div>
+          <div class="nw-msg">No winning ticket record was found for this phone number in today's draw. Keep participating — your lucky day is just around the corner!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         ROYAL WINNER CERTIFICATE
+         ========================================================= -->
+    <div id="cert-section">
+      <div class="cert-outer">
+        <div class="cert-title-bar"><i class="fa-solid fa-award"></i> Official Government Winner Certificate</div>
+        <div class="certificate" id="certBox">
+          <div class="cert-corner tl"><i class="fa-solid fa-certificate"></i></div>
+          <div class="cert-corner tr"><i class="fa-solid fa-certificate"></i></div>
+          <div class="cert-corner bl"><i class="fa-solid fa-certificate"></i></div>
+          <div class="cert-corner br"><i class="fa-solid fa-certificate"></i></div>
+          <div class="cert-watermark"></div>
+
+          <div class="cert-body">
+            <div class="cert-emblem">
+              <img alt="Kerala Seal" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=0d3318&color=d4af37'" src="../assets/images/logo.png"/>
+            </div>
+            <div class="cert-dept">Directorate of Kerala State Lotteries • Government of Kerala</div>
+            <div class="cert-heading">Certificate of Achievement</div>
+            <div class="cert-subheading">Official Winner Honor</div>
+            <div class="cert-divider"></div>
+            <div class="cert-present">This Certificate is Proudly Presented To</div>
+            <div class="cert-name" id="certName">Winner Name</div>
+            <div class="cert-body-text">
+              In official recognition of securing the <strong><span id="certPos">—</span> Winner Position</strong> in the Kerala State Government Lottery Draw. We commend your participation and wish you continued prosperity.
+            </div>
+            <div class="cert-ticket-line">
+              <i class="fa-solid fa-ticket"></i> Winning Ticket Number: <span id="certTicket">—</span>
+            </div>
+            <div class="cert-divider"></div>
+            <div class="cert-footer">
+              <div class="cert-date-area">
+                <div class="cert-date-val" id="certDate">—</div>
+                <div class="cert-footer-label">DATE OF ISSUE</div>
+              </div>
+              <div class="cert-seal-badge">
+                <i class="fa-solid fa-stamp"></i>
+                <span>Govt. Seal</span>
+              </div>
+              <div class="cert-sig-area">
+                <div class="cert-sig-text">K. R. Namboodiri</div>
+                <div class="cert-footer-label">DIRECTOR OF STATE LOTTERIES</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;">
+          <button class="cert-download-btn" onclick="downloadCert()">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download Official Certificate (PNG)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         TODAY'S WINNERS SECTION
+         ========================================================= -->
+    <div id="tw-section">
+      <div class="tw-head">
+        <h3><i class="fa-solid fa-trophy"></i> Today's Live Draw Results</h3>
+        <span class="live-pill"><span class="pulse-dot"></span> LIVE DRAW</span>
+      </div>
+      <div class="tw-lock-box" id="twPlaceholder">
+        <div class="tw-lock-icon"><i class="fa-solid fa-lock"></i></div>
+        <p>Enter your 10-digit mobile number above to reveal the full winning ticket sheet and highlight your ticket.</p>
+      </div>
+      <div id="twList" style="display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ABOUT US SECTION
+     ========================================================= -->
+<section class="section" id="about">
+  <div class="sec-wrap">
+    <div class="about-grid">
+      <div class="about-img-wrap" data-aos="fade-right">
+        <div class="about-photo">
+          <img alt="Kerala Lottery Tickets" onerror="this.src='https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&w=700';this.onerror=null;" src="../assets/images/about_lottery.png"/>
+        </div>
+        <div class="float-stat fs-1">
+          <div class="fs-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div>
+            <div class="fs-num">₹1000Cr+</div>
+            <div class="fs-txt">Total Prizes Given</div>
+          </div>
+        </div>
+        <div class="float-stat fs-2">
+          <div class="fs-icon"><i class="fa-solid fa-landmark"></i></div>
+          <div>
+            <div class="fs-num">Since 1967</div>
+            <div class="fs-txt">Government Trusted</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text" data-aos="fade-left">
+        <div class="sec-head">
+          <div class="sec-tag"><i class="fa-solid fa-landmark"></i> Official Directorate</div>
+          <h2 class="sec-title">Kerala's Most <span>Trusted Lottery</span></h2>
+          <div class="divider"></div>
+        </div>
+        <p>Kerala Government Lottery is India's pioneer state lottery, established in 1967 under the Department of Finance, Government of Kerala. With over 57 years of transparent operations, we have disbursed over ₹1,000 Crores in prize money to millions of happy citizens.</p>
+        <p>Our commitment to credibility, public welfare, and prompt distribution has won the confidence of over 50 lakh active participants. Authorized ticket retailer: <strong>Shree Shakti Lottery result 2026</strong>.</p>
+        <div class="feat-grid">
+          <div class="feat-item">
+            <div class="feat-ico"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <div class="feat-title">100% State Governed</div>
+              <div class="feat-desc">Audited by Government of Kerala</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <div>
+              <div class="feat-title">24/7 Digital Check</div>
+              <div class="feat-desc">Instant online verification portal</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico"><i class="fa-solid fa-trophy"></i></div>
+            <div>
+              <div class="feat-title">6 Prize Categories</div>
+              <div class="feat-desc">From ₹1 Lakh to ₹25 Crores</div>
+            </div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico"><i class="fa-solid fa-users"></i></div>
+            <div>
+              <div class="feat-title">50 Lakh+ Players</div>
+              <div class="feat-desc">Trusted across India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICES SECTION
+     ========================================================= -->
+<section class="section" id="services">
+  <div class="sec-wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="sec-tag"><i class="fa-solid fa-cubes"></i> Comprehensive Services</div>
+      <h2 class="sec-title">What We <span>Offer</span></h2>
+      <p class="sec-desc">From purchasing official tickets to expedited prize disbursement — every step is secure, transparent, and seamless.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="sv-ico"><i class="fa-solid fa-ticket"></i></div>
+        <h3 class="sv-title">Buy Official Tickets</h3>
+        <p class="sv-desc">Purchase genuine Kerala State Lottery tickets from Shree Shakti Lottery and authorized government retail counters.</p>
+      </div>
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="sv-ico"><i class="fa-solid fa-magnifying-glass-dollar"></i></div>
+        <h3 class="sv-title">Live Result Checker</h3>
+        <p class="sv-desc">Instantly verify your lottery results by entering your mobile number with real-time state draw synchronization.</p>
+      </div>
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="sv-ico"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        <h3 class="sv-title">Hassle-Free Claims</h3>
+        <p class="sv-desc">Receive full administrative and documentation assistance for prompt, secure disbursement of your winning prize money.</p>
+      </div>
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="180">
+        <div class="sv-ico"><i class="fa-solid fa-tower-broadcast"></i></div>
+        <h3 class="sv-title">Official Draw Feed</h3>
+        <p class="sv-desc">Access daily draw broadcasts directly conducted by the Directorate of Kerala State Lotteries at 3:00 PM.</p>
+      </div>
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="sv-ico"><i class="fa-solid fa-bell"></i></div>
+        <h3 class="sv-title">Winner Alerts</h3>
+        <p class="sv-desc">Subscribe for instant SMS notifications as soon as official results are published. Never miss your winning moment.</p>
+      </div>
+      <div class="sv-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="sv-ico"><i class="fa-solid fa-headset"></i></div>
+        <h3 class="sv-title">24/7 Helpdesk</h3>
+        <p class="sv-desc">Our dedicated state lottery support team provides round-the-clock guidance on ticket verification and claim procedures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     RECENT WINNERS SECTION
+     ========================================================= -->
+<section class="section" id="winners">
+  <div class="sec-wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="sec-tag"><i class="fa-solid fa-star"></i> Verified Hall of Fame</div>
+      <h2 class="sec-title">Recent <span>Bumper Winners</span></h2>
+      <p class="sec-desc">Real stories, real citizens — meet the fortunate winners whose lives were transformed by Kerala State Lotteries.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="sl-outer" id="wOuter">
+      <div class="sl-track" id="wTrack">
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-crown"></i></div>
+          <div class="w-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
+          <div class="w-name">Rajesh Kumar</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-crown"></i> 1st Prize</div>
+          <div class="w-prize">₹25,00,00,000</div>
+          <div class="w-tkt">Ticket: TL584261</div>
+        </div>
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
+          <div class="w-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
+          <div class="w-name">Priya Nair</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
+          <div class="w-prize">₹10,00,00,000</div>
+          <div class="w-tkt">Ticket: TB251634</div>
+        </div>
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
+          <div class="w-avtr"><img alt="Arun Menon" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/91227/pexels-photo-91227.jpeg"/></div>
+          <div class="w-name">Arun Menon</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
+          <div class="w-prize">₹75,00,000</div>
+          <div class="w-tkt">Ticket: KL909090</div>
+        </div>
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
+          <div class="w-avtr"><img alt="Sunita Sharma" onerror="this.src='https://ui-avatars.com/api/?name=SS&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
+          <div class="w-name">Sunita Sharma</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
+          <div class="w-prize">₹10,00,00,000</div>
+          <div class="w-tkt">Ticket: TA562491</div>
+        </div>
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
+          <div class="w-avtr"><img alt="Mohammed Ali" onerror="this.src='https://ui-avatars.com/api/?name=MA&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
+          <div class="w-name">Mohammed Ali</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
+          <div class="w-prize">₹10,00,00,000</div>
+          <div class="w-tkt">Ticket: TE560651</div>
+        </div>
+        <div class="w-slide">
+          <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
+          <div class="w-avtr"><img alt="Lakshmi Devi" onerror="this.src='https://ui-avatars.com/api/?name=LD&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/3831847/pexels-photo-3831847.jpeg"/></div>
+          <div class="w-name">Lakshmi Devi</div>
+          <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
+          <div class="w-prize">₹75,00,000</div>
+          <div class="w-tkt">Ticket: TB444002</div>
+        </div>
+      </div>
+    </div>
+    <div class="sl-nav">
+      <button aria-label="Previous winner" class="sl-btn gold" onclick="slide('w',-1)"><i class="fa-solid fa-chevron-left"></i></button>
+      <button aria-label="Next winner" class="sl-btn gold" onclick="slide('w',1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALLERY SECTION
+     ========================================================= -->
+<section class="section" id="gallery">
+  <div class="sec-wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="sec-tag"><i class="fa-solid fa-images"></i> Media & Moments</div>
+      <h2 class="sec-title">Ceremony <span>Gallery</span></h2>
+      <p class="sec-desc">Glimpses of authorized cheque handover ceremonies, bumper draw events, and winner celebrations.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="sl-outer" id="gOuter">
+      <div class="sl-track" id="gTrack">
+        <div class="g-item">
+          <img alt="Kerala Lottery Tickets" onerror="this.src='https://images.pexels.com/photos/2291462/pexels-photo-2291462.jpeg?auto=compress&w=600'" src="../assets/images/about_lottery.png"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-camera"></i> Official Lottery Tickets on Display</div>
+          </div>
+        </div>
+        <div class="g-item">
+          <img alt="Winner Celebration" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Winner'" src="../_external/images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-trophy"></i> 1st Prize Winner Felicitation</div>
+          </div>
+        </div>
+        <div class="g-item">
+          <img alt="Live Draw Event" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Live+Draw'" src="../_external/images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-tower-broadcast"></i> Live Draw Auditorium 2026</div>
+          </div>
+        </div>
+        <div class="g-item">
+          <img alt="Bumper Draw" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Bumper'" src="../_external/images.pexels.com/photos/3321793/pexels-photo-3321793.jpeg"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-star"></i> Annual Bumper Draw Ceremony</div>
+          </div>
+        </div>
+        <div class="g-item">
+          <img alt="Cheque Handover" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Cheque'" src="../_external/images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-hand-holding-dollar"></i> Official Cheque Handover</div>
+          </div>
+        </div>
+        <div class="g-item">
+          <img alt="Onam Bumper" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Onam'" src="../_external/images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"/>
+          <div class="g-cap-wrap">
+            <div class="g-caption"><i class="fa-solid fa-award"></i> Special Thiruvonam Bumper Event</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sl-nav">
+      <button aria-label="Previous gallery image" class="sl-btn green" onclick="slide('g',-1)"><i class="fa-solid fa-chevron-left"></i></button>
+      <button aria-label="Next gallery image" class="sl-btn green" onclick="slide('g',1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIALS SECTION
+     ========================================================= -->
+<section class="section" id="testimonials">
+  <div class="sec-wrap">
+    <div class="sec-head" data-aos="fade-up">
+      <div class="sec-tag"><i class="fa-solid fa-comments"></i> Winner Testimonials</div>
+      <h2 class="sec-title">Words From <span>Our Winners</span></h2>
+      <p class="sec-desc">Genuine experiences and joyful reflections from winners across Kerala and India.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="sl-outer" id="tOuter">
+      <div class="sl-track" id="tTrack">
+        <div class="t-card">
+          <div>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="t-text">"I never believed in lotteries until Kerala State Lottery changed my life! Won ₹75 Lakhs — the entire verification and claim process was 100% transparent and fast."</p>
+          </div>
+          <div class="t-auth">
+            <div class="t-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
+            <div>
+              <div class="t-name">Rajesh Kumar</div>
+              <div class="t-role"><i class="fa-solid fa-medal"></i> 3rd Prize — ₹75 Lakhs, Kerala</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="t-text">"Checked my result right here on this website and saw I won the 2nd Prize of ₹10 Crores! The digital winner certificate generated is so beautiful and official."</p>
+          </div>
+          <div class="t-auth">
+            <div class="t-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
+            <div>
+              <div class="t-name">Priya Nair</div>
+              <div class="t-role"><i class="fa-solid fa-medal"></i> 2nd Prize — ₹10 Crores, Thiruvananthapuram</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="t-text">"Kerala Government Lottery is the most trustworthy institution in the country. Bought from Shree Shakti Lottery and won ₹1 Lakh. Truly genuine!"</p>
+          </div>
+          <div class="t-auth">
+            <div class="t-avtr"><img alt="Mohammed Basheer" onerror="this.src='https://ui-avatars.com/api/?name=MB&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
+            <div>
+              <div class="t-name">Mohammed Basheer</div>
+              <div class="t-role"><i class="fa-solid fa-medal"></i> 6th Prize — ₹1 Lakh, Kozhikode</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card">
+          <div>
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="t-text">"The website works flawlessly on mobile! The instant result check with confetti and the high-definition winner certificate is an incredible experience."</p>
+          </div>
+          <div class="t-auth">
+            <div class="t-avtr"><img alt="Sunita Pillai" onerror="this.src='https://ui-avatars.com/api/?name=SP&background=041408&color=d4af37'" src="../_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
+            <div>
+              <div class="t-name">Sunita Pillai</div>
+              <div class="t-role"><i class="fa-solid fa-medal"></i> 5th Prize — ₹12 Lakhs, Kochi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sl-nav">
+      <button aria-label="Previous testimonial" class="sl-btn green" onclick="slide('t',-1)"><i class="fa-solid fa-chevron-left"></i></button>
+      <button aria-label="Next testimonial" class="sl-btn green" onclick="slide('t',1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="f-logo">
+        <div class="logo-img-wrap">
+          <img alt="Kerala Lottery" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="../assets/images/logo.png"/>
+        </div>
+        <div class="logo-text">
+          <div class="lm">Kerala Lottery</div>
+          <div class="ls">Government of Kerala</div>
+        </div>
+      </div>
+      <p>Directorate of Kerala State Lotteries — Pioneering government-regulated state lotteries since 1967. Authorized retail partner: <strong style="color:var(--gold-400)">Shree Shakti Lottery result 2026</strong>.</p>
+      <div class="socials">
+        <a aria-label="Facebook" class="soc-btn" href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a aria-label="Twitter / X" class="soc-btn" href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a aria-label="Instagram" class="soc-btn" href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a aria-label="YouTube" class="soc-btn" href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a aria-label="Telegram" class="soc-btn" href="#"><i class="fa-brands fa-telegram"></i></a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4><i class="fa-solid fa-link"></i> Quick Links</h4>
+      <ul>
+        <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> About Directorate</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+        <li><a href="#check-result"><i class="fa-solid fa-chevron-right"></i> Check Result</a></li>
+        <li><a href="#gallery"><i class="fa-solid fa-chevron-right"></i> Event Gallery</a></li>
+        <li><a href="admin__login.php.html"><i class="fa-solid fa-lock"></i> Admin Portal</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4><i class="fa-solid fa-ticket"></i> Lottery Schemes</h4>
+      <ul>
+        <li><a href="#check-result"><i class="fa-solid fa-chevron-right"></i> Today's Live Draw</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Prize Structure</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> How to Claim Prize</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Authorized Dealers</a></li>
+        <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Thiruvonam Bumper</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Terms &amp; Conditions</a></li>
+      </ul>
+    </div>
+    <div class="foot-col foot-contact">
+      <h4><i class="fa-solid fa-address-book"></i> Contact Office</h4>
+      <p><i class="fa-solid fa-location-dot"></i> Directorate of Kerala State Lotteries, Vikas Bhavan, Thiruvananthapuram - 695 033</p>
+      <p><i class="fa-solid fa-phone"></i> 0471-2305230 / 0471-2305193</p>
+      <p><i class="fa-solid fa-envelope"></i> keralalottery.finance@kerala.gov.in</p>
+      <p><i class="fa-solid fa-store"></i> Shree Shakti Lottery result 2026</p>
+      <p><i class="fa-solid fa-clock"></i> Mon–Sat: 10:00 AM – 5:00 PM</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 <span>Directorate of Kerala State Lotteries</span> — All Rights Reserved | Authorized Seller: <span>Shree Shakti Lottery result 2026</span></p>
+    <div class="foot-disclaimer">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <span>Official Government of Kerala Lottery Portal. Play responsibly. 18+ participants only.</span>
+    </div>
+  </div>
+</footer>
+
+<a aria-label="Back to top" class="btt" href="#home" id="bttBtn"><i class="fa-solid fa-chevron-up"></i></a>
+
+<!-- =========================================================
+     SCRIPTS & INTERACTIONS
+     ========================================================= -->
+<script src="../_external/cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="../_external/unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+/* ── Initialize AOS ── */
+if (typeof AOS !== 'undefined') {
+  AOS.init({ duration: 600, once: true, offset: 40 });
+}
+
+/* ── Hero sizing & mobile viewport fix ── */
+function sizeHero() {
+  var hdr = document.getElementById('mainHeader');
+  var hw = document.querySelector('.hero-wrapper');
+  var hh = hdr ? hdr.offsetHeight : 62;
+  hw.style.marginTop = hh + 'px';
+  var targetH = Math.max(460, window.innerHeight - hh);
+  hw.style.height = targetH + 'px';
+  document.querySelectorAll('.slide').forEach(function(s) {
+    s.style.height = targetH + 'px';
+  });
+}
+sizeHero();
+window.addEventListener('resize', sizeHero);
+
+/* ── Scroll effects & Back to Top ── */
+window.addEventListener('scroll', function() {
+  var btt = document.getElementById('bttBtn');
+  if (btt) btt.classList.toggle('show', window.scrollY > 200);
+}, { passive: true });
+
+/* ── Mobile Navigation Drawer ── */
+function toggleNav() {
+  var nl = document.getElementById('navLinks');
+  var no = document.getElementById('navOverlay');
+  var mb = document.getElementById('menuBtn');
+  nl.classList.toggle('open');
+  no.classList.toggle('open');
+  if (mb) mb.classList.toggle('active');
+}
+
+function closeNav() {
+  var nl = document.getElementById('navLinks');
+  var no = document.getElementById('navOverlay');
+  var mb = document.getElementById('menuBtn');
+  nl.classList.remove('open');
+  no.classList.remove('open');
+  if (mb) mb.classList.remove('active');
+}
+
+/* ── Hero Slider ── */
+var cs = 0, hti;
+var hsl = document.querySelectorAll('.slide');
+var hdt = document.querySelectorAll('.dot');
+
+function goSlide(n) {
+  if (!hsl.length) return;
+  hsl[cs].classList.remove('active');
+  if (hdt[cs]) hdt[cs].classList.remove('on');
+  cs = (n + hsl.length) % hsl.length;
+  hsl[cs].classList.add('active');
+  if (hdt[cs]) hdt[cs].classList.add('on');
+  document.getElementById('slidesWrap').style.transform = 'translateX(-' + (cs * 100) + '%)';
+}
+
+function nextSlide() { clearInterval(hti); goSlide(cs + 1); startH(); }
+function prevSlide() { clearInterval(hti); goSlide(cs - 1); startH(); }
+function startH() { hti = setInterval(function() { goSlide(cs + 1); }, 5000); }
+startH();
+
+/* ── Touch Gestures for Hero Slider ── */
+var touchStartX = 0, touchEndX = 0;
+var heroEl = document.getElementById('home');
+if (heroEl) {
+  heroEl.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  heroEl.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  }, { passive: true });
+}
+
+/* ── Animated Stats Counter ── */
+function runCounters() {
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var t = parseInt(el.dataset.target), c = 0, step = Math.ceil(t / 45);
+    var ti = setInterval(function() {
+      c = Math.min(c + step, t);
+      el.textContent = c + (t === 100 ? '%' : '+');
+      if (c >= t) {
+        el.textContent = t + (t === 100 ? '%' : '+');
+        clearInterval(ti);
+      }
+    }, 25);
+  });
+}
+var sob = new IntersectionObserver(function(e) {
+  if (e[0].isIntersecting) { runCounters(); sob.disconnect(); }
+}, { threshold: 0.2 });
+var sb = document.querySelector('.stats-bar');
+if (sb) sob.observe(sb);
+
+/* ── Multi-Carousels (Winners, Gallery, Testimonials) ── */
+var sliders = {
+  w: { idx: 0, outer: 'wOuter', track: 'wTrack' },
+  g: { idx: 0, outer: 'gOuter', track: 'gTrack' },
+  t: { idx: 0, outer: 'tOuter', track: 'tTrack' }
+};
+
+function slide(key, dir) {
+  var s = sliders[key];
+  var outer = document.getElementById(s.outer);
+  var track = document.getElementById(s.track);
+  if (!outer || !track || !track.children.length) return;
+  var items = track.children;
+  var ow = outer.getBoundingClientRect().width;
+  var iw = items[0].getBoundingClientRect().width;
+  var gap = 16;
+  var vis = Math.max(1, Math.floor((ow + gap) / (iw + gap)));
+  var max = Math.max(0, items.length - vis);
+  s.idx += dir;
+  if (s.idx > max) s.idx = 0;
+  if (s.idx < 0) s.idx = max;
+  track.style.transform = 'translateX(-' + (s.idx * (iw + gap)) + 'px)';
+}
+
+setInterval(function() { slide('w', 1); }, 3800);
+setInterval(function() { slide('g', 1); }, 4200);
+setInterval(function() { slide('t', 1); }, 4800);
+
+/* ── Live Result Check Flow ── */
+var lastTicket = null;
+
+async function checkResult() {
+  var phoneInput = document.getElementById('phoneInput');
+  var phone = phoneInput.value.trim();
+  if (!phone || phone.length < 10) {
+    alert('Please enter a valid 10-digit mobile number.');
+    phoneInput.focus();
+    return;
+  }
+  var btn = document.getElementById('checkBtn');
+  document.getElementById('btnLabel').style.display = 'none';
+  document.getElementById('btnSpin').style.display = 'block';
+  btn.disabled = true;
+
+  document.getElementById('winCard').classList.remove('show');
+  document.getElementById('noWinCard').classList.remove('show');
+  document.getElementById('cert-section').style.display = 'none';
+  document.querySelectorAll('.t-chip.lit').forEach(function(c) { c.classList.remove('lit'); });
+  lastTicket = null;
+
+  try {
+    var r = await fetch('api/check_result.php?phone=' + encodeURIComponent(phone));
+    var d = await r.json();
+    if (d.success && d.isWinner) {
+      showWinner(d.winner);
+    } else {
+      document.getElementById('noWinCard').classList.add('show');
+      renderTickets(getCleanTickets(null, null), null);
+    }
+  } catch (e) {
+    demoFallback(phone);
+  }
+
+  document.getElementById('btnLabel').style.display = 'inline-flex';
+  document.getElementById('btnSpin').style.display = 'none';
+  btn.disabled = false;
+}
+
+function showWinner(w) {
+  var pl = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+  var posStr = (pl[w.position] || w.position_label || '1st') + ' Prize';
+  
+  document.getElementById('rName').textContent = w.name || 'Valued Participant';
+  document.getElementById('rPhone').textContent = w.phone || '—';
+  document.getElementById('rTicket').textContent = w.ticket_number || '—';
+  document.getElementById('rPos').textContent = posStr;
+  document.getElementById('rAmt').textContent = '₹ ' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
+  document.getElementById('rDate').textContent = w.draw_date || new Date().toISOString().split('T')[0];
+  document.getElementById('winCard').classList.add('show');
+  lastTicket = w.ticket_number;
+
+  /* Fill Certificate */
+  document.getElementById('certName').textContent = w.name || 'Winner';
+  document.getElementById('certPos').textContent = posStr;
+  document.getElementById('certTicket').textContent = w.ticket_number || '—';
+  document.getElementById('certDate').textContent = w.draw_date || new Date().toLocaleDateString('en-IN');
+  document.getElementById('cert-section').style.display = 'block';
+
+  /* Trigger Confetti */
+  confettiBurst();
+
+  /* Render Winning Ticket Sheet */
+  var wd = getCleanTickets(w.ticket_number, w.position);
+  renderTickets(wd, w.ticket_number);
+}
+
+function demoFallback(phone) {
+  var demos = {
+    '9876543210': { name: 'Rajesh Kumar', phone: '9876543210', ticket_number: 'KL770487', position: 1, winning_amount: 250000000, draw_date: '2026-04-10' },
+    '9988776655': { name: 'Arun Menon', phone: '9988776655', ticket_number: 'KL872246', position: 3, winning_amount: 7500000, draw_date: '2026-04-10' }
+  };
+  if (demos[phone]) {
+    showWinner(demos[phone]);
+  } else if (phone.endsWith('0') || phone.endsWith('5') || phone.endsWith('8')) {
+    showWinner({
+      name: 'Kerala State Winner',
+      phone: phone,
+      ticket_number: 'KL' + Math.floor(100000 + Math.random() * 900000),
+      position: 3,
+      winning_amount: 7500000,
+      draw_date: new Date().toISOString().split('T')[0]
+    });
+  } else {
+    document.getElementById('noWinCard').classList.add('show');
+    renderTickets(getCleanTickets(null, null), null);
+  }
+}
+
+document.getElementById('phoneInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkResult();
+});
+
+/* ── Certificate Download (html2canvas) ── */
+function downloadCert() {
+  var el = document.getElementById('certBox');
+  if (typeof html2canvas === 'undefined') {
+    alert('Certificate is ready. You can take a screenshot or print this page.');
+    return;
+  }
+  html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#fdfbf7' }).then(function(canvas) {
+    var link = document.createElement('a');
+    link.download = 'Kerala_State_Lottery_Winner_Certificate.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(function(err) {
+    alert('Certificate ready! Right-click or long-press the certificate to save as image.');
+  });
+}
+
+/* ── Live Draw Ticket Data & Renderer ── */
+var PRIZES = { 1: '₹ 25,00,00,000/-', 2: '₹ 10,00,00,000/-', 3: '₹ 75,00,000/-', 4: '₹ 25,00,000/-', 5: '₹ 12,00,000/-', 6: '₹ 1,00,000/-' };
+var PLAB = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th' };
+
+function demoTickets() {
+  return {
+    1: [{ ticket_number: 'KL770487' }],
+    2: [{ ticket_number: 'KL126225' }],
+    3: [{ ticket_number: 'KL872246' }],
+    4: [{ ticket_number: 'KL343962' }, { ticket_number: 'KL629903' }, { ticket_number: 'KL731262' }, { ticket_number: 'KL127824' }, { ticket_number: 'KL688508' }, { ticket_number: 'KL308496' }, { ticket_number: 'KL850800' }, { ticket_number: 'KL781453' }, { ticket_number: 'KL835392' }],
+    5: [{ ticket_number: 'KL106814' }, { ticket_number: 'KL895667' }, { ticket_number: 'KL944962' }, { ticket_number: 'KL267414' }, { ticket_number: 'KL832052' }, { ticket_number: 'KL543143' }, { ticket_number: 'KL456778' }, { ticket_number: 'KL391369' }],
+    6: [{ ticket_number: 'KL377370' }, { ticket_number: 'KL946335' }, { ticket_number: 'KL145561' }, { ticket_number: 'KL865179' }, { ticket_number: 'KL581741' }, { ticket_number: 'KL662275' }, { ticket_number: 'KL230889' }, { ticket_number: 'KL496922' }, { ticket_number: 'KL182627' }, { ticket_number: 'KL678856' }]
+  };
+}
+
+function getCleanTickets(highlightTicket, highlightPos) {
+  var base = demoTickets();
+  var out = {};
+  for (var p = 1; p <= 6; p++) {
+    out[p] = (base[p] || []).map(function(t) { return { ticket_number: t.ticket_number }; });
+  }
+  if (highlightTicket && highlightPos) {
+    var pos = parseInt(highlightPos) || 1;
+    if (pos < 1 || pos > 6) pos = 1;
+    out[pos] = out[pos].filter(function(t) { return t.ticket_number !== highlightTicket; });
+    out[pos].unshift({ ticket_number: highlightTicket });
+  }
+  return out;
+}
+
+function renderTickets(data, highlightTicket) {
+  var html = '';
+  for (var p = 1; p <= 6; p++) {
+    var tix = (data[p] || []);
+    if (!tix.length) continue;
+    var chips = tix.map(function(t) {
+      var lit = (highlightTicket && t.ticket_number === highlightTicket) ? ' lit' : '';
+      return '<span class="t-chip' + lit + '" data-ticket="' + t.ticket_number + '">' + t.ticket_number + '</span>';
+    }).join('');
+    html += '<div class="prize-row"><div class="prize-hdr"><span class="p-pos"><i class="fa-solid fa-award"></i> ' + PLAB[p] + ' Prize</span><span class="p-amt">' + PRIZES[p] + '</span></div><div class="tickets">' + chips + '</div></div>';
+  }
+  document.getElementById('twPlaceholder').style.display = 'none';
+  var listEl = document.getElementById('twList');
+  listEl.style.display = 'block';
+  listEl.innerHTML = html || '<p style="text-align:center;color:rgba(255,255,255,.5);padding:18px;">Draw results updating...</p>';
+  if (highlightTicket) {
+    setTimeout(function() {
+      var el = document.querySelector('.t-chip.lit');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 250);
+  }
+}
+
+/* ── Confetti Celebration ── */
+function confettiBurst() {
+  var cv = document.getElementById('confetti');
+  if (!cv) return;
+  cv.style.display = 'block';
+  var ctx = cv.getContext('2d');
+  cv.width = window.innerWidth;
+  cv.height = window.innerHeight;
+  var cols = ['#ffd700', '#f5c518', '#1b632f', '#44bf66', '#ffffff', '#e5a912', '#ff5252', '#38bdf8'];
+  var ps = Array.from({ length: 160 }, function() {
+    return {
+      x: Math.random() * cv.width,
+      y: Math.random() * cv.height - cv.height,
+      r: Math.random() * 6 + 3,
+      d: Math.random() * 140 + 10,
+      color: cols[Math.floor(Math.random() * cols.length)],
+      tilt: Math.random() * 10 - 5,
+      ta: 0,
+      ts: Math.random() * 0.1 + 0.04
+    };
+  });
+  var fr = 0;
+  function draw() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ps.forEach(function(p) {
+      ctx.beginPath();
+      ctx.lineWidth = p.r / 2;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+      ctx.stroke();
+      p.ta += p.ts;
+      p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+      p.tilt = Math.sin(p.ta) * 12;
+      if (p.y > cv.height) {
+        p.y = -10;
+        p.x = Math.random() * cv.width;
+      }
+    });
+    fr++;
+    if (fr < 200) requestAnimationFrame(draw);
+    else {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      cv.style.display = 'none';
+    }
+  }
+  draw();
+}
+</script>
+</body>
+</html>
