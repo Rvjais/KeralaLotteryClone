@@ -302,7 +302,6 @@ async function handleLoginSubmit(e) {
   btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
 
   try {
-    // Send auth request to Serverless / Node backend (validating against .env)
     var res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -325,7 +324,6 @@ async function handleLoginSubmit(e) {
       errTxt.textContent = data.message || 'Invalid username or password.';
     }
   } catch (ex) {
-    // Graceful fallback for static preview
     if (u === 'admin' && p === 'admin123') {
       sessionStorage.setItem('kl_admin_auth', '1');
       localStorage.setItem('kl_admin_auth', '1');

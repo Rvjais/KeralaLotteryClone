@@ -1155,13 +1155,13 @@ body {
 /* ── Auth Session Protection ── */
 var isAuth = sessionStorage.getItem('kl_admin_auth') || localStorage.getItem('kl_admin_auth');
 if (!isAuth) {
-  // If not logged in, set default demo auth for immediate preview or redirect
   sessionStorage.setItem('kl_admin_auth', '1');
 }
 
 function handleLogout() {
   sessionStorage.removeItem('kl_admin_auth');
   localStorage.removeItem('kl_admin_auth');
+  localStorage.removeItem('kl_admin_jwt');
   window.location.href = 'admin__login.php.html';
 }
 
@@ -1198,8 +1198,6 @@ var INITIAL_WINNERS = [
   { name: 'Priya Nair', phone: '9988776655', ticket: 'TB251634', pos: 2, prize: 100000000, date: '2026-04-10' }
 ];
 
-/* ── Load / Save to LocalStorage ── */
-function loadWinners() {
 /* ── Load / Save to MongoDB and LocalStorage ── */
 var winnersList = [];
 
@@ -1218,12 +1216,9 @@ async function fetchWinnersFromAPI() {
     console.warn('[API] Could not fetch from MongoDB API, using local storage.');
   }
 
-  // Fallback to local storage or initial dataset
   var saved = localStorage.getItem('kl_winners_data');
   if (saved) {
     try {
-      return JSON.parse(saved);
-    } catch(e) {}
       winnersList = JSON.parse(saved);
     } catch(e) {
       winnersList = INITIAL_WINNERS;
@@ -1231,19 +1226,14 @@ async function fetchWinnersFromAPI() {
   } else {
     winnersList = INITIAL_WINNERS;
   }
-  localStorage.setItem('kl_winners_data', JSON.stringify(INITIAL_WINNERS));
-  return INITIAL_WINNERS;
   localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
   updateKPIs();
   filterWinners();
 }
 
-function saveWinners(arr) {
 function saveWinnersLocally(arr) {
   localStorage.setItem('kl_winners_data', JSON.stringify(arr));
 }
-
-var winnersList = loadWinners();
 
 /* ── Format Currency in Indian Locale ── */
 function formatRupee(num) {
@@ -1254,7 +1244,6 @@ function formatRupee(num) {
 function updateKPIs() {
   var totalWinners = 6250 + winnersList.length;
   var todayDate = new Date().toISOString().split('T')[0];
-  var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || w.date.includes('2026-09'); }).length;
   var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || (w.date && w.date.includes('2026-09')); }).length;
   var firstPrizeWinners = winnersList.filter(function(w) { return parseInt(w.pos) === 1; }).length;
   
@@ -1267,7 +1256,7 @@ function updateKPIs() {
 /* ── Render Winners Table ── */
 function renderTable(list) {
   var tbody = document.getElementById('winnersTbody');
-  if (!list.length) {
+  if (!list || !list.length) {
     tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><i class="fa-solid fa-box-open"></i><p>No matching winner records found.</p></div></td></tr>';
     return;
   }
@@ -1354,7 +1343,6 @@ function autoFillPrize() {
   }
 }
 
-function handleFormSubmit(e) {
 async function handleFormSubmit(e) {
   e.preventDefault();
   var editIdx = parseInt(document.getElementById('editIndex').value);
@@ -1372,13 +1360,6 @@ async function handleFormSubmit(e) {
 
   var winnerObj = { name: name, phone: phone, ticket: ticket, pos: pos, prize: prize, date: date };
 
-  if (editIdx >= 0 && editIdx < winnersList.length) {
-    winnersList[editIdx] = winnerObj;
-    showToast('Winner record updated successfully!');
-  } else {
-    winnersList.unshift(winnerObj);
-    showToast('New winner added successfully!');
-  // 1. Sync with MongoDB API
   try {
     if (editIdx >= 0 && editIdx < winnersList.length) {
       var old = winnersList[editIdx];
@@ -1413,14 +1394,12 @@ async function handleFormSubmit(e) {
     }
   }
 
-  saveWinners(winnersList);
   saveWinnersLocally(winnersList);
   updateKPIs();
   filterWinners();
   closeModal();
 }
 
-function deleteWinner(idx) {
 async function deleteWinner(idx) {
   var w = winnersList[idx];
   if (!w) return;
@@ -1434,11 +1413,9 @@ async function deleteWinner(idx) {
     } catch (e) {}
 
     winnersList.splice(idx, 1);
-    saveWinners(winnersList);
     saveWinnersLocally(winnersList);
     updateKPIs();
     filterWinners();
-    showToast('Winner removed.');
     showToast('Winner removed from database.');
   }
 }
@@ -1500,10 +1477,7 @@ function toggleSidebar() {
 }
 
 /* ── Initial Startup ── */
-updateKPIs();
-filterWinners();
 fetchWinnersFromAPI();
 </script>
 </body>
 </html>
-
