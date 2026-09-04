@@ -1184,20 +1184,6 @@ var POS_LABELS = {
   6: '6th Prize'
 };
 
-/* ── Initial Dataset Matching Screenshot ── */
-var INITIAL_WINNERS = [
-  { name: 'Syedzaffrullah', phone: '9840560904', ticket: 'SK830991', pos: 3, prize: 7500000, date: '2026-09-04' },
-  { name: 'Seenivasan', phone: '9629537821', ticket: 'SK097279', pos: 3, prize: 7500000, date: '2026-09-04' },
-  { name: 'Rajendrajayakumar. P', phone: '9840488811', ticket: 'KL917845', pos: 3, prize: 7500000, date: '2026-09-04' },
-  { name: 'K. Sahaya Arputha Mary', phone: '8778785075', ticket: 'KL574443', pos: 3, prize: 7500000, date: '2026-09-04' },
-  { name: 'A.Nithiyanandam', phone: '9092061965', ticket: 'SK146704', pos: 4, prize: 2500000, date: '2026-09-04' },
-  { name: 'Ravichandran M', phone: '9994679131', ticket: 'KL263485', pos: 4, prize: 2500000, date: '2026-09-04' },
-  { name: 'Pm Kumar', phone: '9345812713', ticket: 'KL680342', pos: 4, prize: 2500000, date: '2026-09-04' },
-  { name: 'Kesavan R', phone: '9659185567', ticket: 'KL289517', pos: 4, prize: 2500000, date: '2026-09-04' },
-  { name: 'Rajesh Kumar', phone: '9876543210', ticket: 'KL770487', pos: 1, prize: 250000000, date: '2026-04-10' },
-  { name: 'Priya Nair', phone: '9988776655', ticket: 'TB251634', pos: 2, prize: 100000000, date: '2026-04-10' }
-];
-
 /* ── Load / Save to MongoDB and LocalStorage ── */
 var winnersList = [];
 
@@ -1205,7 +1191,7 @@ async function fetchWinnersFromAPI() {
   try {
     var res = await fetch('/api/winners');
     var json = await res.json();
-    if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+    if (json && json.success && Array.isArray(json.data)) {
       winnersList = json.data;
       localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
       updateKPIs();
@@ -1213,7 +1199,7 @@ async function fetchWinnersFromAPI() {
       return;
     }
   } catch (err) {
-    console.warn('[API] Could not fetch from MongoDB API, using local storage.');
+    console.warn('[API] Fetching from local storage.');
   }
 
   var saved = localStorage.getItem('kl_winners_data');
@@ -1221,12 +1207,11 @@ async function fetchWinnersFromAPI() {
     try {
       winnersList = JSON.parse(saved);
     } catch(e) {
-      winnersList = INITIAL_WINNERS;
+      winnersList = [];
     }
   } else {
-    winnersList = INITIAL_WINNERS;
+    winnersList = [];
   }
-  localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
   updateKPIs();
   filterWinners();
 }
@@ -1242,15 +1227,16 @@ function formatRupee(num) {
 
 /* ── Update KPI Statistics ── */
 function updateKPIs() {
-  var totalWinners = 6250 + winnersList.length;
+  var totalWinners = winnersList.length;
   var todayDate = new Date().toISOString().split('T')[0];
-  var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || (w.date && w.date.includes('2026-09')); }).length;
+  var todayWinnersCount = winnersList.filter(function(w) { return w.date === todayDate; }).length;
   var firstPrizeWinners = winnersList.filter(function(w) { return parseInt(w.pos) === 1; }).length;
+  var totalPrizeSum = winnersList.reduce(function(acc, w) { return acc + (parseFloat(w.prize) || 0); }, 0);
   
   document.getElementById('kpiTotalWinners').textContent = totalWinners.toLocaleString('en-IN');
   document.getElementById('kpiTodayWinners').textContent = todayWinnersCount.toString();
-  document.getElementById('kpiPrizePool').textContent = '₹1,097.7Cr';
-  document.getElementById('kpiFirstPrize').textContent = Math.max(4, firstPrizeWinners).toString();
+  document.getElementById('kpiPrizePool').textContent = formatRupee(totalPrizeSum);
+  document.getElementById('kpiFirstPrize').textContent = firstPrizeWinners.toString();
 }
 
 /* ── Render Winners Table ── */

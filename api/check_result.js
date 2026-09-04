@@ -47,11 +47,9 @@ module.exports = async function handler(req, res) {
         });
       }
     } else {
-      // In-memory fallback
-      return res.status(200).json({
+      return res.status(500).json({
         success: false,
-        source: 'fallback',
-        message: 'Database offline, please use client fallback.'
+        message: 'Database connection unavailable.'
       });
     }
   } catch (error) {
@@ -59,4 +57,3 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ success: false, message: error.message || 'Database error.' });
   }
 };
-

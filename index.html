@@ -3049,16 +3049,15 @@ async function checkResult() {
   lastTicket = null;
 
   try {
-    var r = await fetch('api/check_result.php?phone=' + encodeURIComponent(phone));
+    var r = await fetch('/api/check_result?phone=' + encodeURIComponent(phone));
     var d = await r.json();
-    if (d.success && d.isWinner) {
+    if (d && d.success && d.isWinner && d.winner) {
       showWinner(d.winner);
     } else {
-      document.getElementById('noWinCard').classList.add('show');
-      renderTickets(getCleanTickets(null, null), null);
+      checkLocalOrNoWin(phone);
     }
   } catch (e) {
-    demoFallback(phone);
+    checkLocalOrNoWin(phone);
   }
 
   document.getElementById('btnLabel').style.display = 'inline-flex';
@@ -3066,36 +3065,7 @@ async function checkResult() {
   btn.disabled = false;
 }
 
-function showWinner(w) {
-  var pl = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'];
-  var posStr = (pl[w.position] || w.position_label || '1st') + ' Prize';
-  
-  document.getElementById('rName').textContent = w.name || 'Valued Participant';
-  document.getElementById('rPhone').textContent = w.phone || '—';
-  document.getElementById('rTicket').textContent = w.ticket_number || '—';
-  document.getElementById('rPos').textContent = posStr;
-  document.getElementById('rAmt').textContent = '₹ ' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
-  document.getElementById('rDate').textContent = w.draw_date || new Date().toISOString().split('T')[0];
-  document.getElementById('winCard').classList.add('show');
-  lastTicket = w.ticket_number;
-
-  /* Fill Certificate */
-  document.getElementById('certName').textContent = w.name || 'Winner';
-  document.getElementById('certPos').textContent = posStr;
-  document.getElementById('certTicket').textContent = w.ticket_number || '—';
-  document.getElementById('certDate').textContent = w.draw_date || new Date().toLocaleDateString('en-IN');
-  document.getElementById('cert-section').style.display = 'block';
-
-  /* Trigger Confetti */
-  confettiBurst();
-
-  /* Render Winning Ticket Sheet */
-  var wd = getCleanTickets(w.ticket_number, w.position);
-  renderTickets(wd, w.ticket_number);
-}
-
-function demoFallback(phone) {
-  // 1. Check shared live admin winners dataset
+function checkLocalOrNoWin(phone) {
   var saved = localStorage.getItem('kl_winners_data');
   if (saved) {
     try {
@@ -3114,29 +3084,8 @@ function demoFallback(phone) {
       }
     } catch(e) {}
   }
-
-  // 2. Default standard demos
-  var demos = {
-    '9876543210': { name: 'Rajesh Kumar', phone: '9876543210', ticket_number: 'KL770487', position: 1, winning_amount: 250000000, draw_date: '2026-04-10' },
-    '9988776655': { name: 'Arun Menon', phone: '9988776655', ticket_number: 'KL872246', position: 3, winning_amount: 7500000, draw_date: '2026-04-10' },
-    '9840560904': { name: 'Syedzaffrullah', phone: '9840560904', ticket_number: 'SK830991', position: 3, winning_amount: 7500000, draw_date: '2026-09-04' },
-    '9629537821': { name: 'Seenivasan', phone: '9629537821', ticket_number: 'SK097279', position: 3, winning_amount: 7500000, draw_date: '2026-09-04' }
-  };
-  if (demos[phone]) {
-    showWinner(demos[phone]);
-  } else if (phone.endsWith('0') || phone.endsWith('5') || phone.endsWith('8')) {
-    showWinner({
-      name: 'Kerala State Winner',
-      phone: phone,
-      ticket_number: 'KL' + Math.floor(100000 + Math.random() * 900000),
-      position: 3,
-      winning_amount: 7500000,
-      draw_date: new Date().toISOString().split('T')[0]
-    });
-  } else {
-    document.getElementById('noWinCard').classList.add('show');
-    renderTickets(getCleanTickets(null, null), null);
-  }
+  document.getElementById('noWinCard').classList.add('show');
+  renderTickets(getCleanTickets(null, null), null);
 }
 
 document.getElementById('phoneInput').addEventListener('keypress', function(e) {
