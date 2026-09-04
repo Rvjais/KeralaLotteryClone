@@ -80,7 +80,7 @@ button, input, select, textarea {
   font-family: inherit;
 }
 
-/* Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -270,7 +270,7 @@ nav {
   box-shadow: 0 6px 20px rgba(245, 175, 25, 0.6);
 }
 
-/* Mobile Drawer Header & Items (Hidden on Desktop) */
+/* Mobile Drawer Header & Items */
 .drawer-top {
   display: none;
 }
@@ -310,7 +310,7 @@ nav {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Backdrop Overlay (Behind Drawer) */
+/* Backdrop Overlay */
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -401,7 +401,7 @@ nav {
   background-size: 24px 24px;
 }
 
-/* Glass Card Centered in Hero */
+/* Frosted Glass Hero Card */
 .slide-content {
   position: relative;
   z-index: 3;
@@ -1999,7 +1999,7 @@ footer {
     height: 100vh;
     height: 100dvh;
     width: min(85vw, 320px);
-    background: #041408 !important; /* Solid opaque luxury background so it is NEVER blurry */
+    background: #041408 !important;
     box-shadow: -12px 0 40px rgba(0, 0, 0, 0.85);
     border-left: 2px solid var(--gold-500);
     padding: 20px 18px 30px;
@@ -2010,7 +2010,7 @@ footer {
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     visibility: hidden;
-    z-index: 10005 !important; /* Above overlay and header */
+    z-index: 10005 !important;
     overflow-y: auto;
   }
 
@@ -2019,7 +2019,6 @@ footer {
     visibility: visible;
   }
 
-  /* Drawer Top Header */
   .drawer-top {
     display: flex;
     align-items: center;
@@ -2070,7 +2069,6 @@ footer {
     color: var(--emerald-950);
   }
 
-  /* Drawer List Items */
   .nav-links li {
     width: 100%;
   }
@@ -2133,7 +2131,6 @@ footer {
   .logo-text .ls { display: none; }
   .marquee-bar { font-size: 0.66rem; padding: 4px 0; }
   
-  /* Hero on mobile */
   .hero-wrapper {
     min-height: calc(100svh - 90px);
     display: flex;
@@ -2477,7 +2474,7 @@ footer {
     </div>
 
     <!-- =========================================================
-         TODAY'S WINNERS SECTION
+         TODAY'S WINNERS LIVE DRAW SECTION
          ========================================================= -->
     <div id="tw-section">
       <div class="tw-head">
@@ -2486,7 +2483,7 @@ footer {
       </div>
       <div class="tw-lock-box" id="twPlaceholder">
         <div class="tw-lock-icon"><i class="fa-solid fa-lock"></i></div>
-        <p>Enter your 10-digit mobile number above to reveal the full winning ticket sheet and highlight your ticket.</p>
+        <p>Enter your 10-digit mobile number above to reveal your verified draw status.</p>
       </div>
       <div id="twList" style="display:none;"></div>
     </div>
@@ -2622,51 +2619,35 @@ footer {
       <div class="sl-track" id="wTrack">
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-crown"></i></div>
-          <div class="w-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
+          <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
           <div class="w-name">Rajesh Kumar</div>
           <div class="w-pos-badge"><i class="fa-solid fa-crown"></i> 1st Prize</div>
           <div class="w-prize">₹25,00,00,000</div>
-          <div class="w-tkt">Ticket: TL584261</div>
+          <div class="w-tkt">Thiruvonam Bumper</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
+          <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
           <div class="w-name">Priya Nair</div>
           <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
           <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TB251634</div>
+          <div class="w-tkt">Summer Bumper</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
-          <div class="w-avtr"><img alt="Arun Menon" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/91227/pexels-photo-91227.jpeg"/></div>
+          <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/91227/pexels-photo-91227.jpeg"/></div>
           <div class="w-name">Arun Menon</div>
           <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
           <div class="w-prize">₹75,00,000</div>
-          <div class="w-tkt">Ticket: KL909090</div>
+          <div class="w-tkt">Fifty-Fifty Draw</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Sunita Sharma" onerror="this.src='https://ui-avatars.com/api/?name=SS&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
+          <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
           <div class="w-name">Sunita Sharma</div>
           <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
           <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TA562491</div>
-        </div>
-        <div class="w-slide">
-          <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Mohammed Ali" onerror="this.src='https://ui-avatars.com/api/?name=MA&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
-          <div class="w-name">Mohammed Ali</div>
-          <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
-          <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TE560651</div>
-        </div>
-        <div class="w-slide">
-          <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
-          <div class="w-avtr"><img alt="Lakshmi Devi" onerror="this.src='https://ui-avatars.com/api/?name=LD&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3831847/pexels-photo-3831847.jpeg"/></div>
-          <div class="w-name">Lakshmi Devi</div>
-          <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
-          <div class="w-prize">₹75,00,000</div>
-          <div class="w-tkt">Ticket: TB444002</div>
+          <div class="w-tkt">Karunya Plus</div>
         </div>
       </div>
     </div>
@@ -2709,21 +2690,9 @@ footer {
           </div>
         </div>
         <div class="g-item">
-          <img alt="Bumper Draw" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Bumper'" src="_external/images.pexels.com/photos/3321793/pexels-photo-3321793.jpeg"/>
-          <div class="g-cap-wrap">
-            <div class="g-caption"><i class="fa-solid fa-star"></i> Annual Bumper Draw Ceremony</div>
-          </div>
-        </div>
-        <div class="g-item">
           <img alt="Cheque Handover" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Cheque'" src="_external/images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"/>
           <div class="g-cap-wrap">
             <div class="g-caption"><i class="fa-solid fa-hand-holding-dollar"></i> Official Cheque Handover</div>
-          </div>
-        </div>
-        <div class="g-item">
-          <img alt="Onam Bumper" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Onam'" src="_external/images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"/>
-          <div class="g-cap-wrap">
-            <div class="g-caption"><i class="fa-solid fa-award"></i> Special Thiruvonam Bumper Event</div>
           </div>
         </div>
       </div>
@@ -2756,7 +2725,7 @@ footer {
             <p class="t-text">"I never believed in lotteries until Kerala State Lottery changed my life! Won ₹75 Lakhs — the entire verification and claim process was 100% transparent and fast."</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
+            <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
             <div>
               <div class="t-name">Rajesh Kumar</div>
               <div class="t-role"><i class="fa-solid fa-medal"></i> 3rd Prize — ₹75 Lakhs, Kerala</div>
@@ -2771,7 +2740,7 @@ footer {
             <p class="t-text">"Checked my result right here on this website and saw I won the 2nd Prize of ₹10 Crores! The digital winner certificate generated is so beautiful and official."</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
+            <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
             <div>
               <div class="t-name">Priya Nair</div>
               <div class="t-role"><i class="fa-solid fa-medal"></i> 2nd Prize — ₹10 Crores, Thiruvananthapuram</div>
@@ -2786,25 +2755,10 @@ footer {
             <p class="t-text">"Kerala Government Lottery is the most trustworthy institution in the country. Bought from Shree Shakti Lottery and won ₹1 Lakh. Truly genuine!"</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Mohammed Basheer" onerror="this.src='https://ui-avatars.com/api/?name=MB&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
+            <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
             <div>
               <div class="t-name">Mohammed Basheer</div>
               <div class="t-role"><i class="fa-solid fa-medal"></i> 6th Prize — ₹1 Lakh, Kozhikode</div>
-            </div>
-          </div>
-        </div>
-        <div class="t-card">
-          <div>
-            <div class="stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="t-text">"The website works flawlessly on mobile! The instant result check with confetti and the high-definition winner certificate is an incredible experience."</p>
-          </div>
-          <div class="t-auth">
-            <div class="t-avtr"><img alt="Sunita Pillai" onerror="this.src='https://ui-avatars.com/api/?name=SP&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
-            <div>
-              <div class="t-name">Sunita Pillai</div>
-              <div class="t-role"><i class="fa-solid fa-medal"></i> 5th Prize — ₹12 Lakhs, Kochi</div>
             </div>
           </div>
         </div>
@@ -3062,6 +3016,39 @@ async function checkResult() {
     renderTickets(getCleanTickets(null, null), null);
   }
 
+  document.getElementById('btnLabel').style.display = 'inline-flex';
+  document.getElementById('btnSpin').style.display = 'none';
+  btn.disabled = false;
+}
+
+function showWinner(w) {
+  var pl = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+  var posStr = (pl[w.position] || w.position_label || '1st') + ' Prize';
+  
+  document.getElementById('rName').textContent = w.name || 'Valued Participant';
+  document.getElementById('rPhone').textContent = w.phone || '—';
+  document.getElementById('rTicket').textContent = w.ticket_number || '—';
+  document.getElementById('rPos').textContent = posStr;
+  document.getElementById('rAmt').textContent = '₹ ' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
+  document.getElementById('rDate').textContent = w.draw_date || new Date().toISOString().split('T')[0];
+  document.getElementById('winCard').classList.add('show');
+  lastTicket = w.ticket_number;
+
+  /* Fill Certificate */
+  document.getElementById('certName').textContent = w.name || 'Winner';
+  document.getElementById('certPos').textContent = posStr;
+  document.getElementById('certTicket').textContent = w.ticket_number || '—';
+  document.getElementById('certDate').textContent = w.draw_date || new Date().toLocaleDateString('en-IN');
+  document.getElementById('cert-section').style.display = 'block';
+
+  /* Trigger Confetti */
+  confettiBurst();
+
+  /* Render Winning Ticket Sheet */
+  var wd = getCleanTickets(w.ticket_number, w.position);
+  renderTickets(wd, w.ticket_number);
+}
+
 document.getElementById('phoneInput').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') checkResult();
 });
@@ -3087,27 +3074,14 @@ function downloadCert() {
 var PRIZES = { 1: '₹ 25,00,00,000/-', 2: '₹ 10,00,00,000/-', 3: '₹ 75,00,000/-', 4: '₹ 25,00,000/-', 5: '₹ 12,00,000/-', 6: '₹ 1,00,000/-' };
 var PLAB = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th' };
 
-function demoTickets() {
-  return {
-    1: [{ ticket_number: 'KL770487' }],
-    2: [{ ticket_number: 'KL126225' }],
-    3: [{ ticket_number: 'KL872246' }],
-    4: [{ ticket_number: 'KL343962' }, { ticket_number: 'KL629903' }, { ticket_number: 'KL731262' }, { ticket_number: 'KL127824' }, { ticket_number: 'KL688508' }, { ticket_number: 'KL308496' }, { ticket_number: 'KL850800' }, { ticket_number: 'KL781453' }, { ticket_number: 'KL835392' }],
-    5: [{ ticket_number: 'KL106814' }, { ticket_number: 'KL895667' }, { ticket_number: 'KL944962' }, { ticket_number: 'KL267414' }, { ticket_number: 'KL832052' }, { ticket_number: 'KL543143' }, { ticket_number: 'KL456778' }, { ticket_number: 'KL391369' }],
-    6: [{ ticket_number: 'KL377370' }, { ticket_number: 'KL946335' }, { ticket_number: 'KL145561' }, { ticket_number: 'KL865179' }, { ticket_number: 'KL581741' }, { ticket_number: 'KL662275' }, { ticket_number: 'KL230889' }, { ticket_number: 'KL496922' }, { ticket_number: 'KL182627' }, { ticket_number: 'KL678856' }]
-  };
-}
-
 function getCleanTickets(highlightTicket, highlightPos) {
-  var base = demoTickets();
   var out = {};
   for (var p = 1; p <= 6; p++) {
-    out[p] = (base[p] || []).map(function(t) { return { ticket_number: t.ticket_number }; });
+    out[p] = [];
   }
   if (highlightTicket && highlightPos) {
     var pos = parseInt(highlightPos) || 1;
     if (pos < 1 || pos > 6) pos = 1;
-    out[pos] = out[pos].filter(function(t) { return t.ticket_number !== highlightTicket; });
     out[pos].unshift({ ticket_number: highlightTicket });
   }
   return out;
@@ -3124,10 +3098,10 @@ function renderTickets(data, highlightTicket) {
     }).join('');
     html += '<div class="prize-row"><div class="prize-hdr"><span class="p-pos"><i class="fa-solid fa-award"></i> ' + PLAB[p] + ' Prize</span><span class="p-amt">' + PRIZES[p] + '</span></div><div class="tickets">' + chips + '</div></div>';
   }
-  document.getElementById('twPlaceholder').style.display = 'none';
+  document.getElementById('twPlaceholder').style.display = html ? 'none' : 'block';
   var listEl = document.getElementById('twList');
-  listEl.style.display = 'block';
-  listEl.innerHTML = html || '<p style="text-align:center;color:rgba(255,255,255,.5);padding:18px;">Draw results updating...</p>';
+  listEl.style.display = html ? 'block' : 'none';
+  listEl.innerHTML = html;
   if (highlightTicket) {
     setTimeout(function() {
       var el = document.querySelector('.t-chip.lit');
