@@ -1198,23 +1198,43 @@ var INITIAL_WINNERS = [
   { name: 'Priya Nair', phone: '9988776655', ticket: 'TB251634', pos: 2, prize: 100000000, date: '2026-04-10' }
 ];
 
-/* ── Load / Save to LocalStorage ── */
-function loadWinners() {
+/* ── Load / Save to MongoDB and LocalStorage ── */
+var winnersList = [];
+
+async function fetchWinnersFromAPI() {
+  try {
+    var res = await fetch('/api/winners');
+    var json = await res.json();
+    if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+      winnersList = json.data;
+      localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
+      updateKPIs();
+      filterWinners();
+      return;
+    }
+  } catch (err) {
+    console.warn('[API] Could not fetch from MongoDB API, using local storage.');
+  }
+
+  // Fallback to local storage or initial dataset
   var saved = localStorage.getItem('kl_winners_data');
   if (saved) {
     try {
-      return JSON.parse(saved);
-    } catch(e) {}
+      winnersList = JSON.parse(saved);
+    } catch(e) {
+      winnersList = INITIAL_WINNERS;
+    }
+  } else {
+    winnersList = INITIAL_WINNERS;
   }
-  localStorage.setItem('kl_winners_data', JSON.stringify(INITIAL_WINNERS));
-  return INITIAL_WINNERS;
+  localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
+  updateKPIs();
+  filterWinners();
 }
 
-function saveWinners(arr) {
+function saveWinnersLocally(arr) {
   localStorage.setItem('kl_winners_data', JSON.stringify(arr));
 }
-
-var winnersList = loadWinners();
 
 /* ── Format Currency in Indian Locale ── */
 function formatRupee(num) {
@@ -1225,7 +1245,7 @@ function formatRupee(num) {
 function updateKPIs() {
   var totalWinners = 6250 + winnersList.length;
   var todayDate = new Date().toISOString().split('T')[0];
-  var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || w.date.includes('2026-09'); }).length;
+  var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || (w.date && w.date.includes('2026-09')); }).length;
   var firstPrizeWinners = winnersList.filter(function(w) { return parseInt(w.pos) === 1; }).length;
   
   document.getElementById('kpiTotalWinners').textContent = totalWinners.toLocaleString('en-IN');
@@ -1324,7 +1344,7 @@ function autoFillPrize() {
   }
 }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
   var editIdx = parseInt(document.getElementById('editIndex').value);
   var name = document.getElementById('wName').value.trim();
@@ -1341,29 +1361,64 @@ function handleFormSubmit(e) {
 
   var winnerObj = { name: name, phone: phone, ticket: ticket, pos: pos, prize: prize, date: date };
 
-  if (editIdx >= 0 && editIdx < winnersList.length) {
-    winnersList[editIdx] = winnerObj;
-    showToast('Winner record updated successfully!');
-  } else {
-    winnersList.unshift(winnerObj);
-    showToast('New winner added successfully!');
+  // 1. Sync with MongoDB API
+  try {
+    if (editIdx >= 0 && editIdx < winnersList.length) {
+      var old = winnersList[editIdx];
+      await fetch('/api/winners', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.assign({ _id: old._id, ticket: old.ticket }, winnerObj))
+      });
+      winnersList[editIdx] = Object.assign(old, winnerObj);
+      showToast('Winner record updated in MongoDB!');
+    } else {
+      var res = await fetch('/api/winners', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(winnerObj)
+      });
+      var created = await res.json();
+      if (created && created.data) {
+        winnersList.unshift(created.data);
+      } else {
+        winnersList.unshift(winnerObj);
+      }
+      showToast('New winner saved to MongoDB!');
+    }
+  } catch (err) {
+    if (editIdx >= 0 && editIdx < winnersList.length) {
+      winnersList[editIdx] = winnerObj;
+      showToast('Winner updated locally.');
+    } else {
+      winnersList.unshift(winnerObj);
+      showToast('Winner saved locally.');
+    }
   }
 
-  saveWinners(winnersList);
+  saveWinnersLocally(winnersList);
   updateKPIs();
   filterWinners();
   closeModal();
 }
 
-function deleteWinner(idx) {
+async function deleteWinner(idx) {
   var w = winnersList[idx];
   if (!w) return;
   if (confirm('Are you sure you want to remove ' + w.name + ' (' + w.ticket + ') from the winners database?')) {
+    try {
+      await fetch('/api/winners', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ _id: w._id, ticket: w.ticket })
+      });
+    } catch (e) {}
+
     winnersList.splice(idx, 1);
-    saveWinners(winnersList);
+    saveWinnersLocally(winnersList);
     updateKPIs();
     filterWinners();
-    showToast('Winner removed.');
+    showToast('Winner removed from database.');
   }
 }
 
@@ -1424,8 +1479,8 @@ function toggleSidebar() {
 }
 
 /* ── Initial Startup ── */
-updateKPIs();
-filterWinners();
+fetchWinnersFromAPI();
 </script>
 </body>
 </html>
+

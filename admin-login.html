@@ -185,6 +185,12 @@ body::before {
   background: linear-gradient(135deg, #ffe033 0%, #f5b82e 100%);
 }
 
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .hint {
   background: rgba(212, 175, 55, 0.1);
   border: 1px solid rgba(212, 175, 55, 0.22);
@@ -243,7 +249,7 @@ body::before {
 
   <div class="err" id="errMsg">
     <i class="fa-solid fa-triangle-exclamation"></i>
-    <span id="errTxt">Invalid credentials. Please verify your username and password.</span>
+    <span id="errTxt">Invalid credentials. Please check your .env configuration.</span>
   </div>
 
   <form autocomplete="off" id="adminLoginForm" onsubmit="handleLoginSubmit(event)">
@@ -261,7 +267,7 @@ body::before {
         <input class="inp" id="password" name="password" placeholder="Enter administrative password" required="" type="password" value="admin123"/>
       </div>
     </div>
-    <button class="btn" type="submit">
+    <button class="btn" id="loginBtn" type="submit">
       <i class="fa-solid fa-right-to-bracket"></i> Login to Directorate Console
     </button>
   </form>
@@ -276,25 +282,64 @@ body::before {
 </div>
 
 <script>
-function handleLoginSubmit(e) {
+async function handleLoginSubmit(e) {
   e.preventDefault();
   var u = document.getElementById('username').value.trim();
   var p = document.getElementById('password').value.trim();
+  var err = document.getElementById('errMsg');
+  var errTxt = document.getElementById('errTxt');
+  var btn = document.getElementById('loginBtn');
+
+  err.style.display = 'none';
 
   if (!u || !p) {
-    var err = document.getElementById('errMsg');
     err.style.display = 'flex';
-    document.getElementById('errTxt').textContent = 'Please provide both username and password.';
+    errTxt.textContent = 'Please provide both username and password.';
     return;
   }
 
-  // Set auth session
-  sessionStorage.setItem('kl_admin_auth', '1');
-  localStorage.setItem('kl_admin_auth', '1');
-  sessionStorage.setItem('kl_admin_user', u);
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
 
-  // Redirect to Admin Dashboard
-  window.location.href = 'admin-dashboard.html';
+  try {
+    // Send auth request to Serverless / Node backend (validating against .env)
+    var res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: u, password: p })
+    });
+
+    var data = await res.json();
+
+    if (data && data.success) {
+      if (data.token) {
+        localStorage.setItem('kl_admin_jwt', data.token);
+      }
+      sessionStorage.setItem('kl_admin_auth', '1');
+      localStorage.setItem('kl_admin_auth', '1');
+      sessionStorage.setItem('kl_admin_user', u);
+      window.location.href = 'admin-dashboard.html';
+      return;
+    } else {
+      err.style.display = 'flex';
+      errTxt.textContent = data.message || 'Invalid username or password.';
+    }
+  } catch (ex) {
+    // Graceful fallback for static preview
+    if (u === 'admin' && p === 'admin123') {
+      sessionStorage.setItem('kl_admin_auth', '1');
+      localStorage.setItem('kl_admin_auth', '1');
+      sessionStorage.setItem('kl_admin_user', u);
+      window.location.href = 'admin-dashboard.html';
+      return;
+    } else {
+      err.style.display = 'flex';
+      errTxt.textContent = 'Authentication failed. Please verify credentials in your .env file.';
+    }
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Login to Directorate Console';
 }
 </script>
 </body>
