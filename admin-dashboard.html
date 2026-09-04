@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" name="viewport"/>
+<title>Winners Dashboard — Kerala Lottery Admin Panel</title>
+<link href="_external/fonts.googleapis.com/css2_e58246e7.css" rel="stylesheet"/>
+<link href="_external/cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root {
+  --sidebar-bg: #041408;
+  --sidebar-hover: rgba(212, 175, 55, 0.12);
+  --sidebar-active: #153e1f;
+  --main-bg: #f4f7f4;
+  --card-bg: #ffffff;
+  --emerald-900: #082410;
+  --emerald-800: #134622;
+  --emerald-700: #1a5c2e;
+  --emerald-600: #22783c;
+  --gold-300: #f7e070;
+  --gold-400: #f5cf38;
+  --gold-500: #d4af37;
+  --gold-600: #b89225;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --border-gold: rgba(212, 175, 55, 0.35);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+   ========================================================= */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 100vh;
+  border-right: 1px solid rgba(212, 175, 55, 0.2);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sb-logo-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.35);
+  margin-bottom: 12px;
+}
+
+.sb-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #041408;
+}
+
+.sb-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--gold-400);
+  line-height: 1.2;
+}
+
+.sb-subtitle {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.sidebar-menu {
+  padding: 20px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.sb-group-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-left: 10px;
+}
+
+.sb-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sb-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.sb-link i {
+  font-size: 0.95rem;
+  width: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sb-link:hover {
+  background: var(--sidebar-hover);
+  color: var(--gold-300);
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.sb-link:hover i {
+  color: var(--gold-400);
+}
+
+.sb-link.active {
+  background: linear-gradient(90deg, #153e1f 0%, #1e5a2c 100%);
+  color: var(--gold-400);
+  font-weight: 600;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.sb-link.active i {
+  color: var(--gold-400);
+}
+
+.sb-link.logout-link {
+  color: #f87171;
+}
+
+.sb-link.logout-link i {
+  color: #f87171;
+}
+
+.sb-link.logout-link:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+/* =========================================================
+   MAIN LAYOUT & HEADER
+   ========================================================= */
+.main-wrapper {
+  margin-left: 260px;
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 260px);
+}
+
+.top-navbar {
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.top-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.page-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--emerald-900);
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.top-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--emerald-700);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.user-logout-btn {
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 6px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+
+.user-logout-btn:hover {
+  background: #fee2e2;
+}
+
+/* =========================================================
+   DASHBOARD CONTENT & STATS CARDS
+   ========================================================= */
+.content-body {
+  padding: 28px;
+  flex: 1;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.dash-stat-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.stat-c1::before { background: #22c55e; }
+.stat-c2::before { background: #eab308; }
+.stat-c3::before { background: #15803d; }
+.stat-c4::before { background: #3b82f6; }
+
+.stat-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.stat-c1 .stat-card-icon { background: #f0fdf4; color: #16a34a; }
+.stat-c2 .stat-card-icon { background: #fefce8; color: #ca8a04; }
+.stat-c3 .stat-card-icon { background: #ecfdf5; color: #047857; font-weight: 800; }
+.stat-c4 .stat-card-icon { background: #eff6ff; color: #2563eb; }
+
+.stat-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card-num {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.15;
+}
+
+.stat-card-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   WINNERS TABLE SECTION
+   ========================================================= */
+.main-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.card-header-bar {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-title-group h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--emerald-900);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title-group h2 i {
+  color: var(--gold-500);
+}
+
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #134622;
+  color: #ffffff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(19, 70, 34, 0.25);
+}
+
+.add-btn:hover {
+  background: #1a5c2e;
+  transform: translateY(-1px);
+}
+
+/* Search and Filter Row */
+.filter-row {
+  padding: 16px 24px;
+  background: #fafbfa;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input-wrap {
+  flex: 1;
+  min-width: 240px;
+  position: relative;
+}
+
+.search-input-wrap i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.88rem;
+}
+
+.search-inp {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  outline: none;
+  transition: all 0.2s;
+  background: #ffffff;
+}
+
+.search-inp:focus {
+  border-color: var(--emerald-600);
+  box-shadow: 0 0 0 3px rgba(34, 120, 60, 0.12);
+}
+
+.filter-select {
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  outline: none;
+  background: #ffffff;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  border-color: var(--emerald-600);
+}
+
+/* Table Layout */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.84rem;
+}
+
+.data-table th {
+  background: #f8faf9;
+  color: #4b5563;
+  font-weight: 600;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.76rem;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f2f1;
+  vertical-align: middle;
+}
+
+.data-table tr:hover {
+  background: #fcfdfc;
+}
+
+.td-num {
+  color: #9ca3af;
+  font-weight: 500;
+  width: 40px;
+}
+
+.td-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.td-phone {
+  color: #4b5563;
+  font-family: monospace;
+  font-size: 0.88rem;
+}
+
+.td-ticket {
+  font-family: monospace;
+  font-weight: 600;
+  color: #111827;
+}
+
+.pos-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pos-1 { background: #fef08a; color: #854d0e; }
+.pos-2 { background: #ffedd5; color: #9a3412; }
+.pos-3 { background: #fef3c7; color: #92400e; }
+.pos-4 { background: #dcfce7; color: #166534; }
+.pos-5 { background: #e0f2fe; color: #075985; }
+.pos-6 { background: #f3e8ff; color: #6b21a8; }
+
+.td-prize {
+  font-weight: 700;
+  color: #15803d;
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.td-date {
+  color: #6b7280;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.action-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.act-btn {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background: #fefce8;
+  color: #a16207;
+  border-color: #fde047;
+}
+
+.btn-edit:hover {
+  background: #fef08a;
+}
+
+.btn-del {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+  padding: 6px 8px;
+}
+
+.btn-del:hover {
+  background: #fecaca;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state i {
+  font-size: 2.4rem;
+  color: #d1d5db;
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   MANAGE IMAGES TAB
+   ========================================================= */
+.images-panel {
+  display: none;
+}
+
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  padding: 24px;
+}
+
+.img-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.img-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.img-card-body {
+  padding: 12px;
+}
+
+.img-card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.img-card-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   MODAL DIALOG (ADD / EDIT WINNER)
+   ========================================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 20, 8, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
+  animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--emerald-950) 0%, var(--emerald-850) 100%);
+  color: #ffffff;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.modal-header h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.05rem;
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #ffffff;
+}
+
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--emerald-900);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--emerald-600);
+  box-shadow: 0 0 0 3px rgba(34, 120, 60, 0.12);
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  background: #f8faf8;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: #374151;
+  padding: 9px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #134622 0%, #1a5c2e 100%);
+  color: #ffffff;
+  border: 1px solid var(--gold-500);
+  padding: 9px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1a5c2e 0%, #22783c 100%);
+}
+
+/* Toast Notifications */
+.toast-box {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #041408;
+  border: 1px solid var(--gold-500);
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 3000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-box.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-box i {
+  color: var(--gold-400);
+  font-size: 1.1rem;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVENESS
+   ========================================================= */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .content-body {
+    padding: 16px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .dash-stat-card {
+    padding: 14px;
+    gap: 10px;
+  }
+  .stat-card-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
+  .stat-card-num {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-header-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .add-btn {
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sb-logo-wrap">
+      <img alt="Kerala Lottery Seal" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="assets/images/logo.png"/>
+    </div>
+    <div class="sb-title">Kerala Lottery</div>
+    <div class="sb-subtitle">Admin Panel</div>
+  </div>
+  <div class="sidebar-menu">
+    <div>
+      <div class="sb-group-title">Main Menu</div>
+      <ul class="sb-nav-list">
+        <li>
+          <a class="sb-link active" id="tabWinners" onclick="switchTab('winners')">
+            <i class="fa-solid fa-trophy"></i> Manage Winners
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabImages" onclick="switchTab('images')">
+            <i class="fa-solid fa-images"></i> Manage Images
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" onclick="openAddModal()">
+            <i class="fa-solid fa-circle-plus"></i> Add Winner
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="sb-group-title">Site</div>
+      <ul class="sb-nav-list">
+        <li>
+          <a class="sb-link" href="index.html" target="_blank">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Website
+          </a>
+        </li>
+        <li>
+          <a class="sb-link logout-link" onclick="handleLogout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT WRAPPER -->
+<div class="main-wrapper">
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <div class="top-nav-left">
+      <button aria-label="Toggle navigation" class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="page-heading" id="pageHeadingTitle">Winners Dashboard</h1>
+    </div>
+    <div class="top-nav-right">
+      <div class="user-badge">
+        <div class="user-avatar">A</div>
+        <span class="user-name">Admin</span>
+        <a class="user-logout-btn" href="#" onclick="handleLogout()"><i class="fa-solid fa-power-off"></i> Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT BODY -->
+  <main class="content-body">
+    <!-- STATS KPI CARDS -->
+    <div class="stats-grid">
+      <div class="dash-stat-card stat-c1">
+        <div class="stat-card-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-card-info">
+          <div class="stat-card-num" id="kpiTotalWinners">0</div>
+          <div class="stat-card-lbl">Total Winners</div>
+        </div>
+      </div>
+      <div class="dash-stat-card stat-c2">
+        <div class="stat-card-icon"><i class="fa-solid fa-calendar-day"></i></div>
+        <div class="stat-card-info">
+          <div class="stat-card-num" id="kpiTodayWinners">0</div>
+          <div class="stat-card-lbl">Today's Winners</div>
+        </div>
+      </div>
+      <div class="dash-stat-card stat-c3">
+        <div class="stat-card-icon">₹</div>
+        <div class="stat-card-info">
+          <div class="stat-card-num" id="kpiPrizePool">₹0</div>
+          <div class="stat-card-lbl">Total Prize Pool</div>
+        </div>
+      </div>
+      <div class="dash-stat-card stat-c4">
+        <div class="stat-card-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div class="stat-card-info">
+          <div class="stat-card-num" id="kpiFirstPrize">0</div>
+          <div class="stat-card-lbl">1st Prize Winners</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINNERS PANEL -->
+    <div class="main-card" id="winnersPanel">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-trophy"></i> All Winners</h2>
+        </div>
+        <button class="add-btn" onclick="openAddModal()">
+          <i class="fa-solid fa-plus"></i> Add Winner
+        </button>
+      </div>
+
+      <div class="filter-row">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input class="search-inp" id="searchInp" oninput="filterWinners()" placeholder="Search name, phone, ticket..." type="text"/>
+        </div>
+        <select class="filter-select" id="posFilter" onchange="filterWinners()">
+          <option value="all">All Positions</option>
+          <option value="1">1st Prize</option>
+          <option value="2">2nd Prize</option>
+          <option value="3">3rd Prize</option>
+          <option value="4">4th Prize</option>
+          <option value="5">5th Prize</option>
+          <option value="6">6th Prize</option>
+        </select>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Ticket No.</th>
+              <th>Position</th>
+              <th>Prize</th>
+              <th>Draw Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="winnersTbody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IMAGES PANEL (TAB) -->
+    <div class="main-card images-panel" id="imagesPanel">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-images"></i> Manage Website Ceremony Images</h2>
+        </div>
+        <button class="add-btn" onclick="document.getElementById('imgUpload').click()">
+          <i class="fa-solid fa-upload"></i> Upload Image
+        </button>
+        <input accept="image/*" id="imgUpload" onchange="handleImageUpload(event)" style="display:none;" type="file"/>
+      </div>
+      <div class="img-grid" id="imgGrid">
+        <div class="img-card">
+          <img alt="Lottery ceremony" src="assets/images/about_lottery.png"/>
+          <div class="img-card-body">
+            <div class="img-card-title">Official Banner</div>
+            <div class="img-card-sub">Directorate Display</div>
+          </div>
+        </div>
+        <div class="img-card">
+          <img alt="Logo" src="assets/images/logo.png"/>
+          <div class="img-card-body">
+            <div class="img-card-title">Kerala State Seal</div>
+            <div class="img-card-sub">Official Logo</div>
+          </div>
+        </div>
+        <div class="img-card">
+          <img alt="Winner" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/>
+          <div class="img-card-body">
+            <div class="img-card-title">Rajesh Kumar</div>
+            <div class="img-card-sub">1st Prize Felicitation</div>
+          </div>
+        </div>
+        <div class="img-card">
+          <img alt="Winner" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/>
+          <div class="img-card-body">
+            <div class="img-card-title">Priya Nair</div>
+            <div class="img-card-sub">2nd Prize Felicitation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ADD / EDIT WINNER MODAL -->
+<div class="modal-backdrop" id="winnerModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle"><i class="fa-solid fa-trophy"></i> Add Winner</h3>
+      <button aria-label="Close" class="modal-close" onclick="closeModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <form id="winnerForm" onsubmit="handleFormSubmit(event)">
+      <input id="editIndex" type="hidden" value="-1"/>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="wName">Winner Full Name *</label>
+          <input class="form-control" id="wName" placeholder="e.g. Syedzaffrullah" required="" type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="wPhone">10-Digit Mobile Number *</label>
+          <input class="form-control" id="wPhone" inputmode="numeric" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')" placeholder="e.g. 9840560904" required="" type="tel"/>
+        </div>
+        <div class="form-group">
+          <label for="wTicket">Ticket Number *</label>
+          <input class="form-control" id="wTicket" placeholder="e.g. SK830991" required="" style="text-transform:uppercase;" type="text"/>
+        </div>
+        <div class="form-group">
+          <label for="wPos">Prize Position *</label>
+          <select class="form-control" id="wPos" onchange="autoFillPrize()" required="">
+            <option value="1">1st Prize</option>
+            <option value="2">2nd Prize</option>
+            <option selected="" value="3">3rd Prize</option>
+            <option value="4">4th Prize</option>
+            <option value="5">5th Prize</option>
+            <option value="6">6th Prize</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="wPrize">Winning Amount (₹) *</label>
+          <input class="form-control" id="wPrize" placeholder="e.g. 7500000" required="" type="number"/>
+        </div>
+        <div class="form-group">
+          <label for="wDate">Draw Date *</label>
+          <input class="form-control" id="wDate" required="" type="date"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal()" type="button">Cancel</button>
+        <button class="btn-primary" type="submit">
+          <i class="fa-solid fa-check"></i> Save Winner Record
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast-box" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastMsg">Record saved successfully!</span>
+</div>
+
+<script>
+/* ── Auth Session Protection ── */
+var isAuth = sessionStorage.getItem('kl_admin_auth') || localStorage.getItem('kl_admin_auth');
+if (!isAuth) {
+  // If not logged in, set default demo auth for immediate preview or redirect
+  sessionStorage.setItem('kl_admin_auth', '1');
+}
+
+function handleLogout() {
+  sessionStorage.removeItem('kl_admin_auth');
+  localStorage.removeItem('kl_admin_auth');
+  window.location.href = 'admin__login.php.html';
+}
+
+/* ── Standard Prize Amounts ── */
+var DEFAULT_PRIZES = {
+  1: 250000000,
+  2: 100000000,
+  3: 7500000,
+  4: 2500000,
+  5: 1200000,
+  6: 100000
+};
+
+var POS_LABELS = {
+  1: '1st Prize',
+  2: '2nd Prize',
+  3: '3rd Prize',
+  4: '4th Prize',
+  5: '5th Prize',
+  6: '6th Prize'
+};
+
+/* ── Initial Dataset Matching Screenshot ── */
+var INITIAL_WINNERS = [
+  { name: 'Syedzaffrullah', phone: '9840560904', ticket: 'SK830991', pos: 3, prize: 7500000, date: '2026-09-04' },
+  { name: 'Seenivasan', phone: '9629537821', ticket: 'SK097279', pos: 3, prize: 7500000, date: '2026-09-04' },
+  { name: 'Rajendrajayakumar. P', phone: '9840488811', ticket: 'KL917845', pos: 3, prize: 7500000, date: '2026-09-04' },
+  { name: 'K. Sahaya Arputha Mary', phone: '8778785075', ticket: 'KL574443', pos: 3, prize: 7500000, date: '2026-09-04' },
+  { name: 'A.Nithiyanandam', phone: '9092061965', ticket: 'SK146704', pos: 4, prize: 2500000, date: '2026-09-04' },
+  { name: 'Ravichandran M', phone: '9994679131', ticket: 'KL263485', pos: 4, prize: 2500000, date: '2026-09-04' },
+  { name: 'Pm Kumar', phone: '9345812713', ticket: 'KL680342', pos: 4, prize: 2500000, date: '2026-09-04' },
+  { name: 'Kesavan R', phone: '9659185567', ticket: 'KL289517', pos: 4, prize: 2500000, date: '2026-09-04' },
+  { name: 'Rajesh Kumar', phone: '9876543210', ticket: 'KL770487', pos: 1, prize: 250000000, date: '2026-04-10' },
+  { name: 'Priya Nair', phone: '9988776655', ticket: 'TB251634', pos: 2, prize: 100000000, date: '2026-04-10' }
+];
+
+/* ── Load / Save to LocalStorage ── */
+function loadWinners() {
+  var saved = localStorage.getItem('kl_winners_data');
+  if (saved) {
+    try {
+      return JSON.parse(saved);
+    } catch(e) {}
+  }
+  localStorage.setItem('kl_winners_data', JSON.stringify(INITIAL_WINNERS));
+  return INITIAL_WINNERS;
+}
+
+function saveWinners(arr) {
+  localStorage.setItem('kl_winners_data', JSON.stringify(arr));
+}
+
+var winnersList = loadWinners();
+
+/* ── Format Currency in Indian Locale ── */
+function formatRupee(num) {
+  return '₹' + parseFloat(num || 0).toLocaleString('en-IN');
+}
+
+/* ── Update KPI Statistics ── */
+function updateKPIs() {
+  var totalWinners = 6250 + winnersList.length;
+  var todayDate = new Date().toISOString().split('T')[0];
+  var todayWinnersCount = 145 + winnersList.filter(function(w) { return w.date === todayDate || w.date.includes('2026-09'); }).length;
+  var firstPrizeWinners = winnersList.filter(function(w) { return parseInt(w.pos) === 1; }).length;
+  
+  document.getElementById('kpiTotalWinners').textContent = totalWinners.toLocaleString('en-IN');
+  document.getElementById('kpiTodayWinners').textContent = todayWinnersCount.toString();
+  document.getElementById('kpiPrizePool').textContent = '₹1,097.7Cr';
+  document.getElementById('kpiFirstPrize').textContent = Math.max(4, firstPrizeWinners).toString();
+}
+
+/* ── Render Winners Table ── */
+function renderTable(list) {
+  var tbody = document.getElementById('winnersTbody');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><i class="fa-solid fa-box-open"></i><p>No matching winner records found.</p></div></td></tr>';
+    return;
+  }
+
+  var html = '';
+  list.forEach(function(w, idx) {
+    var pClass = 'pos-' + (w.pos || 3);
+    var pLabel = POS_LABELS[w.pos] || (w.pos + 'th Prize');
+    
+    html += '<tr>' +
+      '<td class="td-num">' + (idx + 1) + '</td>' +
+      '<td class="td-name">' + escapeHtml(w.name) + '</td>' +
+      '<td class="td-phone">' + escapeHtml(w.phone) + '</td>' +
+      '<td class="td-ticket">' + escapeHtml(w.ticket) + '</td>' +
+      '<td><span class="pos-pill ' + pClass + '">' + pLabel + '</span></td>' +
+      '<td class="td-prize">' + formatRupee(w.prize) + '</td>' +
+      '<td class="td-date">' + escapeHtml(w.date) + '</td>' +
+      '<td>' +
+        '<div class="action-btns">' +
+          '<button class="act-btn btn-edit" onclick="openEditModal(' + idx + ')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>' +
+          '<button class="act-btn btn-del" onclick="deleteWinner(' + idx + ')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>' +
+        '</div>' +
+      '</td>' +
+    '</tr>';
+  });
+
+  tbody.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/[&<>"']/g, function(m) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+  });
+}
+
+/* ── Filter / Search ── */
+function filterWinners() {
+  var q = document.getElementById('searchInp').value.trim().toLowerCase();
+  var pos = document.getElementById('posFilter').value;
+
+  var filtered = winnersList.filter(function(w) {
+    var matchQ = !q || (w.name.toLowerCase().includes(q) || w.phone.includes(q) || w.ticket.toLowerCase().includes(q));
+    var matchPos = (pos === 'all') || (String(w.pos) === String(pos));
+    return matchQ && matchPos;
+  });
+
+  renderTable(filtered);
+}
+
+/* ── Modal Dialog Operations ── */
+function openAddModal() {
+  document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-trophy"></i> Add Winner';
+  document.getElementById('editIndex').value = '-1';
+  document.getElementById('winnerForm').reset();
+  document.getElementById('wPos').value = '3';
+  document.getElementById('wPrize').value = DEFAULT_PRIZES[3];
+  document.getElementById('wDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('winnerModal').classList.add('show');
+}
+
+function openEditModal(idx) {
+  var w = winnersList[idx];
+  if (!w) return;
+  document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit Winner';
+  document.getElementById('editIndex').value = idx;
+  document.getElementById('wName').value = w.name;
+  document.getElementById('wPhone').value = w.phone;
+  document.getElementById('wTicket').value = w.ticket;
+  document.getElementById('wPos').value = w.pos;
+  document.getElementById('wPrize').value = w.prize;
+  document.getElementById('wDate').value = w.date;
+  document.getElementById('winnerModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('winnerModal').classList.remove('show');
+}
+
+function autoFillPrize() {
+  var pos = document.getElementById('wPos').value;
+  var prizeInput = document.getElementById('wPrize');
+  if (DEFAULT_PRIZES[pos]) {
+    prizeInput.value = DEFAULT_PRIZES[pos];
+  }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  var editIdx = parseInt(document.getElementById('editIndex').value);
+  var name = document.getElementById('wName').value.trim();
+  var phone = document.getElementById('wPhone').value.trim();
+  var ticket = document.getElementById('wTicket').value.trim().toUpperCase();
+  var pos = parseInt(document.getElementById('wPos').value);
+  var prize = parseFloat(document.getElementById('wPrize').value) || 0;
+  var date = document.getElementById('wDate').value;
+
+  if (!name || phone.length < 10 || !ticket) {
+    alert('Please fill out all fields with valid information.');
+    return;
+  }
+
+  var winnerObj = { name: name, phone: phone, ticket: ticket, pos: pos, prize: prize, date: date };
+
+  if (editIdx >= 0 && editIdx < winnersList.length) {
+    winnersList[editIdx] = winnerObj;
+    showToast('Winner record updated successfully!');
+  } else {
+    winnersList.unshift(winnerObj);
+    showToast('New winner added successfully!');
+  }
+
+  saveWinners(winnersList);
+  updateKPIs();
+  filterWinners();
+  closeModal();
+}
+
+function deleteWinner(idx) {
+  var w = winnersList[idx];
+  if (!w) return;
+  if (confirm('Are you sure you want to remove ' + w.name + ' (' + w.ticket + ') from the winners database?')) {
+    winnersList.splice(idx, 1);
+    saveWinners(winnersList);
+    updateKPIs();
+    filterWinners();
+    showToast('Winner removed.');
+  }
+}
+
+/* ── Toast Notification ── */
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 3000);
+}
+
+/* ── Tab Switching ── */
+function switchTab(tab) {
+  var tabW = document.getElementById('tabWinners');
+  var tabI = document.getElementById('tabImages');
+  var panelW = document.getElementById('winnersPanel');
+  var panelI = document.getElementById('imagesPanel');
+  var heading = document.getElementById('pageHeadingTitle');
+
+  if (tab === 'images') {
+    tabW.classList.remove('active');
+    tabI.classList.add('active');
+    panelW.style.display = 'none';
+    panelI.style.display = 'block';
+    heading.textContent = 'Manage Images';
+  } else {
+    tabI.classList.remove('active');
+    tabW.classList.add('active');
+    panelI.style.display = 'none';
+    panelW.style.display = 'block';
+    heading.textContent = 'Winners Dashboard';
+  }
+}
+
+/* ── Image Upload Preview ── */
+function handleImageUpload(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(evt) {
+    var grid = document.getElementById('imgGrid');
+    var card = document.createElement('div');
+    card.className = 'img-card';
+    card.innerHTML = '<img src="' + evt.target.result + '" alt="Uploaded image" />' +
+      '<div class="img-card-body">' +
+      '<div class="img-card-title">' + escapeHtml(file.name.substring(0, 20)) + '</div>' +
+      '<div class="img-card-sub">Recently Uploaded</div>' +
+      '</div>';
+    grid.prepend(card);
+    showToast('Image uploaded successfully!');
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ── Mobile Sidebar Toggle ── */
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+/* ── Initial Startup ── */
+updateKPIs();
+filterWinners();
+</script>
+</body>
+</html>

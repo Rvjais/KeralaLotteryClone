@@ -106,7 +106,7 @@ body::before {
   padding: 10px 14px;
   font-size: 0.82rem;
   margin-bottom: 18px;
-  display: flex;
+  display: none;
   align-items: center;
   gap: 8px;
 }
@@ -240,25 +240,32 @@ body::before {
     <h1>Kerala Lottery</h1>
     <p>Official Directorate Admin Portal</p>
   </div>
-  <form autocomplete="off" method="POST">
+
+  <div class="err" id="errMsg">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <span id="errTxt">Invalid credentials. Please verify your username and password.</span>
+  </div>
+
+  <form autocomplete="off" id="adminLoginForm" onsubmit="handleLoginSubmit(event)">
     <div class="grp">
       <label><i class="fa-solid fa-user-shield"></i> Admin Username</label>
       <div class="inp-w">
         <i class="fa-solid fa-user"></i>
-        <input class="inp" name="username" placeholder="Enter authorized username" required="" type="text" value=""/>
+        <input class="inp" id="username" name="username" placeholder="Enter authorized username" required="" type="text" value="admin"/>
       </div>
     </div>
     <div class="grp">
       <label><i class="fa-solid fa-key"></i> Security Password</label>
       <div class="inp-w">
         <i class="fa-solid fa-lock"></i>
-        <input class="inp" name="password" placeholder="Enter administrative password" required="" type="password"/>
+        <input class="inp" id="password" name="password" placeholder="Enter administrative password" required="" type="password" value="admin123"/>
       </div>
     </div>
     <button class="btn" type="submit">
       <i class="fa-solid fa-right-to-bracket"></i> Login to Directorate Console
     </button>
   </form>
+
   <div class="hint">
     <i class="fa-solid fa-shield-halved"></i>
     <span>Secure 256-Bit Authorized Access Only</span>
@@ -267,6 +274,28 @@ body::before {
     <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Return to Main Public Website</a>
   </div>
 </div>
+
+<script>
+function handleLoginSubmit(e) {
+  e.preventDefault();
+  var u = document.getElementById('username').value.trim();
+  var p = document.getElementById('password').value.trim();
+
+  if (!u || !p) {
+    var err = document.getElementById('errMsg');
+    err.style.display = 'flex';
+    document.getElementById('errTxt').textContent = 'Please provide both username and password.';
+    return;
+  }
+
+  // Set auth session
+  sessionStorage.setItem('kl_admin_auth', '1');
+  localStorage.setItem('kl_admin_auth', '1');
+  sessionStorage.setItem('kl_admin_user', u);
+
+  // Redirect to Admin Dashboard
+  window.location.href = 'admin-dashboard.html';
+}
+</script>
 </body>
 </html>
-

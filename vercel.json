@@ -8,9 +8,12 @@
       "dest": "/admin__login.php.html"
     },
     {
+      "src": "/dashboard",
+      "dest": "/admin-dashboard.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
   ]
 }
-

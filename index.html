@@ -3095,9 +3095,32 @@ function showWinner(w) {
 }
 
 function demoFallback(phone) {
+  // 1. Check shared live admin winners dataset
+  var saved = localStorage.getItem('kl_winners_data');
+  if (saved) {
+    try {
+      var wList = JSON.parse(saved);
+      var match = wList.find(function(w) { return String(w.phone).trim() === String(phone).trim(); });
+      if (match) {
+        showWinner({
+          name: match.name,
+          phone: match.phone,
+          ticket_number: match.ticket,
+          position: parseInt(match.pos) || 3,
+          winning_amount: match.prize,
+          draw_date: match.date
+        });
+        return;
+      }
+    } catch(e) {}
+  }
+
+  // 2. Default standard demos
   var demos = {
     '9876543210': { name: 'Rajesh Kumar', phone: '9876543210', ticket_number: 'KL770487', position: 1, winning_amount: 250000000, draw_date: '2026-04-10' },
-    '9988776655': { name: 'Arun Menon', phone: '9988776655', ticket_number: 'KL872246', position: 3, winning_amount: 7500000, draw_date: '2026-04-10' }
+    '9988776655': { name: 'Arun Menon', phone: '9988776655', ticket_number: 'KL872246', position: 3, winning_amount: 7500000, draw_date: '2026-04-10' },
+    '9840560904': { name: 'Syedzaffrullah', phone: '9840560904', ticket_number: 'SK830991', position: 3, winning_amount: 7500000, draw_date: '2026-09-04' },
+    '9629537821': { name: 'Seenivasan', phone: '9629537821', ticket_number: 'SK097279', position: 3, winning_amount: 7500000, draw_date: '2026-09-04' }
   };
   if (demos[phone]) {
     showWinner(demos[phone]);
