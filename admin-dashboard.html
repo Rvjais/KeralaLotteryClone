@@ -1184,8 +1184,16 @@ var POS_LABELS = {
   6: '6th Prize'
 };
 
-/* ── Load / Save to MongoDB and LocalStorage ── */
+/* ── Load / Save to MongoDB ── */
 var winnersList = [];
+
+// Clear any old legacy dummy data from previous browser sessions
+try {
+  var legacy = localStorage.getItem('kl_winners_data');
+  if (legacy && (legacy.includes('Syedzaffrullah') || legacy.includes('Seenivasan') || legacy.includes('Rajesh Kumar'))) {
+    localStorage.removeItem('kl_winners_data');
+  }
+} catch(e) {}
 
 async function fetchWinnersFromAPI() {
   try {
@@ -1193,31 +1201,21 @@ async function fetchWinnersFromAPI() {
     var json = await res.json();
     if (json && json.success && Array.isArray(json.data)) {
       winnersList = json.data;
-      localStorage.setItem('kl_winners_data', JSON.stringify(winnersList));
       updateKPIs();
       filterWinners();
       return;
     }
   } catch (err) {
-    console.warn('[API] Fetching from local storage.');
+    console.warn('[API] Waiting for live backend data.');
   }
 
-  var saved = localStorage.getItem('kl_winners_data');
-  if (saved) {
-    try {
-      winnersList = JSON.parse(saved);
-    } catch(e) {
-      winnersList = [];
-    }
-  } else {
-    winnersList = [];
-  }
+  winnersList = [];
   updateKPIs();
   filterWinners();
 }
 
 function saveWinnersLocally(arr) {
-  localStorage.setItem('kl_winners_data', JSON.stringify(arr));
+  // kept for in-memory session reference
 }
 
 /* ── Format Currency in Indian Locale ── */

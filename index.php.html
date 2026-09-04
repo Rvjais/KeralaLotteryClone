@@ -3054,39 +3054,13 @@ async function checkResult() {
     if (d && d.success && d.isWinner && d.winner) {
       showWinner(d.winner);
     } else {
-      checkLocalOrNoWin(phone);
+      document.getElementById('noWinCard').classList.add('show');
+      renderTickets(getCleanTickets(null, null), null);
     }
   } catch (e) {
-    checkLocalOrNoWin(phone);
+    document.getElementById('noWinCard').classList.add('show');
+    renderTickets(getCleanTickets(null, null), null);
   }
-
-  document.getElementById('btnLabel').style.display = 'inline-flex';
-  document.getElementById('btnSpin').style.display = 'none';
-  btn.disabled = false;
-}
-
-function checkLocalOrNoWin(phone) {
-  var saved = localStorage.getItem('kl_winners_data');
-  if (saved) {
-    try {
-      var wList = JSON.parse(saved);
-      var match = wList.find(function(w) { return String(w.phone).trim() === String(phone).trim(); });
-      if (match) {
-        showWinner({
-          name: match.name,
-          phone: match.phone,
-          ticket_number: match.ticket,
-          position: parseInt(match.pos) || 3,
-          winning_amount: match.prize,
-          draw_date: match.date
-        });
-        return;
-      }
-    } catch(e) {}
-  }
-  document.getElementById('noWinCard').classList.add('show');
-  renderTickets(getCleanTickets(null, null), null);
-}
 
 document.getElementById('phoneInput').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') checkResult();
