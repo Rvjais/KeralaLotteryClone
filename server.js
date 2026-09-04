@@ -53,3 +53,4 @@ connectToDatabase().then(() => {
 }).catch(err => {
   console.error('Server startup error:', err);
 });
+

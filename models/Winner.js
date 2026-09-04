@@ -41,3 +41,4 @@ const WinnerSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.models.Winner || mongoose.model('Winner', WinnerSchema);
+

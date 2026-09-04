@@ -249,6 +249,7 @@ body::before {
 
   <div class="err" id="errMsg">
     <i class="fa-solid fa-triangle-exclamation"></i>
+    <span id="errTxt">Invalid credentials. Please verify your username and password.</span>
     <span id="errTxt">Invalid credentials. Please check your .env configuration.</span>
   </div>
 
@@ -267,6 +268,7 @@ body::before {
         <input class="inp" id="password" name="password" placeholder="Enter administrative password" required="" type="password" value="admin123"/>
       </div>
     </div>
+    <button class="btn" type="submit">
     <button class="btn" id="loginBtn" type="submit">
       <i class="fa-solid fa-right-to-bracket"></i> Login to Directorate Console
     </button>
@@ -282,6 +284,7 @@ body::before {
 </div>
 
 <script>
+function handleLoginSubmit(e) {
 async function handleLoginSubmit(e) {
   e.preventDefault();
   var u = document.getElementById('username').value.trim();
@@ -293,14 +296,22 @@ async function handleLoginSubmit(e) {
   err.style.display = 'none';
 
   if (!u || !p) {
+    var err = document.getElementById('errMsg');
     err.style.display = 'flex';
+    document.getElementById('errTxt').textContent = 'Please provide both username and password.';
     errTxt.textContent = 'Please provide both username and password.';
     return;
   }
 
+  // Set auth session
+  sessionStorage.setItem('kl_admin_auth', '1');
+  localStorage.setItem('kl_admin_auth', '1');
+  sessionStorage.setItem('kl_admin_user', u);
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
 
+  // Redirect to Admin Dashboard
+  window.location.href = 'admin-dashboard.html';
   try {
     // Send auth request to Serverless / Node backend (validating against .env)
     var res = await fetch('/api/auth/login', {

@@ -2,16 +2,23 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "routes": [
   "rewrites": [
     {
+      "src": "/admin",
+      "dest": "/admin__login.php.html"
       "source": "/admin",
       "destination": "/admin__login.php.html"
     },
     {
+      "src": "/dashboard",
+      "dest": "/admin-dashboard.html"
       "source": "/dashboard",
       "destination": "/admin-dashboard.html"
     },
     {
+      "src": "/(.*)",
+      "dest": "/$1"
       "source": "/api/(.*)",
       "destination": "/api/$1"
     }
