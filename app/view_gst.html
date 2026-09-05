@@ -85,40 +85,52 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_gst');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
-    if (data.total_amount) {
-      document.getElementById('v_total_amount').textContent = data.total_amount;
-      document.getElementById('v_sgst_taxable').textContent = data.total_amount;
-      document.getElementById('v_cgst_taxable').textContent = data.total_amount;
-      document.getElementById('v_total_display').textContent = data.total_amount;
-    }
-    if (data.gst_rate) document.getElementById('v_gst_rate').textContent = data.gst_rate;
-    if (data.gst_amount) document.getElementById('v_gst_amount').textContent = data.gst_amount;
-    if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
-    if (data.sgst_rate) {
-      document.getElementById('v_sgst_rate').textContent = data.sgst_rate;
-      document.getElementById('v_desc_sgst').textContent = data.sgst_rate;
-    }
-    if (data.sgst_amount) {
-      document.getElementById('v_sgst_amount').textContent = data.sgst_amount;
-      document.getElementById('v_desc_sgst_amt').textContent = data.sgst_amount;
-    }
-    if (data.cgst_rate) {
-      document.getElementById('v_cgst_rate').textContent = data.cgst_rate;
-      document.getElementById('v_desc_cgst').textContent = data.cgst_rate;
-    }
-    if (data.cgst_amount) {
-      document.getElementById('v_cgst_amount').textContent = data.cgst_amount;
-      document.getElementById('v_desc_cgst_amt').textContent = data.cgst_amount;
-    }
-    if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
-    if (data.amount_words) document.getElementById('v_amount_words').textContent = data.amount_words;
-  } catch(e) {}
+function applyGstData(data) {
+  if (!data) return;
+  if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
+  if (data.total_amount) {
+    document.getElementById('v_total_amount').textContent = data.total_amount;
+    document.getElementById('v_sgst_taxable').textContent = data.total_amount;
+    document.getElementById('v_cgst_taxable').textContent = data.total_amount;
+    document.getElementById('v_total_display').textContent = data.total_amount;
+  }
+  if (data.gst_rate) document.getElementById('v_gst_rate').textContent = data.gst_rate;
+  if (data.gst_amount) document.getElementById('v_gst_amount').textContent = data.gst_amount;
+  if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
+  if (data.sgst_rate) {
+    document.getElementById('v_sgst_rate').textContent = data.sgst_rate;
+    document.getElementById('v_desc_sgst').textContent = data.sgst_rate;
+  }
+  if (data.sgst_amount) {
+    document.getElementById('v_sgst_amount').textContent = data.sgst_amount;
+    document.getElementById('v_desc_sgst_amt').textContent = data.sgst_amount;
+  }
+  if (data.cgst_rate) {
+    document.getElementById('v_cgst_rate').textContent = data.cgst_rate;
+    document.getElementById('v_desc_cgst').textContent = data.cgst_rate;
+  }
+  if (data.cgst_amount) {
+    document.getElementById('v_cgst_amount').textContent = data.cgst_amount;
+    document.getElementById('v_desc_cgst_amt').textContent = data.cgst_amount;
+  }
+  if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
+  if (data.amount_words) document.getElementById('v_amount_words').textContent = data.amount_words;
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_gst');
+  if (saved) applyGstData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=gst')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyGstData(json.data);
+      localStorage.setItem('kl_doc_gst', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

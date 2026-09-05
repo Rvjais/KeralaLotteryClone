@@ -115,16 +115,28 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_approval');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    for (const key in data) {
-      const el = document.getElementById('v_' + key);
-      if (el) el.textContent = data[key];
-    }
-  } catch(e) {}
+function applyData(data) {
+  if (!data) return;
+  for (const key in data) {
+    const el = document.getElementById('v_' + key);
+    if (el && data[key] !== undefined) el.textContent = data[key];
+  }
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_approval');
+  if (saved) applyData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=approval')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyData(json.data);
+      localStorage.setItem('kl_doc_approval', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

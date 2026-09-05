@@ -43,16 +43,28 @@
 
 <script>
 // Load saved values if available
-const saved = localStorage.getItem('kl_doc_approval');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    for (const key in data) {
-      const el = document.getElementById(key);
-      if (el) el.value = data[key];
-    }
-  } catch(e) {}
+function applyForm(data) {
+  if (!data) return;
+  for (const key in data) {
+    const el = document.getElementById(key);
+    if (el) el.value = data[key];
+  }
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_approval');
+  if (saved) applyForm(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=approval')
+  .then(res => res.json())
+  .then(json => {
+    if (json && json.success && json.data) {
+      applyForm(json.data);
+      localStorage.setItem('kl_doc_approval', JSON.stringify(json.data));
+    }
+  })
+  .catch(() => {});
 
 function handleSave(e) {
   e.preventDefault();
@@ -63,6 +75,12 @@ function handleSave(e) {
     if (el) data[f] = el.value;
   });
   localStorage.setItem('kl_doc_approval', JSON.stringify(data));
+  fetch('/api/documents', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: 'approval', data: data })
+  }).catch(() => {});
+
   const msg = document.getElementById('saveMsg');
   msg.style.display = 'block';
   setTimeout(() => msg.style.display = 'none', 3000);
@@ -71,3 +89,4 @@ function handleSave(e) {
 
 </body>
 </html>
+

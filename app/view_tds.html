@@ -55,20 +55,32 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_tds');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
-    if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
-    if (data.tds_rate) document.getElementById('v_tds_rate').textContent = data.tds_rate;
-    if (data.tds_amount) {
-      document.getElementById('v_tds_amount').textContent = data.tds_amount;
-      document.getElementById('v_desc_amount').textContent = data.tds_amount;
-    }
-    if (data.net_amount) document.getElementById('v_net_amount').textContent = data.net_amount;
-  } catch(e) {}
+function applyTdsData(data) {
+  if (!data) return;
+  if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
+  if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
+  if (data.tds_rate) document.getElementById('v_tds_rate').textContent = data.tds_rate;
+  if (data.tds_amount) {
+    document.getElementById('v_tds_amount').textContent = data.tds_amount;
+    document.getElementById('v_desc_amount').textContent = data.tds_amount;
+  }
+  if (data.net_amount) document.getElementById('v_net_amount').textContent = data.net_amount;
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_tds');
+  if (saved) applyTdsData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=tds')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyTdsData(json.data);
+      localStorage.setItem('kl_doc_tds', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

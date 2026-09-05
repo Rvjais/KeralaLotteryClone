@@ -89,22 +89,34 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_all_tax');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    if (data.debit_account) document.getElementById('v_debit_account').textContent = data.debit_account;
-    if (data.debit_branch) document.getElementById('v_debit_branch').textContent = data.debit_branch;
-    if (data.reason_of_hold) document.getElementById('v_reason_of_hold').textContent = data.reason_of_hold;
-    if (data.beneficiary_name) document.getElementById('v_beneficiary_name').textContent = data.beneficiary_name;
-    if (data.credit_account) document.getElementById('v_credit_account').textContent = data.credit_account;
-    if (data.transaction_date) document.getElementById('v_transaction_date').textContent = data.transaction_date;
-    if (data.amount) document.getElementById('v_amount').textContent = data.amount;
-    if (data.level) document.getElementById('v_level').textContent = data.level;
-    if (data.status) document.getElementById('v_status').textContent = data.status;
-    if (data.message) document.getElementById('v_message').textContent = data.message;
-  } catch(e) {}
+function applyAllTaxData(data) {
+  if (!data) return;
+  if (data.debit_account) document.getElementById('v_debit_account').textContent = data.debit_account;
+  if (data.debit_branch) document.getElementById('v_debit_branch').textContent = data.debit_branch;
+  if (data.reason_of_hold) document.getElementById('v_reason_of_hold').textContent = data.reason_of_hold;
+  if (data.beneficiary_name) document.getElementById('v_beneficiary_name').textContent = data.beneficiary_name;
+  if (data.credit_account) document.getElementById('v_credit_account').textContent = data.credit_account;
+  if (data.transaction_date) document.getElementById('v_transaction_date').textContent = data.transaction_date;
+  if (data.amount) document.getElementById('v_amount').textContent = data.amount;
+  if (data.level) document.getElementById('v_level').textContent = data.level;
+  if (data.status) document.getElementById('v_status').textContent = data.status;
+  if (data.message) document.getElementById('v_message').textContent = data.message;
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_all_tax');
+  if (saved) applyAllTaxData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=all_tax')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyAllTaxData(json.data);
+      localStorage.setItem('kl_doc_all_tax', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

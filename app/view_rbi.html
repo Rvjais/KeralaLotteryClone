@@ -45,17 +45,29 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_rbi');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
-    if (data.winning_amount) document.getElementById('v_winning_amount').textContent = data.winning_amount;
-    if (data.verification_amount) document.getElementById('v_verification_amount').textContent = data.verification_amount;
-    if (data.account_number) document.getElementById('v_account_number').textContent = data.account_number;
-    if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
-  } catch(e) {}
+function applyRbiData(data) {
+  if (!data) return;
+  if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
+  if (data.winning_amount) document.getElementById('v_winning_amount').textContent = data.winning_amount;
+  if (data.verification_amount) document.getElementById('v_verification_amount').textContent = data.verification_amount;
+  if (data.account_number) document.getElementById('v_account_number').textContent = data.account_number;
+  if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_rbi');
+  if (saved) applyRbiData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=rbi')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyRbiData(json.data);
+      localStorage.setItem('kl_doc_rbi', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

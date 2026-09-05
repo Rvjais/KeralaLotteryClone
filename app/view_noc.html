@@ -41,16 +41,28 @@
 </div>
 
 <script>
-const saved = localStorage.getItem('kl_doc_noc');
-if (saved) {
-  try {
-    const data = JSON.parse(saved);
-    if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
-    if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
-    if (data.noc_charges) document.getElementById('v_noc_charges').textContent = data.noc_charges;
-    if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
-  } catch(e) {}
+function applyNocData(data) {
+  if (!data) return;
+  if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
+  if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
+  if (data.noc_charges) document.getElementById('v_noc_charges').textContent = data.noc_charges;
+  if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
 }
+
+try {
+  const saved = localStorage.getItem('kl_doc_noc');
+  if (saved) applyNocData(JSON.parse(saved));
+} catch(e) {}
+
+fetch('/api/documents?type=noc')
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    if (json && json.success && json.data) {
+      applyNocData(json.data);
+      localStorage.setItem('kl_doc_noc', JSON.stringify(json.data));
+    }
+  })
+  .catch(function() {});
 </script>
 
 </body>

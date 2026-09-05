@@ -838,6 +838,187 @@ body {
 }
 
 /* =========================================================
+   DOCUMENT GENERATOR PANELS & FORMS
+   ========================================================= */
+.doc-panel {
+  display: none;
+}
+
+.doc-form-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.doc-section {
+  background: #fafbfa;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.doc-section-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--emerald-900);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+  padding-bottom: 8px;
+}
+
+.doc-section-title i {
+  color: var(--gold-500);
+}
+
+.doc-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.doc-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.doc-autofill-bar {
+  background: linear-gradient(135deg, #07220e 0%, #134622 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(4, 20, 8, 0.15);
+}
+
+.doc-autofill-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.doc-autofill-info i {
+  color: var(--gold-400);
+  font-size: 1.1rem;
+}
+
+.doc-autofill-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-autofill-select {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-500);
+  background: #ffffff;
+  color: #111827;
+  font-size: 0.82rem;
+  font-weight: 500;
+  outline: none;
+  min-width: 220px;
+}
+
+.btn-autofill-apply {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+  color: #041408;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-autofill-apply:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-pdf-view {
+  background: #ffffff;
+  color: #134622;
+  border: 1px solid var(--gold-500);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-pdf-view:hover {
+  background: #fdfaf0;
+  border-color: var(--gold-600);
+  color: #082410;
+  transform: translateY(-1px);
+}
+
+.btn-doc-reset {
+  background: #f3f4f6;
+  border: 1px solid var(--border-color);
+  color: #4b5563;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-doc-reset:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.doc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #fefce8;
+  color: #854d0e;
+  border: 1px solid #fef08a;
+  margin-left: 8px;
+}
+
+.doc-actions-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* =========================================================
    MOBILE RESPONSIVENESS
    ========================================================= */
 @media (max-width: 1024px) {
@@ -933,11 +1114,51 @@ body {
       </ul>
     </div>
     <div>
-      <div class="sb-group-title">Site</div>
+      <div class="sb-group-title">Document Generators</div>
+      <ul class="sb-nav-list">
+        <li>
+          <a class="sb-link" id="tabApproval" onclick="switchTab('approval')">
+            <i class="fa-solid fa-file-signature"></i> Approval Letter
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabGst" onclick="switchTab('gst')">
+            <i class="fa-solid fa-file-invoice-dollar"></i> GST Invoice
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabNoc" onclick="switchTab('noc')">
+            <i class="fa-solid fa-file-shield"></i> NOC Certificate
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabRbi" onclick="switchTab('rbi')">
+            <i class="fa-solid fa-building-columns"></i> RBI Verification
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabTds" onclick="switchTab('tds')">
+            <i class="fa-solid fa-receipt"></i> TDS Letter
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" id="tabAllTax" onclick="switchTab('alltax')">
+            <i class="fa-solid fa-money-check-dollar"></i> All Tax Details
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="sb-group-title">Site & Portal</div>
       <ul class="sb-nav-list">
         <li>
           <a class="sb-link" href="index.html" target="_blank">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> View Website
+          </a>
+        </li>
+        <li>
+          <a class="sb-link" href="app/dashboard.html" target="_blank">
+            <i class="fa-solid fa-folder-tree"></i> Standalone App Portal
           </a>
         </li>
         <li>
@@ -1098,7 +1319,571 @@ body {
         </div>
       </div>
     </div>
-  </main>
+
+    <!-- APPROVAL LETTER PANEL -->
+    <div class="main-card doc-panel" id="panelApproval">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-file-signature" style="color:var(--gold-500);"></i> Approval Letter Generator <span class="doc-badge">view_letter.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_letter.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('approval')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formApproval" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save Approval Letter
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <!-- Quick Autofill Bar -->
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="approvalWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('approval')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formApproval" onsubmit="handleDocSubmit(event, 'approval')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <!-- Section 1: Customer & Ticket Details -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-user-tag"></i> 1. Beneficiary & Lottery Ticket Details</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="appr_to_name">To (Directorate / Header)</label>
+                  <input class="form-control" id="appr_to_name" name="to_name" required="" type="text" value="Kerala lottery" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_ticket_no">Ticket Number</label>
+                  <input class="form-control" id="appr_ticket_no" name="ticket_no" required="" type="text" value="KL754913" style="text-transform:uppercase;" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_aadhar">Aadhar Number</label>
+                  <input class="form-control" id="appr_aadhar" name="aadhar" required="" type="text" value="394333555107" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_lottery_amount">Winning Prize Amount (₹)</label>
+                  <input class="form-control" id="appr_lottery_amount" name="lottery_amount" required="" type="text" value="12,00,000" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_reg_fee">Registration Fee</label>
+                  <input class="form-control" id="appr_reg_fee" name="reg_fee" required="" type="text" value="₹5,999" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_letter_date">Issue Date</label>
+                  <input class="form-control" id="appr_letter_date" name="letter_date" required="" type="text" value="05/09/2026" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Customer Banking Information -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-building-columns"></i> 2. Customer Bank Account Details</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="appr_customer_name">Customer Full Name</label>
+                  <input class="form-control" id="appr_customer_name" name="customer_name" required="" type="text" value="Pradeep kumar" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_account_no">Customer Account Number</label>
+                  <input class="form-control" id="appr_account_no" name="account_no" required="" type="text" value="55154897618" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_ifsc">Customer Bank IFSC Code</label>
+                  <input class="form-control" id="appr_ifsc" name="ifsc" required="" type="text" value="SBIN000872" style="text-transform:uppercase;" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Directorate Deposit Account Details -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-vault"></i> 3. Directorate Deposit Account (Pay At This Account)</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="appr_pay_name">Pay Beneficiary Name</label>
+                  <input class="form-control" id="appr_pay_name" name="pay_name" required="" type="text" value="Kerala Government lottery" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_pay_account">Govt Deposit Account Number</label>
+                  <input class="form-control" id="appr_pay_account" name="pay_account" required="" type="text" value="XXXXXXXX1088" />
+                </div>
+                <div class="form-group">
+                  <label for="appr_pay_ifsc">Govt Deposit IFSC Code</label>
+                  <input class="form-control" id="appr_pay_ifsc" name="pay_ifsc" required="" type="text" value="ICICXXX3033" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Legal & Refund Terms -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-scale-balanced"></i> 4. Legal / Refundable Terms Notice</div>
+              <div class="form-group">
+                <label for="appr_legal_text">Legal / Refund Highlight Note</label>
+                <textarea class="form-control" id="appr_legal_text" name="legal_text" rows="2" required="">Registration Fees refundable balance INR 5,000/- Only</textarea>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_letter.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync Approval Letter
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- GST INVOICE PANEL -->
+    <div class="main-card doc-panel" id="panelGst">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-file-invoice-dollar" style="color:var(--gold-500);"></i> GST Invoice Generator <span class="doc-badge">view_gst.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_gst.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('gst')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formGst" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save GST Invoice
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="gstWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('gst')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formGst" onsubmit="handleDocSubmit(event, 'gst')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-user"></i> 1. Invoice Recipient & Total Winning Amount</div>
+              <div class="doc-grid-2">
+                <div class="form-group">
+                  <label for="gst_bill_to">Bill To (Winner / Customer Name)</label>
+                  <input class="form-control" id="gst_bill_to" name="bill_to" required="" type="text" value="Gk" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_total_amount">Total Amount (₹)</label>
+                  <input class="form-control" id="gst_total_amount" name="total_amount" required="" type="text" value="1217000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-calculator"></i> 2. GST Tax Breakdown (SGST & CGST)</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="gst_gst_rate">Overall GST Rate</label>
+                  <input class="form-control" id="gst_gst_rate" name="gst_rate" required="" type="text" value="1.55%" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_gst_amount">Overall GST Tax Amount (₹)</label>
+                  <input class="form-control" id="gst_gst_amount" name="gst_amount" required="" type="text" value="19880" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_final_amount">Final Amount (After GST)</label>
+                  <input class="form-control" id="gst_final_amount" name="final_amount" required="" type="text" value="1217000" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_sgst_rate">SGST Rate</label>
+                  <input class="form-control" id="gst_sgst_rate" name="sgst_rate" required="" type="text" value="1.55%" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_sgst_amount">SGST Tax Amount (₹)</label>
+                  <input class="form-control" id="gst_sgst_amount" name="sgst_amount" required="" type="text" value="19880" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_cgst_rate">CGST Rate</label>
+                  <input class="form-control" id="gst_cgst_rate" name="cgst_rate" required="" type="text" value="1.55%" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_cgst_amount">CGST Tax Amount (₹)</label>
+                  <input class="form-control" id="gst_cgst_amount" name="cgst_amount" required="" type="text" value="19880" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_sub_total">Sub-Total Amount (₹)</label>
+                  <input class="form-control" id="gst_sub_total" name="sub_total" required="" type="text" value="1236000" />
+                </div>
+                <div class="form-group">
+                  <label for="gst_amount_words">Invoice Amount in Words</label>
+                  <input class="form-control" id="gst_amount_words" name="amount_words" required="" type="text" value="19500 Pay Only" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_gst.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync GST Invoice
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- NOC CERTIFICATE PANEL -->
+    <div class="main-card doc-panel" id="panelNoc">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-file-shield" style="color:var(--gold-500);"></i> NOC Certificate Generator <span class="doc-badge">view_noc.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_noc.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('noc')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formNoc" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save NOC Certificate
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="nocWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('noc')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formNoc" onsubmit="handleDocSubmit(event, 'noc')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-shield-halved"></i> 1. NOC Beneficiary & Clearance Amounts</div>
+              <div class="doc-grid-2">
+                <div class="form-group">
+                  <label for="noc_customer_name">Customer Full Name</label>
+                  <input class="form-control" id="noc_customer_name" name="customer_name" required="" type="text" value="Mrityunjoy Mondal" />
+                </div>
+                <div class="form-group">
+                  <label for="noc_total_amount">Total Winning Amount (₹)</label>
+                  <input class="form-control" id="noc_total_amount" name="total_amount" required="" type="text" value="1256000" />
+                </div>
+                <div class="form-group">
+                  <label for="noc_noc_charges">NOC Clearance Charges (₹)</label>
+                  <input class="form-control" id="noc_noc_charges" name="noc_charges" required="" type="text" value="25999" />
+                </div>
+                <div class="form-group">
+                  <label for="noc_sub_total">Sub-Total Amount (₹)</label>
+                  <input class="form-control" id="noc_sub_total" name="sub_total" required="" type="text" value="1281000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_noc.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync NOC Certificate
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- RBI VERIFICATION PANEL -->
+    <div class="main-card doc-panel" id="panelRbi">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-building-columns" style="color:var(--gold-500);"></i> RBI Verification Letter Generator <span class="doc-badge">view_rbi.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_rbi.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('rbi')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formRbi" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save RBI Letter
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="rbiWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('rbi')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formRbi" onsubmit="handleDocSubmit(event, 'rbi')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-stamp"></i> 1. Verification Beneficiary & Disbursal Figures</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="rbi_customer_name">Customer Full Name</label>
+                  <input class="form-control" id="rbi_customer_name" name="customer_name" required="" type="text" value="N MAHALAKSHMI" />
+                </div>
+                <div class="form-group">
+                  <label for="rbi_winning_amount">Winning Amount (₹)</label>
+                  <input class="form-control" id="rbi_winning_amount" name="winning_amount" required="" type="text" value="1224000" />
+                </div>
+                <div class="form-group">
+                  <label for="rbi_verification_amount">Verification Deposit (₹)</label>
+                  <input class="form-control" id="rbi_verification_amount" name="verification_amount" required="" type="text" value="9999" />
+                </div>
+                <div class="form-group">
+                  <label for="rbi_account_number">Bank Account Number</label>
+                  <input class="form-control" id="rbi_account_number" name="account_number" required="" type="text" value="186101000005386" />
+                </div>
+                <div class="form-group">
+                  <label for="rbi_final_amount">Final Amount (After Verification)</label>
+                  <input class="form-control" id="rbi_final_amount" name="final_amount" required="" type="text" value="1234000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_rbi.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync RBI Letter
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- TDS LETTER PANEL -->
+    <div class="main-card doc-panel" id="panelTds">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-receipt" style="color:var(--gold-500);"></i> TDS Letter Generator <span class="doc-badge">view_tds.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_tds.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('tds')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formTds" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save TDS Letter
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="tdsWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('tds')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formTds" onsubmit="handleDocSubmit(event, 'tds')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-percent"></i> 1. Tax Deduction At Source Calculation</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="tds_bill_to">Bill To (Customer Name)</label>
+                  <input class="form-control" id="tds_bill_to" name="bill_to" required="" type="text" value="Vinod Sukhbabu Ambar" />
+                </div>
+                <div class="form-group">
+                  <label for="tds_total_amount">Total Amount (₹)</label>
+                  <input class="form-control" id="tds_total_amount" name="total_amount" required="" type="text" value="1205000" />
+                </div>
+                <div class="form-group">
+                  <label for="tds_tds_rate">TDS Rate (%)</label>
+                  <input class="form-control" id="tds_tds_rate" name="tds_rate" required="" type="text" value="1.2%" />
+                </div>
+                <div class="form-group">
+                  <label for="tds_tds_amount">TDS Amount (₹)</label>
+                  <input class="form-control" id="tds_tds_amount" name="tds_amount" required="" type="text" value="12999" />
+                </div>
+                <div class="form-group">
+                  <label for="tds_net_amount">Net Amount (After TDS)</label>
+                  <input class="form-control" id="tds_net_amount" name="net_amount" required="" type="text" value="1217000" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_tds.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync TDS Letter
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ALL TAX DETAILS PANEL -->
+    <div class="main-card doc-panel" id="panelAllTax">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-money-check-dollar" style="color:var(--gold-500);"></i> All Tax Details Generator <span class="doc-badge">view_all_tax.html</span></h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <a href="app/view_all_tax.html" target="_blank" class="btn-pdf-view">
+            <i class="fa-solid fa-file-pdf" style="color:#e11d48;"></i> View / Print PDF
+          </a>
+          <button type="button" class="btn-doc-reset" onclick="resetDocument('all_tax')">
+            <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+          </button>
+          <button type="submit" form="formAllTax" class="btn-primary">
+            <i class="fa-solid fa-check"></i> Save All Tax Details
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Auto-fill details from registered winners list:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="alltaxWinnerSelect">
+              <option value="">-- Choose Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToDoc('all_tax')">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill
+            </button>
+          </div>
+        </div>
+
+        <form id="formAllTax" onsubmit="handleDocSubmit(event, 'all_tax')">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-shield"></i> 1. Clearance Level & Reason Of Hold</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="tax_level">Level (e.g. 5th, Level 1)</label>
+                  <input class="form-control" id="tax_level" name="level" required="" type="text" value="5th" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_status">Status (e.g. Processing)</label>
+                  <input class="form-control" id="tax_status" name="status" required="" type="text" value="Processing" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_reason_of_hold">Reason Of Hold</label>
+                  <input class="form-control" id="tax_reason_of_hold" name="reason_of_hold" required="" type="text" value="NEFT/RTGS" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_transaction_date">Transaction Date</label>
+                  <input class="form-control" id="tax_transaction_date" name="transaction_date" required="" type="text" value="05/09/2026" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-money-bill-transfer"></i> 2. Bank Transfer & Beneficiary Details</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="tax_debit_account">Debit Account Number</label>
+                  <input class="form-control" id="tax_debit_account" name="debit_account" required="" type="text" value="XXXXXXX2286" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_debit_branch">Debit Branch</label>
+                  <input class="form-control" id="tax_debit_branch" name="debit_branch" required="" type="text" value="Kerala Thiruvananthapuram" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_beneficiary_name">Beneficiary Full Name</label>
+                  <input class="form-control" id="tax_beneficiary_name" name="beneficiary_name" required="" type="text" value="R.Mariyammal" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_credit_account">Credit Account Number</label>
+                  <input class="form-control" id="tax_credit_account" name="credit_account" required="" type="text" value="500101012119254" />
+                </div>
+                <div class="form-group">
+                  <label for="tax_amount">Amount (INR)</label>
+                  <input class="form-control" id="tax_amount" name="amount" required="" type="text" value="12,06,000/-" />
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-comment-sms"></i> 3. Hold Notification / Customer SMS Message</div>
+              <div class="form-group">
+                <label for="tax_message">SMS / Hold Notice Text</label>
+                <textarea class="form-control" id="tax_message" name="message" rows="3" required="">Dear Customer. INR 12,0,6000/- Credited in your A/C  XXXXXX9254 ON 05/09/2026 Your amount is hold reason for  {NEFT/RTGS} please pay  16780/-  only.This charge is refundable.If any problem Contact No Thanks ADCFIN</textarea>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <a href="app/view_all_tax.html" target="_blank" class="btn-pdf-view">
+                <i class="fa-solid fa-eye"></i> Open PDF Preview
+              </a>
+              <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Save & Sync All Tax Details
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 </div>
 
 <!-- ADD / EDIT WINNER MODAL -->
@@ -1361,6 +2146,7 @@ function renderTable(list) {
       '<td>' +
         '<div class="action-btns">' +
           '<button class="act-btn btn-edit" onclick="openEditModal(' + idx + ')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>' +
+          '<button class="act-btn" style="background:#ecfdf5; color:#047857; border-color:#a7f3d0;" onclick="quickGenDoc(' + idx + ')" title="Generate Official Documents"><i class="fa-solid fa-file-invoice"></i> Doc</button>' +
           '<button class="act-btn btn-del" onclick="deleteWinner(' + idx + ')" title="Delete"><i class="fa-solid fa-trash-can"></i></button>' +
         '</div>' +
       '</td>' +
@@ -1388,6 +2174,7 @@ function filterWinners() {
   });
 
   renderTable(filtered);
+  updateWinnerSelectDropdowns();
 }
 
 /* ── Prize Configuration Modal Operations ── */
@@ -1549,6 +2336,7 @@ async function handleFormSubmit(e) {
   saveWinnersLocally(winnersList);
   updateKPIs();
   filterWinners();
+  updateWinnerSelectDropdowns();
   closeModal();
 }
 
@@ -1568,6 +2356,7 @@ async function deleteWinner(idx) {
     saveWinnersLocally(winnersList);
     updateKPIs();
     filterWinners();
+    updateWinnerSelectDropdowns();
     showToast('Winner removed from database.');
   }
 }
@@ -1581,25 +2370,291 @@ function showToast(msg) {
 }
 
 /* ── Tab Switching ── */
-function switchTab(tab) {
-  var tabW = document.getElementById('tabWinners');
-  var tabI = document.getElementById('tabImages');
-  var panelW = document.getElementById('winnersPanel');
-  var panelI = document.getElementById('imagesPanel');
-  var heading = document.getElementById('pageHeadingTitle');
+var ALL_TABS = ['winners', 'images', 'approval', 'gst', 'noc', 'rbi', 'tds', 'alltax'];
+var TAB_INFO = {
+  winners: { tabId: 'tabWinners', panelId: 'winnersPanel', title: 'Winners Dashboard' },
+  images: { tabId: 'tabImages', panelId: 'imagesPanel', title: 'Manage Ceremony Images' },
+  approval: { tabId: 'tabApproval', panelId: 'panelApproval', title: 'Approval Letter Generator' },
+  gst: { tabId: 'tabGst', panelId: 'panelGst', title: 'GST Invoice Generator' },
+  noc: { tabId: 'tabNoc', panelId: 'panelNoc', title: 'NOC Certificate Generator' },
+  rbi: { tabId: 'tabRbi', panelId: 'panelRbi', title: 'RBI Verification Letter Generator' },
+  tds: { tabId: 'tabTds', panelId: 'panelTds', title: 'TDS Invoice Generator' },
+  alltax: { tabId: 'tabAllTax', panelId: 'panelAllTax', title: 'All Tax Transaction Details' }
+};
 
-  if (tab === 'images') {
-    tabW.classList.remove('active');
-    tabI.classList.add('active');
-    panelW.style.display = 'none';
-    panelI.style.display = 'block';
-    heading.textContent = 'Manage Images';
-  } else {
-    tabI.classList.remove('active');
-    tabW.classList.add('active');
-    panelI.style.display = 'none';
-    panelW.style.display = 'block';
-    heading.textContent = 'Winners Dashboard';
+function switchTab(tab) {
+  var target = TAB_INFO[tab] ? tab : 'winners';
+  var heading = document.getElementById('pageHeadingTitle');
+  if (heading && TAB_INFO[target]) {
+    heading.textContent = TAB_INFO[target].title;
+  }
+
+  ALL_TABS.forEach(function(t) {
+    var info = TAB_INFO[t];
+    var linkEl = document.getElementById(info.tabId);
+    var panelEl = document.getElementById(info.panelId);
+    if (linkEl) {
+      if (t === target) linkEl.classList.add('active');
+      else linkEl.classList.remove('active');
+    }
+    if (panelEl) {
+      panelEl.style.display = (t === target) ? 'block' : 'none';
+    }
+  });
+
+  if (window.innerWidth <= 768) {
+    var sb = document.getElementById('sidebar');
+    if (sb) sb.classList.remove('open');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Document Management Schemas & Defaults ── */
+var DEFAULT_DOCS = {
+  approval: {
+    to_name: 'Kerala lottery',
+    ticket_no: 'KL754913',
+    aadhar: '394333555107',
+    lottery_amount: '12,00,000',
+    reg_fee: '₹5,999',
+    customer_name: 'Pradeep kumar',
+    account_no: '55154897618',
+    ifsc: 'SBIN000872',
+    letter_date: '05/09/2026',
+    pay_name: 'Kerala Government lottery',
+    pay_account: 'XXXXXXXX1088',
+    pay_ifsc: 'ICICXXX3033',
+    legal_text: 'Registration Fees refundable balance INR 5,000/- Only'
+  },
+  gst: {
+    bill_to: 'Gk',
+    total_amount: '1217000',
+    gst_rate: '1.55%',
+    gst_amount: '19880',
+    final_amount: '1217000',
+    sgst_rate: '1.55%',
+    sgst_amount: '19880',
+    cgst_rate: '1.55%',
+    cgst_amount: '19880',
+    sub_total: '1236000',
+    amount_words: '19500 Pay Only'
+  },
+  noc: {
+    customer_name: 'Mrityunjoy Mondal',
+    total_amount: '1256000',
+    noc_charges: '25999',
+    sub_total: '1281000'
+  },
+  rbi: {
+    customer_name: 'N MAHALAKSHMI',
+    winning_amount: '1224000',
+    verification_amount: '9999',
+    account_number: '186101000005386',
+    final_amount: '1234000'
+  },
+  tds: {
+    bill_to: 'Vinod Sukhbabu Ambar',
+    total_amount: '1205000',
+    tds_rate: '1.2%',
+    tds_amount: '12999',
+    net_amount: '1217000'
+  },
+  all_tax: {
+    level: '5th',
+    debit_account: 'XXXXXXX2286',
+    debit_branch: 'Kerala Thiruvananthapuram',
+    reason_of_hold: 'NEFT/RTGS',
+    beneficiary_name: 'R.Mariyammal',
+    credit_account: '500101012119254',
+    transaction_date: '05/09/2026',
+    amount: '12,06,000/-',
+    message: 'Dear Customer. INR 12,0,6000/- Credited in your A/C  XXXXXX9254 ON 05/09/2026 Your amount is hold reason for  {NEFT/RTGS} please pay  16780/-  only.This charge is refundable.If any problem Contact No Thanks ADCFIN',
+    status: 'Processing'
+  }
+};
+
+var DOC_SCHEMAS = {
+  approval: { prefix: 'appr_', localKey: 'kl_doc_approval', fields: ['to_name', 'ticket_no', 'aadhar', 'lottery_amount', 'reg_fee', 'customer_name', 'account_no', 'ifsc', 'letter_date', 'pay_name', 'pay_account', 'pay_ifsc', 'legal_text'] },
+  gst: { prefix: 'gst_', localKey: 'kl_doc_gst', fields: ['bill_to', 'total_amount', 'gst_rate', 'gst_amount', 'final_amount', 'sgst_rate', 'sgst_amount', 'cgst_rate', 'cgst_amount', 'sub_total', 'amount_words'] },
+  noc: { prefix: 'noc_', localKey: 'kl_doc_noc', fields: ['customer_name', 'total_amount', 'noc_charges', 'sub_total'] },
+  rbi: { prefix: 'rbi_', localKey: 'kl_doc_rbi', fields: ['customer_name', 'winning_amount', 'verification_amount', 'account_number', 'final_amount'] },
+  tds: { prefix: 'tds_', localKey: 'kl_doc_tds', fields: ['bill_to', 'total_amount', 'tds_rate', 'tds_amount', 'net_amount'] },
+  all_tax: { prefix: 'tax_', localKey: 'kl_doc_all_tax', fields: ['level', 'debit_account', 'debit_branch', 'reason_of_hold', 'beneficiary_name', 'credit_account', 'transaction_date', 'amount', 'message', 'status'] }
+};
+
+function populateDocForm(type, data) {
+  var schema = DOC_SCHEMAS[type];
+  if (!schema || !data) return;
+  schema.fields.forEach(function(f) {
+    var el = document.getElementById(schema.prefix + f);
+    if (el && data[f] !== undefined) {
+      el.value = data[f];
+    }
+  });
+}
+
+function getDocFormData(type) {
+  var schema = DOC_SCHEMAS[type];
+  if (!schema) return {};
+  var out = {};
+  schema.fields.forEach(function(f) {
+    var el = document.getElementById(schema.prefix + f);
+    if (el) out[f] = el.value.trim();
+  });
+  return out;
+}
+
+async function handleDocSubmit(e, type) {
+  if (e) e.preventDefault();
+  var schema = DOC_SCHEMAS[type];
+  if (!schema) return;
+  var data = getDocFormData(type);
+  localStorage.setItem(schema.localKey, JSON.stringify(data));
+
+  try {
+    await fetch('/api/documents', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: type, data: data })
+    });
+    showToast(type.toUpperCase() + ' document saved & synced to MongoDB Atlas!');
+  } catch(err) {
+    showToast(type.toUpperCase() + ' document saved in local storage.');
+  }
+}
+
+function resetDocument(type) {
+  var def = DEFAULT_DOCS[type];
+  if (def && confirm('Reset ' + type.toUpperCase() + ' fields to original default values?')) {
+    populateDocForm(type, def);
+    var schema = DOC_SCHEMAS[type];
+    if (schema) {
+      localStorage.setItem(schema.localKey, JSON.stringify(def));
+    }
+    showToast(type.toUpperCase() + ' reset to defaults.');
+  }
+}
+
+async function loadAllDocuments() {
+  for (var type in DOC_SCHEMAS) {
+    var schema = DOC_SCHEMAS[type];
+    var data = DEFAULT_DOCS[type];
+    try {
+      var saved = localStorage.getItem(schema.localKey);
+      if (saved) {
+        data = Object.assign({}, DEFAULT_DOCS[type], JSON.parse(saved));
+      }
+    } catch(e) {}
+    populateDocForm(type, data);
+  }
+
+  try {
+    var res = await fetch('/api/documents');
+    var json = await res.json();
+    if (json && json.success && json.data) {
+      for (var t in json.data) {
+        if (DOC_SCHEMAS[t]) {
+          populateDocForm(t, json.data[t]);
+          localStorage.setItem(DOC_SCHEMAS[t].localKey, JSON.stringify(json.data[t]));
+        }
+      }
+    }
+  } catch(err) {
+    console.warn('[Docs API] Using local storage values.');
+  }
+}
+
+/* ── Autofill Documents from Registered Winner ── */
+function updateWinnerSelectDropdowns() {
+  var dropdownIds = ['approvalWinnerSelect', 'gstWinnerSelect', 'nocWinnerSelect', 'rbiWinnerSelect', 'tdsWinnerSelect', 'alltaxWinnerSelect'];
+  dropdownIds.forEach(function(ddId) {
+    var select = document.getElementById(ddId);
+    if (!select) return;
+    var currentVal = select.value;
+    var html = '<option value="">-- Choose Registered Winner --</option>';
+    winnersList.forEach(function(w, idx) {
+      var prizeStr = formatRupee(w.prize);
+      html += '<option value="' + idx + '">' + escapeHtml(w.name) + ' (' + escapeHtml(w.ticket) + ' - ' + prizeStr + ')</option>';
+    });
+    select.innerHTML = html;
+    if (currentVal) select.value = currentVal;
+  });
+}
+
+function applyWinnerToDoc(type) {
+  var selectId = (type === 'all_tax' ? 'alltax' : type) + 'WinnerSelect';
+  var select = document.getElementById(selectId);
+  if (!select || select.value === '') {
+    alert('Please select a winner from the dropdown first.');
+    return;
+  }
+  var idx = parseInt(select.value);
+  var w = winnersList[idx];
+  if (!w) return;
+
+  var prizeStr = parseFloat(w.prize || 0).toLocaleString('en-IN');
+  var prizePlain = String(w.prize || 0);
+
+  if (type === 'approval') {
+    document.getElementById('appr_customer_name').value = w.name;
+    document.getElementById('appr_ticket_no').value = w.ticket;
+    document.getElementById('appr_lottery_amount').value = prizeStr;
+    if (w.date) {
+      var parts = w.date.split('-');
+      if (parts.length === 3) {
+        document.getElementById('appr_letter_date').value = parts[2] + '/' + parts[1] + '/' + parts[0];
+      }
+    }
+  } else if (type === 'gst') {
+    document.getElementById('gst_bill_to').value = w.name;
+    document.getElementById('gst_total_amount').value = prizePlain;
+    document.getElementById('gst_final_amount').value = prizePlain;
+    var tax = Math.round((w.prize || 0) * 0.0155);
+    document.getElementById('gst_gst_amount').value = String(tax);
+    document.getElementById('gst_sgst_amount').value = String(tax);
+    document.getElementById('gst_cgst_amount').value = String(tax);
+    document.getElementById('gst_sub_total').value = String((parseFloat(prizePlain) || 0) + tax);
+  } else if (type === 'noc') {
+    document.getElementById('noc_customer_name').value = w.name;
+    document.getElementById('noc_total_amount').value = prizePlain;
+    var charges = 25999;
+    document.getElementById('noc_noc_charges').value = String(charges);
+    document.getElementById('noc_sub_total').value = String((parseFloat(prizePlain) || 0) + charges);
+  } else if (type === 'rbi') {
+    document.getElementById('rbi_customer_name').value = w.name;
+    document.getElementById('rbi_winning_amount').value = prizePlain;
+    var verif = 9999;
+    document.getElementById('rbi_verification_amount').value = String(verif);
+    document.getElementById('rbi_final_amount').value = String((parseFloat(prizePlain) || 0) + verif);
+  } else if (type === 'tds') {
+    document.getElementById('tds_bill_to').value = w.name;
+    document.getElementById('tds_total_amount').value = prizePlain;
+    var tdsAmt = Math.round((w.prize || 0) * 0.012);
+    document.getElementById('tds_tds_amount').value = String(tdsAmt);
+    document.getElementById('tds_net_amount').value = String((parseFloat(prizePlain) || 0) + tdsAmt);
+  } else if (type === 'all_tax') {
+    document.getElementById('tax_beneficiary_name').value = w.name;
+    document.getElementById('tax_amount').value = prizeStr + '/-';
+    if (w.date) {
+      var parts = w.date.split('-');
+      if (parts.length === 3) {
+        document.getElementById('tax_transaction_date').value = parts[2] + '/' + parts[1] + '/' + parts[0];
+      }
+    }
+  }
+
+  showToast('Autofilled winner ' + w.name + ' into ' + type.toUpperCase() + ' form!');
+}
+
+function quickGenDoc(idx) {
+  var w = winnersList[idx];
+  if (!w) return;
+  switchTab('approval');
+  var sel = document.getElementById('approvalWinnerSelect');
+  if (sel) {
+    sel.value = String(idx);
+    applyWinnerToDoc('approval');
   }
 }
 
@@ -1631,6 +2686,7 @@ function toggleSidebar() {
 /* ── Initial Startup ── */
 fetchPrizeSettingsFromAPI();
 fetchWinnersFromAPI();
+loadAllDocuments();
 </script>
 </body>
 </html>
