@@ -2,6 +2,28 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/admin__login.php",
+      "destination": "/admin",
+      "permanent": true
+    },
+    {
+      "source": "/admin__login.php.html",
+      "destination": "/admin",
+      "permanent": true
+    },
+    {
+      "source": "/admin-login",
+      "destination": "/admin",
+      "permanent": true
+    },
+    {
+      "source": "/admin-login.html",
+      "destination": "/admin",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/app",
@@ -17,7 +39,7 @@
     },
     {
       "source": "/admin",
-      "destination": "/admin__login.php.html"
+      "destination": "/admin.html"
     },
     {
       "source": "/dashboard",

@@ -29,10 +29,14 @@ app.all('/api/check_result.php', (req, res) => checkResultHandler(req, res));
 
 // Clean URL Aliases
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin__login.php.html'));
+  res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-app.get('/dashboard', (req, res) => {
+app.get(['/admin__login.php', '/admin__login.php.html', '/admin-login', '/admin-login.html'], (req, res) => {
+  res.redirect('/admin');
+});
+
+app.get(['/dashboard', '/admin-dashboard', '/admin-dashboard.html'], (req, res) => {
   res.sendFile(path.join(__dirname, 'admin-dashboard.html'));
 });
 
