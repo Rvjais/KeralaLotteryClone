@@ -1030,6 +1030,8 @@ body {
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
+    width: 260px;
+    z-index: 9999;
   }
   .sidebar.open {
     transform: translateX(0);
@@ -1037,28 +1039,154 @@ body {
   .main-wrapper {
     margin-left: 0;
     width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   .menu-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .top-navbar {
+    padding: 10px 14px;
+    height: auto;
+    min-height: 56px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-nav-left {
+    gap: 8px;
+    max-width: calc(100% - 130px);
+  }
+  .page-heading {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .top-nav-right {
+    gap: 10px;
+  }
+  .user-badge {
+    padding: 4px 8px;
+    font-size: 0.76rem;
+  }
+  .user-badge .user-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
   .content-body {
-    padding: 16px;
+    padding: 12px;
   }
   .stats-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .dash-stat-card {
-    padding: 14px;
     gap: 10px;
   }
+  .dash-stat-card {
+    padding: 12px;
+    gap: 8px;
+  }
   .stat-card-icon {
-    width: 42px;
-    height: 42px;
-    font-size: 1.1rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
   }
   .stat-card-num {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+  }
+  .card-header-bar {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .card-header-bar h2 {
+    font-size: 1.05rem;
+  }
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Document Forms & Grids Mobile Fix */
+  .doc-form-card {
+    padding: 14px 12px;
+    gap: 14px;
+  }
+  .doc-section {
+    padding: 14px 12px;
+  }
+  .doc-grid-2, .doc-grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .form-group {
+    width: 100% !important;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    font-size: 0.86rem !important;
+    padding: 10px 12px !important;
+  }
+  .doc-autofill-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    gap: 10px;
+  }
+  .doc-autofill-info {
+    font-size: 0.8rem;
+  }
+  .doc-autofill-controls {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
+  }
+  .doc-autofill-select {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .btn-autofill-apply {
+    width: 100% !important;
+    justify-content: center;
+  }
+  .doc-actions-footer {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
+  }
+  .doc-actions-footer .btn-pdf-view,
+  .doc-actions-footer .btn-doc-reset {
+    width: 100% !important;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+  .data-table {
+    min-width: 600px;
+  }
+  .modal-box {
+    width: 95% !important;
+    max-width: 95vw !important;
+    margin: 15px auto !important;
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+    max-height: 92vh !important;
+    overflow-y: auto !important;
   }
 }
 
@@ -1066,12 +1194,26 @@ body {
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  .card-header-bar {
-    flex-direction: column;
-    align-items: stretch;
+  .top-navbar {
+    padding: 8px 10px;
   }
-  .add-btn {
-    justify-content: center;
+  .page-heading {
+    font-size: 0.88rem;
+  }
+  .content-body {
+    padding: 8px;
+  }
+  .main-card {
+    border-radius: 10px;
+  }
+  .card-header-bar {
+    padding: 12px 14px;
+  }
+  .doc-form-card {
+    padding: 12px 8px;
+  }
+  .doc-section {
+    padding: 12px 10px;
   }
 }
 </style>
