@@ -1137,8 +1137,14 @@ body {
           </select>
         </div>
         <div class="form-group">
-          <label for="wPrize">Winning Amount (₹) *</label>
-          <input class="form-control" id="wPrize" placeholder="e.g. 7500000" required="" type="number"/>
+          <label for="wPrizeDisplay"><i class="fa-solid fa-lock" style="color:var(--emerald-800); font-size:11px;"></i> Winning Amount (₹) <span style="font-size:11px; font-weight:normal; color:#6b7280;">(Fixed by Selected Position)</span></label>
+          <div style="position:relative;">
+            <input class="form-control" id="wPrizeDisplay" readonly="" style="background:#f4f7f4; color:#082410; font-weight:700; cursor:not-allowed; border-color:#cbd5e1; padding-right:110px;" type="text" value="₹75,00,000 (3rd Prize)"/>
+            <span id="wPrizeTag" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:11px; font-weight:700; background:#e8f5e9; color:#1b5e20; border:1px solid #c8e6c9; padding:3px 8px; border-radius:12px;">
+              <i class="fa-solid fa-shield-halved"></i> Fixed Tier
+            </span>
+          </div>
+          <input id="wPrize" type="hidden" value="7500000"/>
         </div>
         <div class="form-group">
           <label for="wDate">Draw Date *</label>
@@ -1461,6 +1467,13 @@ function openEditModal(idx) {
   document.getElementById('wTicket').value = w.ticket;
   document.getElementById('wPos').value = w.pos;
   document.getElementById('wPrize').value = w.prize;
+  
+  var prizeDisplay = document.getElementById('wPrizeDisplay');
+  if (prizeDisplay) {
+    var pLabel = POS_LABELS[w.pos] || (w.pos + 'th Prize');
+    prizeDisplay.value = formatRupee(w.prize) + ' (' + pLabel + ')';
+  }
+  
   document.getElementById('wDate').value = w.date || getLocalTodayDate();
   document.getElementById('winnerModal').classList.add('show');
 }
@@ -1472,10 +1485,13 @@ function closeModal() {
 function autoFillPrize() {
   var pos = document.getElementById('wPos').value;
   var prizeInput = document.getElementById('wPrize');
-  if (currentPrizes[pos] !== undefined) {
-    prizeInput.value = currentPrizes[pos];
-  } else if (DEFAULT_PRIZES[pos] !== undefined) {
-    prizeInput.value = DEFAULT_PRIZES[pos];
+  var prizeDisplay = document.getElementById('wPrizeDisplay');
+  var pVal = (currentPrizes[pos] !== undefined) ? currentPrizes[pos] : (DEFAULT_PRIZES[pos] || 0);
+
+  if (prizeInput) prizeInput.value = pVal;
+  if (prizeDisplay) {
+    var pLabel = POS_LABELS[pos] || (pos + 'th Prize');
+    prizeDisplay.value = formatRupee(pVal) + ' (' + pLabel + ')';
   }
 }
 
