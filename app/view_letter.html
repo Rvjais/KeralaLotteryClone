@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kerala State Lotteries – Registration Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+    <!-- PDF AREA -->
+    <div class="letter">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="assets/images/logo.png" class="logo" alt="Logo">
+            <div class="header-text">
+                <h1>KERALA STATE LOTTERIES</h1>
+                <p>Directorate of kerala State Lotteries</p>
+            </div>
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="address-box">
+            <div>
+                <strong>Address:-</strong><br>
+                1st Floor, Vikas Bhavan,<br>
+                Brigadier Rd, University of Kerala<br>
+                Thiruvananthapuram, Kerala 695033
+            </div>
+            <div>
+                <strong>Email:</strong> Kl9014092@gmail.com<br>
+                <strong>Helpline No:</strong> +44 7529 591280
+            </div>
+        </div>
+
+        <!-- TITLE + BARCODE -->
+        <div class="title-barcode-box">
+            <h2>Lottery Registration Letter</h2>
+            <div class="barcode-box">
+                <img src="assets/images/barcode.png" class="barcode" alt="Barcode">
+            </div>
+        </div>
+
+        <!-- DETAILS -->
+        <div class="details">
+            <div>
+                <p><strong>To:</strong> <span id="v_to_name">Kerala lottery</span></p>
+                <p><strong>Ticket Number:</strong> <span id="v_ticket_no">KL754913</span></p>
+                <p><strong>Aadhar Number:</strong> <span id="v_aadhar">394333555107</span></p>
+                <p><strong>Lottery Amount:</strong> ₹ <span id="v_lottery_amount">12,00,000</span></p>
+                <p><strong>Registration Fee:</strong> <span id="v_reg_fee">₹5,999</span></p>
+            </div>
+
+            <div>
+                <p><strong>Customer Name:</strong> <span id="v_customer_name">Pradeep kumar</span></p>
+                <p><strong>Customer Account No:</strong> <span id="v_account_no">55154897618</span></p>
+                <p><strong>Customer IFSC Code:</strong> <span id="v_ifsc">SBIN000872</span></p>
+                <p><strong>Date:</strong> <span id="v_letter_date">05/09/2026</span></p>
+            </div>
+        </div>
+
+        <!-- TEXT -->
+        <p class="para">
+            respected Sir/Mam :<br>
+            There is a transfer fee for the winning amount in Kerala lottery if your winning
+            amount is less than 4 lakh then you will not be charged any registration fee,
+            for registration you will have to deposit the registration fee after which it
+            will be transferred to your account after 10 minute will be paid the winning amount.
+        </p>
+
+        <p class="para">
+            आदरणीय महोदय/मैम :<br>
+            लॉटरी में जीतने वाली राशि के लिए एक ट्रांसफर शुल्क है। यदि आपकी जीतने वाली राशि
+            4 लाख से कम है तो आपसे कोई पंजीकरण शुल्क नहीं लिया जाएगा। पंजीकरण शुल्क जमा करने
+            के बाद राशि आपके खाते में स्थानांतरित कर दी जाएगी।
+        </p>
+
+        <!-- PAYMENT -->
+        <div class="payment-row">
+            <div class="payment-left">
+                <strong>Pay At This Account:</strong><br>
+                Name: <span id="v_pay_name">Kerala Government lottery</span><br>
+                A/C No: <span id="v_pay_account">XXXXXXXX1088</span><br>
+                IFSC Code: <span id="v_pay_ifsc">ICICXXX3033</span>
+                <div class="stamp-wrap">
+                    <img src="assets/images/stamp.png" class="stamp" alt="Stamp">
+                </div>
+            </div>
+        </div>
+
+        <p class="fee" id="v_legal_text">
+            Registration Fees refundable balance INR 5,000/- Only
+        </p>
+
+        <!-- NOTE -->
+        <div class="note">
+            <h3>Note :-</h3>
+            <ol>
+                <li>Registration fee is applicable by Kerala Govt for prize money above Rs. 4 lakh.</li>
+                <li>No charge are deducted from the prize money.</li>
+                <li>Registration charge cash deposit are not allowed.</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-wrap">
+        <button onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_approval');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById('v_' + key);
+      if (el) el.textContent = data[key];
+    }
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

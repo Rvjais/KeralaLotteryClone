@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NOC Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/noc.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- PDF AREA -->
+    <div class="page">
+        <img src="assets/images/noc/header.png" class="header" alt="NOC Header">
+
+        <div class="meta">
+            <div><b>DATE :-</b> <span id="v_date">4/9/2026</span></div>
+            <div><b>Ref Id :</b> 92419569381</div>
+            <div class="email"><b>Email:-</b> Keralastatelottery@info</div>
+        </div>
+        <hr>
+
+        <div class="content">
+            <p>RESPECTED SIR,</p>
+            <p>THIS IS WITH REFERENCE TO MR/MRS. <b><span id="v_customer_name">Mrityunjoy Mondal</span></b></p>
+            <p>THE AMOUNT IS DELIVERED AFTER THE COMPLETION OF ALL REGULATIONS OF THE DEPARTMENT AND HE/SHE HAS CLEARED ALL GOVT TAXES, I REQUEST THE INCOME TAX DEPARTMENT NOT TO INQUIRE OR OBJECT.</p>
+            <p>TOTAL AMOUNT: ₹ <span id="v_total_amount">1256000.00</span></p>
+            <p>NOC CHARGES: ₹ <span id="v_noc_charges">25999.00</span></p>
+            <p><b>SUB-TOTAL AMOUNT: ₹ <span id="v_sub_total">1281000.00</span></b></p>
+        </div>
+
+        <div class="footerwrap"><img src="assets/images/noc/footer.png" class="footer" alt="NOC Footer"></div>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-wrap">
+        <button onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_noc');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
+    if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
+    if (data.noc_charges) document.getElementById('v_noc_charges').textContent = data.noc_charges;
+    if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

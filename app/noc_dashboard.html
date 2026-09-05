@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NOC Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>NOC Letter Generator</h2>
+  <div>
+    <a href="view_noc.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">NOC Letter updated successfully!</div>
+
+  <form id="nocForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="customer_name" name="customer_name" placeholder="Customer Name" value="Mrityunjoy Mondal">
+    <input class="input-box" id="total_amount" name="total_amount" placeholder="Total Amount" value="1256000">
+    <input class="input-box" id="noc_charges" name="noc_charges" placeholder="NOC Charges" value="25999">
+    <input class="input-box" id="sub_total" name="sub_total" placeholder="Sub-Total Amount" value="1281000">
+
+    <button class="green-btn" type="submit">Update NOC Letter</button>
+  </form>
+
+  <p class="small">Ref Id: 92419569381 &nbsp; | &nbsp; Date: 4/9/2026</p>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_noc');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['customer_name', 'total_amount', 'noc_charges', 'sub_total'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_noc', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Tax Transaction Details</title>
+<link rel="stylesheet" href="assets/css/alltax.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <div class="main">
+
+        <div class="header">
+            <img src="assets/images/alltax/header.png" alt="All Tax Header">
+        </div>
+
+        <div class="content">
+
+            <div class="title">Reference Details</div>
+
+            <div class="watermark">
+                <img src="assets/images/alltax/watermark.png" alt="Watermark">
+            </div>
+
+            <table>
+                <tr>
+                    <td class="label">Reference Number</td>
+                    <td class="value">: RTGS/SBIN/TRID/89765876434</td>
+                </tr>
+                <tr>
+                    <td class="label">Debit Account Number</td>
+                    <td class="value">: <span id="v_debit_account">XXXXXXX2286</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Debit Branch</td>
+                    <td class="value">: <span id="v_debit_branch">Kerala Thiruvananthapuram</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Reason Of Hold</td>
+                    <td class="value">: <span id="v_reason_of_hold">NEFT/RTGS</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Beneficiary Name</td>
+                    <td class="value">: <span id="v_beneficiary_name">R.Mariyammal</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Credit Account</td>
+                    <td class="value">: <span id="v_credit_account">500101012119254</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Transaction Date</td>
+                    <td class="value">: <span id="v_transaction_date">05/09/2026</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Amount (INR)</td>
+                    <td class="value">: <span id="v_amount">12,06,000/-</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Level</td>
+                    <td class="value">: <span id="v_level">5th</span></td>
+                </tr>
+                <tr>
+                    <td class="label">Status</td>
+                    <td class="value">
+                        <div class="status-flex">
+                            <span>: <span id="v_status">Processing</span></span>
+                            <img src="assets/images/alltax/clock.svg" class="clock-icon" alt="Clock">
+                            <span class="red-text">( Complete Processing Tax After Credit Winning Amount 30 Second. )</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="notice" id="v_message">
+                Dear Customer. INR 12,0,6000/- Credited in your A/C XXXXXX9254 ON 05/09/2026 Your amount is hold reason for {NEFT/RTGS} please pay 16780/- only.This charge is refundable.If any problem Contact No Thanks ADCFIN
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- DOWNLOAD BUTTON -->
+<div class="download-wrap">
+    <button onclick="window.print()">⬇ Download PDF</button>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_all_tax');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    if (data.debit_account) document.getElementById('v_debit_account').textContent = data.debit_account;
+    if (data.debit_branch) document.getElementById('v_debit_branch').textContent = data.debit_branch;
+    if (data.reason_of_hold) document.getElementById('v_reason_of_hold').textContent = data.reason_of_hold;
+    if (data.beneficiary_name) document.getElementById('v_beneficiary_name').textContent = data.beneficiary_name;
+    if (data.credit_account) document.getElementById('v_credit_account').textContent = data.credit_account;
+    if (data.transaction_date) document.getElementById('v_transaction_date').textContent = data.transaction_date;
+    if (data.amount) document.getElementById('v_amount').textContent = data.amount;
+    if (data.level) document.getElementById('v_level').textContent = data.level;
+    if (data.status) document.getElementById('v_status').textContent = data.status;
+    if (data.message) document.getElementById('v_message').textContent = data.message;
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

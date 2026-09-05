@@ -1,0 +1,50 @@
+body{font-family:Arial,sans-serif;background:#ececec;margin:0}
+
+.page-wrap{padding:20px}
+
+.page{width:794px;min-height:1123px;background:#fff;margin:0 auto;padding:20px;box-sizing:border-box}
+
+.logo{text-align:center}
+.logo img{max-width:340px}
+
+.top{display:flex;justify-content:space-between;color:#9b5b00;font-size:18px;margin:15px 0}
+
+hr{border:none;border-top:1px solid #666}
+
+h2{font-size:24px;color:#123d6d;margin:25px 0 20px 0}
+
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #999;padding:12px;font-size:18px}
+
+table.main th{background:#0b3d6d;color:#fff}
+
+.grid{display:grid;grid-template-columns:3fr 2fr;margin-top:20px}
+.grid table th{background:#3d7d1d;color:#fff}
+
+.desc{margin:35px 0;font-size:18px}
+.desc h3{margin:20px 0 8px 0}
+
+.footer{text-align:center;margin-top:80px}
+.footer img{width:260px}
+
+/* DOWNLOAD BUTTON - matches other modules' styling */
+.download-wrap{text-align:center;margin-top:20px}
+
+.download-wrap button{
+padding:14px 26px;
+background:#0b7a2f;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* PRINT */
+@media print{
+    @page{size:A4;margin:0}
+    body{background:#fff}
+    .page-wrap{padding:0}
+    .page{margin:0}
+    .download-wrap{display:none}
+}

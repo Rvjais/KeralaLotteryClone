@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard — Kerala Lottery Documents</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>Kerala Lottery Documents</h2>
+  <div>
+    <a href="change_password.html" class="logout-btn">Change Password</a>
+    <a href="index.html" onclick="handleLogout()" class="logout-btn">Logout</a>
+  </div>
+</div>
+
+<div class="dashboard-grid">
+  <a href="approval_dashboard.html" class="card">Approval</a>
+  <a href="gst_dashboard.html" class="card">GST</a>
+  <a href="noc_dashboard.html" class="card">NOC</a>
+  <a href="rbi_dashboard.html" class="card">RBI</a>
+  <a href="tds_dashboard.html" class="card">TDS</a>
+  <a href="all_tax_dashboard.html" class="card">ALL TAX</a>
+</div>
+
+<script>
+function handleLogout() {
+  sessionStorage.removeItem('kl_doc_auth');
+  localStorage.removeItem('kl_doc_auth');
+}
+</script>
+
+</body>
+</html>

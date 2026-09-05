@@ -36,6 +36,25 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin-dashboard.html'));
 });
 
+// App & Document Portal Aliases
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(__dirname, 'app', 'index.html'));
+});
+
+app.get('/app/dashboard(.php)?', (req, res) => {
+  res.sendFile(path.join(__dirname, 'app', 'dashboard.html'));
+});
+
+app.get('/app/:page.php', (req, res) => {
+  const fs = require('fs');
+  const htmlFile = path.join(__dirname, 'app', req.params.page + '.html');
+  if (fs.existsSync(htmlFile)) {
+    res.sendFile(htmlFile);
+  } else {
+    res.sendFile(path.join(__dirname, 'app', 'index.html'));
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

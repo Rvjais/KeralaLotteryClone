@@ -1,0 +1,197 @@
+body {
+    margin: 0;
+    background: #e5e5e5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    padding: 20px;
+}
+
+/* LETTER */
+.letter {
+    width: 794px;               /* A4 width */
+    height: 1123px;             /* A4 height */
+    margin: auto;
+    background: #fff6ea;
+    border: 2px solid red;
+    padding: 28px;
+    position: relative;
+    box-sizing: border-box;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* WATERMARK */
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("assets/images/emblem.png") center no-repeat;
+    background-size: 540px;
+    opacity: 0.09;
+    z-index: 0;
+}
+
+.letter * {
+    position: relative;
+    z-index: 1;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.logo {
+    width: 110px;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 30px;
+    color: #1a47b8;
+}
+
+.header-text p {
+    margin: 2px 0 0;
+    font-size: 15px;
+}
+
+/* ADDRESS */
+.address-box {
+    margin-top: 16px;
+    border: 1px solid #cfcfcf;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+/* TITLE + BARCODE */
+.title-barcode-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0 18px;
+}
+
+.title-barcode-box h2 {
+    font-size: 24px;
+    color: #1e6fe3;
+}
+
+/* BARCODE */
+.barcode-box {
+    border: 1px solid #cfcfcf;
+    padding: 8px 12px;
+}
+
+.barcode {
+    width: 140px;
+}
+
+/* DETAILS */
+.details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+/* TEXT */
+.para {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+/* PAYMENT */
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    font-size: 15px;
+}
+
+.payment-left {
+    max-width: 60%;
+}
+
+/* STAMP */
+.stamp-wrap {
+    margin-top: 14px;
+}
+
+.stamp {
+    width: 95px;
+    opacity: 0.9;
+}
+
+/* PHOTO */
+.photo {
+    width: 125px;
+    height: 155px;
+    border: 1px solid #999;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* FEE */
+.fee {
+    margin-top: 18px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* NOTE */
+.note {
+    margin-top: 18px;
+    border-top: 1px solid red;
+    padding-top: 12px;
+}
+
+.note h3 {
+    color: red;
+    font-size: 16px;
+}
+
+.note ol {
+    color: red;
+    font-size: 14px;
+}
+
+/* DOWNLOAD BUTTON */
+.download-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* PRINT */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .page {
+        padding: 0;
+    }
+
+    .download-wrap {
+        display: none;
+    }
+}

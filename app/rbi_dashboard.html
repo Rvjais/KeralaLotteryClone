@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RBI Verification Letter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>RBI Verification Letter Generator</h2>
+  <div>
+    <a href="view_rbi.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">RBI Letter updated successfully!</div>
+
+  <form id="rbiForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="customer_name" name="customer_name" placeholder="Customer Name (e.g., Mr/Mrs. Chetan kumar potter)" value="N MAHALAKSHMI">
+    <input class="input-box" id="winning_amount" name="winning_amount" placeholder="Winning Amount (e.g., 1204000)" value="1224000">
+    <input class="input-box" id="verification_amount" name="verification_amount" placeholder="Verification Amount (e.g., 12500)" value="9999">
+    <input class="input-box" id="account_number" name="account_number" placeholder="Account Number" value="186101000005386">
+    <input class="input-box" id="final_amount" name="final_amount" placeholder="Final Amount (After verification)" value="1234000">
+
+    <button class="green-btn" type="submit">Update RBI Letter</button>
+  </form>
+
+  <p class="small">Date: 5/9/2026</p>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_rbi');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['customer_name', 'winning_amount', 'verification_amount', 'account_number', 'final_amount'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_rbi', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBI Verification</title>
+    <link rel="stylesheet" href="assets/css/rbi.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- PDF AREA -->
+    <div class="page">
+        <div class="meta">
+            <b>Subject:</b> RBI - R.B.I Verification<br>
+            <b>From:</b> Reserve Bank Of India &lt;info@rbitax.com&gt;<br>
+            <b>Date:</b> <span id="v_date">5/9/2026</span><br>
+            <b>To:</b> Keralastatelottery@info
+        </div>
+        <hr>
+        <div class="header"><img src="assets/images/rbi/rbi_header.png" alt="RBI Header"></div>
+        <hr>
+        <h2>Dear Customer <span id="v_customer_name">N MAHALAKSHMI</span></h2>
+        <div class="content">
+            <img class="wm" src="assets/images/rbi/watermark.png" alt="RBI Watermark">
+            <p>We apologize for the delay in processing your winning amount of Rs.<span id="v_winning_amount">1224000.00</span>/-. The reason for the delay is due to the R.B.I Verification that is pending. We request you to kindly pay the refundable R.B.I Verification of Rs.<span id="v_verification_amount">9999.00</span>- so that your winning amount can be cleared within 3 minutes.</p>
+            <p>We understand that this delay has caused you inconvenience and we apologize for that. We assure you that we will process your winning amount as soon as the R.B.I Verification is paid.</p>
+            <p>All amount is refundable in your account : <span id="v_account_number">186101000005386</span> is Rs.<span id="v_final_amount">1234000.00</span>- after making this payment.</p>
+            <p>Thank you for your patience and understanding.</p>
+        </div>
+        <div class="footer">
+            <div class="left">
+                <img class="sig" src="assets/images/rbi/signature.png" alt="RBI Signature">
+            </div>
+            <img class="stamp" src="assets/images/rbi/stamp.png" alt="RBI Stamp">
+        </div>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-wrap">
+        <button onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_rbi');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    if (data.customer_name) document.getElementById('v_customer_name').textContent = data.customer_name;
+    if (data.winning_amount) document.getElementById('v_winning_amount').textContent = data.winning_amount;
+    if (data.verification_amount) document.getElementById('v_verification_amount').textContent = data.verification_amount;
+    if (data.account_number) document.getElementById('v_account_number').textContent = data.account_number;
+    if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

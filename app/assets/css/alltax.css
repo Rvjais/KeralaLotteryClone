@@ -1,0 +1,128 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ffffff;
+}
+
+.page-wrap{
+    padding:20px;
+}
+
+.main{
+    width:1024px;
+    min-height:768px;
+    margin:auto;
+    background:#ececec;
+    position:relative;
+    overflow:hidden;
+}
+
+.header img{
+    width:100%;
+    display:block;
+}
+
+.content{
+    padding:22px 52px 35px 52px;
+    position:relative;
+}
+
+.title{
+    color:#00529c;
+    font-size:34px;
+    font-weight:700;
+    border-bottom:4px solid #00529c;
+    padding-bottom:4px;
+    margin-bottom:28px;
+}
+
+.watermark{
+    position:absolute;
+    right:45px;
+    top:145px;
+    opacity:0.13;
+}
+
+.watermark img{
+    width:360px;
+}
+
+table{
+    border-collapse:collapse;
+    position:relative;
+    z-index:2;
+}
+
+td{
+    padding:6px 0;
+    font-size:22px;
+    color:#5a5a5a;
+    font-weight:700;
+}
+
+.label{
+    width:360px;
+}
+
+.value{
+    width:500px;
+}
+
+.status-flex{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.clock-icon{
+    width:28px;
+    height:28px;
+}
+
+.red-text{
+    color:#a61f00;
+    font-size:18px;
+    font-weight:700;
+}
+
+.notice{
+    margin-top:45px;
+    border:4px solid #00529c;
+    padding:14px 24px;
+    text-align:center;
+    font-size:22px;
+    line-height:1.35;
+    color:#073c73;
+    font-weight:700;
+    background:rgba(255,255,255,0.2);
+}
+
+/* DOWNLOAD BUTTON */
+.download-wrap{
+    text-align:center;
+    margin-top:20px;
+}
+
+.download-wrap button{
+    padding:14px 26px;
+    background:#0b7a2f;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+/* PRINT */
+@media print{
+    @page{size:A4;margin:0}
+    body{background:#fff}
+    .page-wrap{padding:0}
+    .main{margin:0}
+    .download-wrap{display:none}
+}

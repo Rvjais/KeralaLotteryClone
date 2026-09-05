@@ -4,6 +4,18 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/app",
+      "destination": "/app/index.html"
+    },
+    {
+      "source": "/app/",
+      "destination": "/app/index.html"
+    },
+    {
+      "source": "/app/:path*.php",
+      "destination": "/app/:path*.html"
+    },
+    {
       "source": "/admin",
       "destination": "/admin__login.php.html"
     },

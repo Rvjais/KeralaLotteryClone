@@ -1,0 +1,48 @@
+body{font-family:Arial,sans-serif;background:#ececec;margin:0}
+
+.page-wrap{padding:20px}
+
+.page{width:794px;min-height:1123px;background:#fff;margin:0 auto;padding:20px;box-sizing:border-box}
+
+.toplogo{text-align:center}
+.toplogo img{width:220px}
+
+.meta{display:flex;justify-content:space-between;color:#a35a00;font-size:22px;font-weight:bold;margin:10px 0}
+.email{align-self:flex-end}
+
+hr{border:1px solid #777}
+
+h1{text-align:center;font-size:34px;margin:25px 0}
+h2{font-size:28px;color:#123d6d;margin:40px 0 30px 15px}
+
+table{width:95%;margin:0 auto;border-collapse:collapse}
+th{background:#123d6d;color:#fff;padding:14px;font-size:18px}
+td{border:1px solid #999;padding:14px;font-size:18px;vertical-align:top}
+
+.desc{margin:50px 15px;font-size:18px}
+.desc h3{margin:0}
+
+.sign{text-align:right;margin-top:90px;padding-right:80px}
+.sign img{width:250px}
+
+/* DOWNLOAD BUTTON - matches approval letter styling */
+.download-wrap{text-align:center;margin-top:20px}
+
+.download-wrap button{
+padding:14px 26px;
+background:#0b7a2f;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* PRINT */
+@media print{
+    @page{size:A4;margin:0}
+    body{background:#fff}
+    .page-wrap{padding:0}
+    .page{margin:0}
+    .download-wrap{display:none}
+}

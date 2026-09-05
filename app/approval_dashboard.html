@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Approval Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>Approval Letter Generator</h2>
+  <div>
+    <a href="view_letter.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">Approval Letter updated successfully!</div>
+
+  <form id="approvalForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="to_name" name="to_name" placeholder="To Name" value="Kerala lottery">
+    <input class="input-box" id="ticket_no" name="ticket_no" placeholder="Ticket Number" value="KL754913">
+    <input class="input-box" id="aadhar" name="aadhar" placeholder="Aadhar Number" value="394333555107">
+    <input class="input-box" id="lottery_amount" name="lottery_amount" placeholder="Lottery Amount" value="12,00,000">
+    <input class="input-box" id="reg_fee" name="reg_fee" placeholder="Registration Fee" value="₹5,999">
+
+    <input class="input-box" id="customer_name" name="customer_name" placeholder="Customer Name" value="Pradeep kumar">
+    <input class="input-box" id="account_no" name="account_no" placeholder="Account Number" value="55154897618">
+    <input class="input-box" id="ifsc" name="ifsc" placeholder="IFSC Code" value="SBIN000872">
+    <input class="input-box" id="letter_date" name="letter_date" placeholder="Date" value="05/09/2026">
+
+    <input class="input-box" id="pay_name" name="pay_name" placeholder="Pay Name" value="Kerala Government lottery">
+    <input class="input-box" id="pay_account" name="pay_account" placeholder="Pay Account" value="XXXXXXXX1088">
+    <input class="input-box" id="pay_ifsc" name="pay_ifsc" placeholder="Pay IFSC" value="ICICXXX3033">
+
+    <textarea class="input-box" id="legal_text" name="legal_text" placeholder="Legal Text">Registration Fees refundable balance INR 5,000/- Only</textarea>
+
+    <button class="green-btn" type="submit">Update Approval Letter</button>
+  </form>
+</div>
+
+<script>
+// Load saved values if available
+const saved = localStorage.getItem('kl_doc_approval');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['to_name', 'ticket_no', 'aadhar', 'lottery_amount', 'reg_fee', 'customer_name', 'account_no', 'ifsc', 'letter_date', 'pay_name', 'pay_account', 'pay_ifsc', 'legal_text'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_approval', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>

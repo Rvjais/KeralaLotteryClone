@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>All Tax Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>All Tax Transaction Details</h2>
+  <div>
+    <a href="view_all_tax.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">All Tax Details updated successfully!</div>
+
+  <form id="allTaxForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="level" name="level" placeholder="Level (e.g., Level 1)" value="5th">
+    <input class="input-box" id="debit_account" name="debit_account" placeholder="Debit Account Number" value="XXXXXXX2286">
+    <input class="input-box" id="debit_branch" name="debit_branch" placeholder="Debit Branch" value="Kerala Thiruvananthapuram">
+    <input class="input-box" id="reason_of_hold" name="reason_of_hold" placeholder="Reason Of Hold" value="NEFT/RTGS">
+    <input class="input-box" id="beneficiary_name" name="beneficiary_name" placeholder="Beneficiary Name" value="R.Mariyammal">
+    <input class="input-box" id="credit_account" name="credit_account" placeholder="Credit Account" value="500101012119254">
+    <input class="input-box" id="transaction_date" name="transaction_date" placeholder="Transaction Date (YYYY-MM-DD)" value="05/09/2026">
+    <input class="input-box" id="amount" name="amount" placeholder="Amount (INR)" value="12,06,000/-">
+    <textarea class="input-box" id="message" name="message" placeholder="Message/Notice" style="height:100px;">Dear Customer. INR 12,0,6000/- Credited in your A/C  XXXXXX9254 ON 05/09/2026 Your amount is hold reason for  {NEFT/RTGS} please pay  16780/-  only.This charge is refundable.If any problem Contact No Thanks ADCFIN</textarea>
+    <input class="input-box" id="status" name="status" placeholder="Status (e.g., Processing)" value="Processing">
+
+    <button class="green-btn" type="submit">Update All Tax Details</button>
+  </form>
+
+  <p class="small">Reference Number: RTGS/SBIN/TRID/89765876434 &nbsp; | &nbsp; Level: 5th</p>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_all_tax');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['level', 'debit_account', 'debit_branch', 'reason_of_hold', 'beneficiary_name', 'credit_account', 'transaction_date', 'amount', 'message', 'status'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_all_tax', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>

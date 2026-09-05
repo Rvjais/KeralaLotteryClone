@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDS Invoice</title>
+    <link rel="stylesheet" href="assets/css/tds.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- PDF AREA -->
+    <div class="page">
+        <header>
+            <div class="toplogo"><img src="assets/images/tds/tds-logo.png" alt="TDS Logo"></div>
+            <div class="meta">
+                <div><b>Date :-</b> <span id="v_date">5/9/2026</span><br><b>Ref No :-</b> 78499704876</div>
+                <div class="email"><b>Email:-</b> Keralastatelottery@info</div>
+            </div>
+        </header>
+        <hr>
+        <h1>TAX DEDUCTION AT SOURCE</h1>
+        <h2>Bill To : <span id="v_bill_to">Vinod Sukhbabu Ambar</span></h2>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Bill Type</th>
+                <th>Total Amount</th>
+                <th>T.D.S</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td><b>TAX DEDUCTION<br>AT SOURCE</b></td>
+                <td><b>₹<span id="v_total_amount">1205000.00</span></b></td>
+                <td><b><span id="v_tds_rate">1.2%</span>(₹<span id="v_tds_amount">12999.00</span>)</b></td>
+                <td><b>₹<span id="v_net_amount">1217000.00</span></b></td>
+            </tr>
+        </table>
+        <div class="desc">
+            <h3>Description:</h3>
+            <p><b>Just You Need To Pay Tax Deduction at Source INR <span id="v_desc_amount">12999.00</span>- Refundable Money Only 2 min Through NEFT/RTGS/Online Banking/UPI in Following Bank Accounts</b></p>
+            <h3>Terms and Conditions:</h3>
+            <p><b>Thank you for Choosing Tax Deduction At Source.</b></p>
+        </div>
+        <div class="sign"><img src="assets/images/tds/gst-sign.png" alt="Signature"></div>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-wrap">
+        <button onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_tds');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
+    if (data.total_amount) document.getElementById('v_total_amount').textContent = data.total_amount;
+    if (data.tds_rate) document.getElementById('v_tds_rate').textContent = data.tds_rate;
+    if (data.tds_amount) {
+      document.getElementById('v_tds_amount').textContent = data.tds_amount;
+      document.getElementById('v_desc_amount').textContent = data.tds_amount;
+    }
+    if (data.net_amount) document.getElementById('v_net_amount').textContent = data.net_amount;
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

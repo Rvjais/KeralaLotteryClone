@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Invoice</title>
+    <link rel="stylesheet" href="assets/css/gst.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+    <!-- PDF AREA -->
+    <div class="page">
+        <div class="logo"><img src="assets/images/gst/gst-logo.png" alt="GST Logo"></div>
+        <div class="top">
+            <div><b>DATE :- <span id="v_date">5/9/2026</span></b><br><b>Ref Id : 76890647213</b></div>
+            <div><b>Email:- Keralastatelottery@info</b></div>
+        </div>
+        <hr>
+        <h2>Bill To : <span id="v_bill_to">Gk</span></h2>
+
+        <table class="main">
+            <tr>
+                <th>#</th>
+                <th>Bill Type</th>
+                <th>Total Amount</th>
+                <th>GST</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td>Good & Service Tax</td>
+                <td>₹ <span id="v_total_amount">1217000.00</span></td>
+                <td><span id="v_gst_rate">1.55%</span>(₹<span id="v_gst_amount">19880.00</span>)</td>
+                <td>₹<span id="v_final_amount">1217000.00</span></td>
+            </tr>
+        </table>
+
+        <div class="grid">
+            <table>
+                <tr>
+                    <th>Tax type</th>
+                    <th>Taxable amount</th>
+                    <th>Rate</th>
+                    <th>Tax amount</th>
+                </tr>
+                <tr>
+                    <td>SGST</td>
+                    <td>₹<span id="v_sgst_taxable">1217000.00</span></td>
+                    <td><span id="v_sgst_rate">1.55%</span></td>
+                    <td>₹<span id="v_sgst_amount">19880.00</span></td>
+                </tr>
+                <tr>
+                    <td>CGST</td>
+                    <td>₹<span id="v_cgst_taxable">1217000.00</span></td>
+                    <td><span id="v_cgst_rate">1.55%</span></td>
+                    <td>₹<span id="v_cgst_amount">19880.00</span></td>
+                </tr>
+            </table>
+            <table>
+                <tr><td>Total</td><td>₹<span id="v_total_display">1217000.00</span></td></tr>
+                <tr><td>Sub-Total</td><td>₹<span id="v_sub_total">1236000.00</span></td></tr>
+            </table>
+        </div>
+
+        <h3>Invoice Amount In Words:</h3>
+        <p id="v_amount_words">19500 Pay Only</p>
+
+        <div class="desc">
+            <h3>Description:</h3>
+            <p><b>Good & Service TAX</b><br>Just You Need To Pay Goods & Service Tax SGST(<span id="v_desc_sgst">1.55%</span>) INR <span id="v_desc_sgst_amt">19880.00</span>/- & CGST(<span id="v_desc_cgst">1.55%</span>) INR <span id="v_desc_cgst_amt">19880.00</span>/- Refundable Money Only</p>
+            <h3>Terms and Conditions:</h3>
+            <p><b>5 Min Through NEFT/RTGS/Online Banking/UPI in Following Bank Accounts</b></p>
+        </div>
+
+        <div class="footer"><img src="assets/images/gst/gst-stamp.png" alt="GST Stamp"></div>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-wrap">
+        <button onclick="window.print()">⬇ Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_gst');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    if (data.bill_to) document.getElementById('v_bill_to').textContent = data.bill_to;
+    if (data.total_amount) {
+      document.getElementById('v_total_amount').textContent = data.total_amount;
+      document.getElementById('v_sgst_taxable').textContent = data.total_amount;
+      document.getElementById('v_cgst_taxable').textContent = data.total_amount;
+      document.getElementById('v_total_display').textContent = data.total_amount;
+    }
+    if (data.gst_rate) document.getElementById('v_gst_rate').textContent = data.gst_rate;
+    if (data.gst_amount) document.getElementById('v_gst_amount').textContent = data.gst_amount;
+    if (data.final_amount) document.getElementById('v_final_amount').textContent = data.final_amount;
+    if (data.sgst_rate) {
+      document.getElementById('v_sgst_rate').textContent = data.sgst_rate;
+      document.getElementById('v_desc_sgst').textContent = data.sgst_rate;
+    }
+    if (data.sgst_amount) {
+      document.getElementById('v_sgst_amount').textContent = data.sgst_amount;
+      document.getElementById('v_desc_sgst_amt').textContent = data.sgst_amount;
+    }
+    if (data.cgst_rate) {
+      document.getElementById('v_cgst_rate').textContent = data.cgst_rate;
+      document.getElementById('v_desc_cgst').textContent = data.cgst_rate;
+    }
+    if (data.cgst_amount) {
+      document.getElementById('v_cgst_amount').textContent = data.cgst_amount;
+      document.getElementById('v_desc_cgst_amt').textContent = data.cgst_amount;
+    }
+    if (data.sub_total) document.getElementById('v_sub_total').textContent = data.sub_total;
+    if (data.amount_words) document.getElementById('v_amount_words').textContent = data.amount_words;
+  } catch(e) {}
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TDS Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>TDS Letter Generator</h2>
+  <div>
+    <a href="view_tds.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">TDS Letter updated successfully!</div>
+
+  <form id="tdsForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="bill_to" name="bill_to" placeholder="Bill To (Name)" value="Vinod Sukhbabu Ambar">
+    <input class="input-box" id="total_amount" name="total_amount" placeholder="Total Amount" value="1205000">
+    <input class="input-box" id="tds_rate" name="tds_rate" placeholder="TDS Rate (e.g., 1)" value="1.2%">
+    <input class="input-box" id="tds_amount" name="tds_amount" placeholder="TDS Amount" value="12999">
+    <input class="input-box" id="net_amount" name="net_amount" placeholder="Net Amount (After TDS)" value="1217000">
+
+    <button class="green-btn" type="submit">Update TDS Letter</button>
+  </form>
+
+  <p class="small">Ref Id: 78499704876 &nbsp; | &nbsp; Date: 5/9/2026</p>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_tds');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['bill_to', 'total_amount', 'tds_rate', 'tds_amount', 'net_amount'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_tds', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>

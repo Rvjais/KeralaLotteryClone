@@ -1,0 +1,41 @@
+*{box-sizing:border-box}
+body{margin:0;background:#e5e5e5;font-family:Arial,Helvetica,sans-serif}
+
+.page-wrap{padding:20px}
+
+.page{width:794px;min-height:1123px;margin:0 auto;background:#fff;padding:0 0 15px;box-sizing:border-box}
+
+.header{width:100%;display:block}
+
+.meta{padding:18px 28px;color:#a35d00;font-size:18px;position:relative}
+.meta .email{position:absolute;right:28px;top:18px}
+
+hr{border:none;border-top:1px solid #777}
+
+.content{padding:40px;font-size:21px;line-height:1.2}
+.content p{margin:0 0 18px}
+
+.footerwrap{text-align:center;margin-top:40px}
+.footer{width:420px;max-width:80%}
+
+/* DOWNLOAD BUTTON - matches approval letter styling */
+.download-wrap{text-align:center;margin-top:20px}
+
+.download-wrap button{
+padding:14px 26px;
+background:#0b7a2f;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* PRINT */
+@media print{
+    @page{size:A4;margin:0}
+    body{background:#fff}
+    .page-wrap{padding:0}
+    .page{margin:0}
+    .download-wrap{display:none}
+}

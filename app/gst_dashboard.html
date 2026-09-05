@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GST Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>GST Letter Generator</h2>
+  <div>
+    <a href="view_gst.html" target="_blank" class="logout-btn">View PDF</a>
+    <a href="dashboard.html" class="logout-btn">Back</a>
+  </div>
+</div>
+
+<div class="module-box">
+  <div id="saveMsg" class="success" style="display:none; margin-bottom:15px;">GST Invoice updated successfully!</div>
+
+  <form id="gstForm" onsubmit="handleSave(event)">
+    <input class="input-box" id="bill_to" name="bill_to" placeholder="Bill To (Name)" value="Gk">
+    <input class="input-box" id="total_amount" name="total_amount" placeholder="Total Amount" value="1217000">
+
+    <input class="input-box" id="gst_rate" name="gst_rate" placeholder="GST Rate (e.g., 2)" value="1.55%">
+    <input class="input-box" id="gst_amount" name="gst_amount" placeholder="GST Amount" value="19880">
+    <input class="input-box" id="final_amount" name="final_amount" placeholder="Final Amount (After GST)" value="1217000">
+
+    <input class="input-box" id="sgst_rate" name="sgst_rate" placeholder="SGST Rate (e.g., 2)" value="1.55%">
+    <input class="input-box" id="sgst_amount" name="sgst_amount" placeholder="SGST Tax Amount" value="19880">
+
+    <input class="input-box" id="cgst_rate" name="cgst_rate" placeholder="CGST Rate (e.g., 2)" value="1.55%">
+    <input class="input-box" id="cgst_amount" name="cgst_amount" placeholder="CGST Tax Amount" value="19880">
+
+    <input class="input-box" id="sub_total" name="sub_total" placeholder="Sub-Total" value="1236000">
+
+    <input class="input-box" id="amount_words" name="amount_words" placeholder="Invoice Amount In Words" value="19500 Pay Only">
+
+    <button class="green-btn" type="submit">Update GST Letter</button>
+  </form>
+
+  <p class="small">Ref Id: 76890647213 &nbsp; | &nbsp; Date: 5/9/2026</p>
+</div>
+
+<script>
+const saved = localStorage.getItem('kl_doc_gst');
+if (saved) {
+  try {
+    const data = JSON.parse(saved);
+    for (const key in data) {
+      const el = document.getElementById(key);
+      if (el) el.value = data[key];
+    }
+  } catch(e) {}
+}
+
+function handleSave(e) {
+  e.preventDefault();
+  const fields = ['bill_to', 'total_amount', 'gst_rate', 'gst_amount', 'final_amount', 'sgst_rate', 'sgst_amount', 'cgst_rate', 'cgst_amount', 'sub_total', 'amount_words'];
+  const data = {};
+  fields.forEach(f => {
+    const el = document.getElementById(f);
+    if (el) data[f] = el.value;
+  });
+  localStorage.setItem('kl_doc_gst', JSON.stringify(data));
+  const msg = document.getElementById('saveMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+</script>
+
+</body>
+</html>
