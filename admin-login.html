@@ -257,14 +257,14 @@ body::before {
       <label><i class="fa-solid fa-user-shield"></i> Admin Username</label>
       <div class="inp-w">
         <i class="fa-solid fa-user"></i>
-        <input class="inp" id="username" name="username" placeholder="Enter authorized username" required="" type="text" value="admin"/>
+        <input autocomplete="off" class="inp" id="username" name="username" placeholder="Enter authorized username" required="" type="text" value=""/>
       </div>
     </div>
     <div class="grp">
       <label><i class="fa-solid fa-key"></i> Security Password</label>
       <div class="inp-w">
         <i class="fa-solid fa-lock"></i>
-        <input class="inp" id="password" name="password" placeholder="Enter administrative password" required="" type="password" value="admin123"/>
+        <input autocomplete="new-password" class="inp" id="password" name="password" placeholder="Enter administrative password" required="" type="password" value=""/>
       </div>
     </div>
     <button class="btn" id="loginBtn" type="submit">
