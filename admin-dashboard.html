@@ -916,6 +916,11 @@ body {
           </a>
         </li>
         <li>
+          <a class="sb-link" id="tabPrizeConfig" onclick="openPrizeSettingsModal()">
+            <i class="fa-solid fa-coins"></i> Prize Tiers Config
+          </a>
+        </li>
+        <li>
           <a class="sb-link" id="tabImages" onclick="switchTab('images')">
             <i class="fa-solid fa-images"></i> Manage Images
           </a>
@@ -1004,9 +1009,14 @@ body {
         <div class="card-title-group">
           <h2><i class="fa-solid fa-trophy"></i> All Winners</h2>
         </div>
-        <button class="add-btn" onclick="openAddModal()">
-          <i class="fa-solid fa-plus"></i> Add Winner
-        </button>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="add-btn" onclick="openPrizeSettingsModal()" style="background: linear-gradient(135deg, #134622, #0d3017); border: 1px solid var(--gold-500); color: var(--gold-300);">
+            <i class="fa-solid fa-coins"></i> Prize Configuration
+          </button>
+          <button class="add-btn" onclick="openAddModal()">
+            <i class="fa-solid fa-plus"></i> Add Winner
+          </button>
+        </div>
       </div>
 
       <div class="filter-row">
@@ -1145,6 +1155,63 @@ body {
   </div>
 </div>
 
+<!-- CONFIGURE PRIZE TIERS MODAL -->
+<div class="modal-backdrop" id="prizeSettingsModal">
+  <div class="modal-box" style="max-width: 580px;">
+    <div class="modal-header">
+      <h3><i class="fa-solid fa-coins" style="color:var(--gold-400);"></i> Configure Prize Tiers & Positions</h3>
+      <button aria-label="Close" class="modal-close" onclick="closePrizeSettingsModal()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <form id="prizeSettingsForm" onsubmit="handlePrizeSettingsSubmit(event)">
+      <div class="modal-body">
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">
+          Set standard fixed prize amounts (in ₹) for each position. These prices will automatically apply when adding winners.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div class="form-group">
+            <label for="cfgPrize1"><i class="fa-solid fa-crown" style="color:#ffd700;"></i> 1st Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize1" required="" type="number" min="0" placeholder="250000000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize1Words">₹25,00,00,000</span>
+          </div>
+          <div class="form-group">
+            <label for="cfgPrize2"><i class="fa-solid fa-medal" style="color:#c0c0c0;"></i> 2nd Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize2" required="" type="number" min="0" placeholder="100000000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize2Words">₹10,00,00,000</span>
+          </div>
+          <div class="form-group">
+            <label for="cfgPrize3"><i class="fa-solid fa-award" style="color:#cd7f32;"></i> 3rd Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize3" required="" type="number" min="0" placeholder="7500000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize3Words">₹75,00,000</span>
+          </div>
+          <div class="form-group">
+            <label for="cfgPrize4"><i class="fa-solid fa-star" style="color:#48bb78;"></i> 4th Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize4" required="" type="number" min="0" placeholder="2500000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize4Words">₹25,00,000</span>
+          </div>
+          <div class="form-group">
+            <label for="cfgPrize5"><i class="fa-solid fa-star" style="color:#38a169;"></i> 5th Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize5" required="" type="number" min="0" placeholder="1200000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize5Words">₹12,00,000</span>
+          </div>
+          <div class="form-group">
+            <label for="cfgPrize6"><i class="fa-solid fa-star" style="color:#2f855a;"></i> 6th Prize Amount (₹) *</label>
+            <input class="form-control" id="cfgPrize6" required="" type="number" min="0" placeholder="100000" />
+            <span style="font-size:11px; color:var(--gold-400); margin-top:3px; display:block; font-weight:600;" id="cfgPrize6Words">₹1,00,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closePrizeSettingsModal()" type="button">Cancel</button>
+        <button class="btn-primary" type="submit">
+          <i class="fa-solid fa-check"></i> Save Prize Configuration
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- TOAST NOTIFICATION -->
 <div class="toast-box" id="toast">
   <i class="fa-solid fa-circle-check"></i>
@@ -1165,7 +1232,7 @@ function handleLogout() {
   window.location.href = 'admin__login.php.html';
 }
 
-/* ── Standard Prize Amounts ── */
+/* ── Standard Prize Amounts & Tiers ── */
 var DEFAULT_PRIZES = {
   1: 250000000,
   2: 100000000,
@@ -1175,6 +1242,8 @@ var DEFAULT_PRIZES = {
   6: 100000
 };
 
+var currentPrizes = Object.assign({}, DEFAULT_PRIZES);
+
 var POS_LABELS = {
   1: '1st Prize',
   2: '2nd Prize',
@@ -1183,6 +1252,14 @@ var POS_LABELS = {
   5: '5th Prize',
   6: '6th Prize'
 };
+
+function getLocalTodayDate() {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return year + '-' + month + '-' + day;
+}
 
 /* ── Load / Save to MongoDB ── */
 var winnersList = [];
@@ -1194,6 +1271,23 @@ try {
     localStorage.removeItem('kl_winners_data');
   }
 } catch(e) {}
+
+async function fetchPrizeSettingsFromAPI() {
+  try {
+    var res = await fetch('/api/settings');
+    var json = await res.json();
+    if (json && json.success && json.data) {
+      for (var k in json.data) {
+        if (json.data.hasOwnProperty(k)) {
+          currentPrizes[k] = parseFloat(json.data[k]) || DEFAULT_PRIZES[k];
+        }
+      }
+      return;
+    }
+  } catch (e) {
+    console.warn('[Settings] Using default configured prizes.');
+  }
+}
 
 async function fetchWinnersFromAPI() {
   try {
@@ -1226,7 +1320,7 @@ function formatRupee(num) {
 /* ── Update KPI Statistics ── */
 function updateKPIs() {
   var totalWinners = winnersList.length;
-  var todayDate = new Date().toISOString().split('T')[0];
+  var todayDate = getLocalTodayDate();
   var todayWinnersCount = winnersList.filter(function(w) { return w.date === todayDate; }).length;
   var firstPrizeWinners = winnersList.filter(function(w) { return parseInt(w.pos) === 1; }).length;
   var totalPrizeSum = winnersList.reduce(function(acc, w) { return acc + (parseFloat(w.prize) || 0); }, 0);
@@ -1290,14 +1384,70 @@ function filterWinners() {
   renderTable(filtered);
 }
 
+/* ── Prize Configuration Modal Operations ── */
+function openPrizeSettingsModal() {
+  for (var i = 1; i <= 6; i++) {
+    var inp = document.getElementById('cfgPrize' + i);
+    if (inp) {
+      inp.value = currentPrizes[i] || DEFAULT_PRIZES[i];
+      updatePrizeWordLabel(i, inp.value);
+      inp.oninput = (function(pos) {
+        return function() { updatePrizeWordLabel(pos, this.value); };
+      })(i);
+    }
+  }
+  document.getElementById('prizeSettingsModal').classList.add('show');
+}
+
+function closePrizeSettingsModal() {
+  document.getElementById('prizeSettingsModal').classList.remove('show');
+}
+
+function updatePrizeWordLabel(pos, val) {
+  var lbl = document.getElementById('cfgPrize' + pos + 'Words');
+  if (lbl) {
+    lbl.textContent = formatRupee(val);
+  }
+}
+
+async function handlePrizeSettingsSubmit(e) {
+  e.preventDefault();
+  var updated = {};
+  for (var i = 1; i <= 6; i++) {
+    var inp = document.getElementById('cfgPrize' + i);
+    var val = parseFloat(inp ? inp.value : currentPrizes[i]);
+    updated[i] = isNaN(val) ? DEFAULT_PRIZES[i] : val;
+    currentPrizes[i] = updated[i];
+  }
+
+  try {
+    await fetch('/api/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prize_tiers: updated })
+    });
+    showToast('Prize tiers successfully updated in MongoDB Atlas!');
+  } catch (err) {
+    showToast('Prize tiers updated for this session.');
+  }
+
+  autoFillPrize();
+  closePrizeSettingsModal();
+}
+
 /* ── Modal Dialog Operations ── */
 function openAddModal() {
   document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-trophy"></i> Add Winner';
   document.getElementById('editIndex').value = '-1';
   document.getElementById('winnerForm').reset();
+  
+  // Set position and auto-fill price based on configured fixed prize tiers
   document.getElementById('wPos').value = '3';
-  document.getElementById('wPrize').value = DEFAULT_PRIZES[3];
-  document.getElementById('wDate').value = new Date().toISOString().split('T')[0];
+  autoFillPrize();
+  
+  // Always default calendar to today's local date
+  document.getElementById('wDate').value = getLocalTodayDate();
+  
   document.getElementById('winnerModal').classList.add('show');
 }
 
@@ -1311,7 +1461,7 @@ function openEditModal(idx) {
   document.getElementById('wTicket').value = w.ticket;
   document.getElementById('wPos').value = w.pos;
   document.getElementById('wPrize').value = w.prize;
-  document.getElementById('wDate').value = w.date;
+  document.getElementById('wDate').value = w.date || getLocalTodayDate();
   document.getElementById('winnerModal').classList.add('show');
 }
 
@@ -1322,7 +1472,9 @@ function closeModal() {
 function autoFillPrize() {
   var pos = document.getElementById('wPos').value;
   var prizeInput = document.getElementById('wPrize');
-  if (DEFAULT_PRIZES[pos]) {
+  if (currentPrizes[pos] !== undefined) {
+    prizeInput.value = currentPrizes[pos];
+  } else if (DEFAULT_PRIZES[pos] !== undefined) {
     prizeInput.value = DEFAULT_PRIZES[pos];
   }
 }
@@ -1335,7 +1487,7 @@ async function handleFormSubmit(e) {
   var ticket = document.getElementById('wTicket').value.trim().toUpperCase();
   var pos = parseInt(document.getElementById('wPos').value);
   var prize = parseFloat(document.getElementById('wPrize').value) || 0;
-  var date = document.getElementById('wDate').value;
+  var date = document.getElementById('wDate').value || getLocalTodayDate();
 
   if (!name || phone.length < 10 || !ticket) {
     alert('Please fill out all fields with valid information.');
@@ -1461,6 +1613,7 @@ function toggleSidebar() {
 }
 
 /* ── Initial Startup ── */
+fetchPrizeSettingsFromAPI();
 fetchWinnersFromAPI();
 </script>
 </body>

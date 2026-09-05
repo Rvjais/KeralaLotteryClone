@@ -7,6 +7,7 @@ const connectToDatabase = require('./lib/mongodb');
 const loginHandler = require('./api/auth/login');
 const winnersHandler = require('./api/winners');
 const checkResultHandler = require('./api/check_result');
+const settingsHandler = require('./api/settings');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname)));
 // API Routes
 app.all('/api/auth/login', (req, res) => loginHandler(req, res));
 app.all('/api/winners', (req, res) => winnersHandler(req, res));
+app.all('/api/settings', (req, res) => settingsHandler(req, res));
 app.all('/api/check_result', (req, res) => checkResultHandler(req, res));
 app.all('/api/check_result.php', (req, res) => checkResultHandler(req, res));
 
