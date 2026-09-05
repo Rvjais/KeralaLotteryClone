@@ -80,7 +80,6 @@ button, input, select, textarea {
   font-family: inherit;
 }
 
-/* Scrollbar */
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -271,7 +270,6 @@ nav {
   box-shadow: 0 6px 20px rgba(245, 175, 25, 0.6);
 }
 
-/* Mobile Drawer Header & Items (Hidden on Desktop) */
 /* Mobile Drawer Header & Items */
 .drawer-top {
   display: none;
@@ -312,7 +310,6 @@ nav {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Backdrop Overlay (Behind Drawer) */
 /* Backdrop Overlay */
 .nav-overlay {
   position: fixed;
@@ -404,7 +401,6 @@ nav {
   background-size: 24px 24px;
 }
 
-/* Glass Card Centered in Hero */
 /* Frosted Glass Hero Card */
 .slide-content {
   position: relative;
@@ -1033,7 +1029,7 @@ nav {
 }
 
 .cert-outer {
-  max-width: 740px;
+  max-width: 680px;
   margin: 0 auto;
   width: 100%;
 }
@@ -1051,218 +1047,21 @@ nav {
   font-weight: 700;
 }
 
-.certificate {
+.cert-canvas-wrap {
   position: relative;
   width: 100%;
-  background: #fdfbf7;
-  border: 10px solid #0d3318;
-  border-radius: 12px;
-  padding: 34px 28px 26px;
-  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
-  color: #1a2e1c;
-  box-sizing: border-box;
+  background: #ffffff;
+  border: 4px solid var(--gold-500);
+  margin: 0 auto;
 }
 
-.certificate::before {
-  content: '';
-  position: absolute;
-  inset: 6px;
-  border: 2px solid #d4af37;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.certificate::after {
-  content: '';
-  position: absolute;
-  inset: 11px;
-  border: 1px dashed rgba(212, 175, 55, 0.6);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.cert-corner {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  z-index: 3;
-  color: #d4af37;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cert-corner.tl { top: 14px; left: 14px; }
-.cert-corner.tr { top: 14px; right: 14px; }
-.cert-corner.bl { bottom: 14px; left: 14px; }
-.cert-corner.br { bottom: 14px; right: 14px; }
-
-.cert-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 220px;
-  height: 220px;
-  background: url('assets/images/logo.png') no-repeat center;
-  background-size: contain;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.cert-body {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-}
-
-.cert-emblem {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  margin: 0 auto 8px;
-  padding: 2px;
-  background: linear-gradient(135deg, #d4af37, #937119);
-}
-
-.cert-emblem img {
+#certCanvas {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.cert-dept {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0d3318;
-  margin-bottom: 2px;
-}
-
-.cert-heading {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(1.3rem, 3.5vw, 1.85rem);
-  font-weight: 800;
-  color: #0d3318;
-  letter-spacing: 1.5px;
-  margin-bottom: 2px;
-  text-transform: uppercase;
-}
-
-.cert-subheading {
-  font-size: clamp(0.7rem, 1.6vw, 0.82rem);
-  color: #b89225;
-  letter-spacing: 2.5px;
-  margin-bottom: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.cert-divider {
-  width: 160px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #d4af37, transparent);
-  margin: 6px auto 12px;
-}
-
-.cert-present {
-  font-size: clamp(0.65rem, 1.4vw, 0.76rem);
-  color: #485c4d;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-}
-
-.cert-name {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(1.4rem, 3.8vw, 2.1rem);
-  color: #0d3318;
-  font-weight: 800;
-  border-bottom: 2px solid #d4af37;
-  padding: 3px 24px 5px;
-  display: inline-block;
-  min-width: 240px;
-  margin: 5px 0 12px;
-}
-
-.cert-body-text {
-  font-size: clamp(0.7rem, 1.5vw, 0.82rem);
-  color: #2b3d2e;
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 0 auto 12px;
-  font-weight: 500;
-}
-
-.cert-ticket-line {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(13, 51, 24, 0.07);
-  border: 1px solid rgba(13, 51, 24, 0.2);
-  padding: 5px 16px;
-  border-radius: var(--radius-full);
-  font-size: clamp(0.72rem, 1.5vw, 0.85rem);
-  color: #0d3318;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-.cert-ticket-line span { color: #b89225; font-weight: 800; font-family: monospace; }
-
-.cert-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 12px;
-  padding: 0 12px;
-  gap: 16px;
-}
-
-.cert-seal-badge {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px dashed #d4af37;
-  background: rgba(212, 175, 55, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b89225;
-  font-size: 0.52rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.cert-seal-badge i { font-size: 1rem; margin-bottom: 2px; }
-
-.cert-date-area, .cert-sig-area { text-align: center; flex: 1; }
-
-.cert-footer-label {
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  color: #0d3318;
-  text-transform: uppercase;
-  border-top: 1.5px solid #0d3318;
-  padding-top: 4px;
-  margin-top: 5px;
-}
-
-.cert-date-val { font-size: 0.82rem; font-weight: 700; color: #0d3318; margin-bottom: 3px; }
-.cert-sig-text {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.7rem;
-  color: #0d3318;
-  line-height: 1;
-  font-weight: 700;
-  margin-bottom: 2px;
+  height: auto;
+  display: block;
 }
 
 .cert-download-btn {
@@ -1271,12 +1070,12 @@ nav {
   justify-content: center;
   gap: 8px;
   margin: 16px auto 0;
-  padding: 12px 26px;
+  padding: 13px 28px;
   background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%);
   color: var(--emerald-950);
   border: none;
   border-radius: var(--radius-md);
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(245, 175, 25, 0.4);
@@ -2003,7 +1802,6 @@ footer {
     height: 100vh;
     height: 100dvh;
     width: min(85vw, 320px);
-    background: #041408 !important; /* Solid opaque luxury background so it is NEVER blurry */
     background: #041408 !important;
     box-shadow: -12px 0 40px rgba(0, 0, 0, 0.85);
     border-left: 2px solid var(--gold-500);
@@ -2015,7 +1813,6 @@ footer {
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     visibility: hidden;
-    z-index: 10005 !important; /* Above overlay and header */
     z-index: 10005 !important;
     overflow-y: auto;
   }
@@ -2025,7 +1822,6 @@ footer {
     visibility: visible;
   }
 
-  /* Drawer Top Header */
   .drawer-top {
     display: flex;
     align-items: center;
@@ -2076,7 +1872,6 @@ footer {
     color: var(--emerald-950);
   }
 
-  /* Drawer List Items */
   .nav-links li {
     width: 100%;
   }
@@ -2139,7 +1934,6 @@ footer {
   .logo-text .ls { display: none; }
   .marquee-bar { font-size: 0.66rem; padding: 4px 0; }
   
-  /* Hero on mobile */
   .hero-wrapper {
     min-height: calc(100svh - 90px);
     display: flex;
@@ -2429,61 +2223,25 @@ footer {
     </div>
 
     <!-- =========================================================
-         ROYAL WINNER CERTIFICATE
+         OFFICIAL WINNER REGISTRATION LETTER & CERTIFICATE
          ========================================================= -->
     <div id="cert-section">
       <div class="cert-outer">
-        <div class="cert-title-bar"><i class="fa-solid fa-award"></i> Official Government Winner Certificate</div>
-        <div class="certificate" id="certBox">
-          <div class="cert-corner tl"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-corner tr"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-corner bl"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-corner br"><i class="fa-solid fa-certificate"></i></div>
-          <div class="cert-watermark"></div>
-
-          <div class="cert-body">
-            <div class="cert-emblem">
-              <img alt="Kerala Seal" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=0d3318&color=d4af37'" src="assets/images/logo.png"/>
-            </div>
-            <div class="cert-dept">Directorate of Kerala State Lotteries • Government of Kerala</div>
-            <div class="cert-heading">Certificate of Achievement</div>
-            <div class="cert-subheading">Official Winner Honor</div>
-            <div class="cert-divider"></div>
-            <div class="cert-present">This Certificate is Proudly Presented To</div>
-            <div class="cert-name" id="certName">Winner Name</div>
-            <div class="cert-body-text">
-              In official recognition of securing the <strong><span id="certPos">—</span> Winner Position</strong> in the Kerala State Government Lottery Draw. We commend your participation and wish you continued prosperity.
-            </div>
-            <div class="cert-ticket-line">
-              <i class="fa-solid fa-ticket"></i> Winning Ticket Number: <span id="certTicket">—</span>
-            </div>
-            <div class="cert-divider"></div>
-            <div class="cert-footer">
-              <div class="cert-date-area">
-                <div class="cert-date-val" id="certDate">—</div>
-                <div class="cert-footer-label">DATE OF ISSUE</div>
-              </div>
-              <div class="cert-seal-badge">
-                <i class="fa-solid fa-stamp"></i>
-                <span>Govt. Seal</span>
-              </div>
-              <div class="cert-sig-area">
-                <div class="cert-sig-text">K. R. Namboodiri</div>
-                <div class="cert-footer-label">DIRECTOR OF STATE LOTTERIES</div>
-              </div>
-            </div>
-          </div>
+        <div class="cert-title-bar">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Official Kerala Lottery Registration Letter & Winner Certificate
+        </div>
+        <div class="cert-canvas-wrap">
+          <canvas id="certCanvas" width="717" height="941"></canvas>
         </div>
         <div style="text-align:center;">
           <button class="cert-download-btn" onclick="downloadCert()">
-            <i class="fa-solid fa-cloud-arrow-down"></i> Download Official Certificate (PNG)
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download Official Registration Letter (PNG)
           </button>
         </div>
       </div>
     </div>
 
     <!-- =========================================================
-         TODAY'S WINNERS SECTION
          TODAY'S WINNERS LIVE DRAW SECTION
          ========================================================= -->
     <div id="tw-section">
@@ -2493,7 +2251,6 @@ footer {
       </div>
       <div class="tw-lock-box" id="twPlaceholder">
         <div class="tw-lock-icon"><i class="fa-solid fa-lock"></i></div>
-        <p>Enter your 10-digit mobile number above to reveal the full winning ticket sheet and highlight your ticket.</p>
         <p>Enter your 10-digit mobile number above to reveal your verified draw status.</p>
       </div>
       <div id="twList" style="display:none;"></div>
@@ -2630,59 +2387,35 @@ footer {
       <div class="sl-track" id="wTrack">
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-crown"></i></div>
-          <div class="w-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
           <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
           <div class="w-name">Rajesh Kumar</div>
           <div class="w-pos-badge"><i class="fa-solid fa-crown"></i> 1st Prize</div>
           <div class="w-prize">₹25,00,00,000</div>
-          <div class="w-tkt">Ticket: TL584261</div>
           <div class="w-tkt">Thiruvonam Bumper</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
           <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
           <div class="w-name">Priya Nair</div>
           <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
           <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TB251634</div>
           <div class="w-tkt">Summer Bumper</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
-          <div class="w-avtr"><img alt="Arun Menon" onerror="this.src='https://ui-avatars.com/api/?name=AM&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/91227/pexels-photo-91227.jpeg"/></div>
           <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/91227/pexels-photo-91227.jpeg"/></div>
           <div class="w-name">Arun Menon</div>
           <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
           <div class="w-prize">₹75,00,000</div>
-          <div class="w-tkt">Ticket: KL909090</div>
           <div class="w-tkt">Fifty-Fifty Draw</div>
         </div>
         <div class="w-slide">
           <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Sunita Sharma" onerror="this.src='https://ui-avatars.com/api/?name=SS&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
           <div class="w-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
           <div class="w-name">Sunita Sharma</div>
           <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
           <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TA562491</div>
           <div class="w-tkt">Karunya Plus</div>
-        </div>
-        <div class="w-slide">
-          <div class="w-corner-badge"><i class="fa-solid fa-medal"></i></div>
-          <div class="w-avtr"><img alt="Mohammed Ali" onerror="this.src='https://ui-avatars.com/api/?name=MA&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
-          <div class="w-name">Mohammed Ali</div>
-          <div class="w-pos-badge"><i class="fa-solid fa-medal"></i> 2nd Prize</div>
-          <div class="w-prize">₹10,00,00,000</div>
-          <div class="w-tkt">Ticket: TE560651</div>
-        </div>
-        <div class="w-slide">
-          <div class="w-corner-badge"><i class="fa-solid fa-award"></i></div>
-          <div class="w-avtr"><img alt="Lakshmi Devi" onerror="this.src='https://ui-avatars.com/api/?name=LD&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3831847/pexels-photo-3831847.jpeg"/></div>
-          <div class="w-name">Lakshmi Devi</div>
-          <div class="w-pos-badge"><i class="fa-solid fa-award"></i> 3rd Prize</div>
-          <div class="w-prize">₹75,00,000</div>
-          <div class="w-tkt">Ticket: TB444002</div>
         </div>
       </div>
     </div>
@@ -2725,21 +2458,9 @@ footer {
           </div>
         </div>
         <div class="g-item">
-          <img alt="Bumper Draw" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Bumper'" src="_external/images.pexels.com/photos/3321793/pexels-photo-3321793.jpeg"/>
-          <div class="g-cap-wrap">
-            <div class="g-caption"><i class="fa-solid fa-star"></i> Annual Bumper Draw Ceremony</div>
-          </div>
-        </div>
-        <div class="g-item">
           <img alt="Cheque Handover" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Cheque'" src="_external/images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"/>
           <div class="g-cap-wrap">
             <div class="g-caption"><i class="fa-solid fa-hand-holding-dollar"></i> Official Cheque Handover</div>
-          </div>
-        </div>
-        <div class="g-item">
-          <img alt="Onam Bumper" onerror="this.src='https://placehold.co/600x420/1e5c1e/ffd700?text=Onam'" src="_external/images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"/>
-          <div class="g-cap-wrap">
-            <div class="g-caption"><i class="fa-solid fa-award"></i> Special Thiruvonam Bumper Event</div>
           </div>
         </div>
       </div>
@@ -2772,7 +2493,6 @@ footer {
             <p class="t-text">"I never believed in lotteries until Kerala State Lottery changed my life! Won ₹75 Lakhs — the entire verification and claim process was 100% transparent and fast."</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Rajesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=RK&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
             <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"/></div>
             <div>
               <div class="t-name">Rajesh Kumar</div>
@@ -2788,7 +2508,6 @@ footer {
             <p class="t-text">"Checked my result right here on this website and saw I won the 2nd Prize of ₹10 Crores! The digital winner certificate generated is so beautiful and official."</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Priya Nair" onerror="this.src='https://ui-avatars.com/api/?name=PN&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
             <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg"/></div>
             <div>
               <div class="t-name">Priya Nair</div>
@@ -2804,26 +2523,10 @@ footer {
             <p class="t-text">"Kerala Government Lottery is the most trustworthy institution in the country. Bought from Shree Shakti Lottery and won ₹1 Lakh. Truly genuine!"</p>
           </div>
           <div class="t-auth">
-            <div class="t-avtr"><img alt="Mohammed Basheer" onerror="this.src='https://ui-avatars.com/api/?name=MB&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
             <div class="t-avtr"><img alt="Winner" onerror="this.src='https://ui-avatars.com/api/?name=KL&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg"/></div>
             <div>
               <div class="t-name">Mohammed Basheer</div>
               <div class="t-role"><i class="fa-solid fa-medal"></i> 6th Prize — ₹1 Lakh, Kozhikode</div>
-            </div>
-          </div>
-        </div>
-        <div class="t-card">
-          <div>
-            <div class="stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="t-text">"The website works flawlessly on mobile! The instant result check with confetti and the high-definition winner certificate is an incredible experience."</p>
-          </div>
-          <div class="t-auth">
-            <div class="t-avtr"><img alt="Sunita Pillai" onerror="this.src='https://ui-avatars.com/api/?name=SP&background=041408&color=d4af37'" src="_external/images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg"/></div>
-            <div>
-              <div class="t-name">Sunita Pillai</div>
-              <div class="t-role"><i class="fa-solid fa-medal"></i> 5th Prize — ₹12 Lakhs, Kochi</div>
             </div>
           </div>
         </div>
@@ -3099,12 +2802,9 @@ function showWinner(w) {
   document.getElementById('winCard').classList.add('show');
   lastTicket = w.ticket_number;
 
-  /* Fill Certificate */
-  document.getElementById('certName').textContent = w.name || 'Winner';
-  document.getElementById('certPos').textContent = posStr;
-  document.getElementById('certTicket').textContent = w.ticket_number || '—';
-  document.getElementById('certDate').textContent = w.draw_date || new Date().toLocaleDateString('en-IN');
+  /* Render Dynamic Official Certificate from Template */
   document.getElementById('cert-section').style.display = 'block';
+  renderCustomCertificate(w);
 
   /* Trigger Confetti */
   confettiBurst();
@@ -3118,48 +2818,136 @@ document.getElementById('phoneInput').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') checkResult();
 });
 
-/* ── Certificate Download (html2canvas) ── */
-function downloadCert() {
-  var el = document.getElementById('certBox');
-  if (typeof html2canvas === 'undefined') {
-    alert('Certificate is ready. You can take a screenshot or print this page.');
-    return;
+/* ── Dynamic Certificate Template (assets/images/cerificate.jpeg) ── */
+var certImageTemplate = new Image();
+certImageTemplate.src = 'assets/images/cerificate.jpeg';
+
+function formatDrawDate(dStr) {
+  if (!dStr) return new Date().toLocaleDateString('en-GB');
+  try {
+    if (dStr.includes('-')) {
+      var pts = dStr.split('-');
+      if (pts.length === 3) {
+        return pts[2] + '/' + pts[1] + '/' + pts[0];
+      }
+    }
+  } catch(e) {}
+  return dStr;
+}
+
+function renderCustomCertificate(w) {
+  var cv = document.getElementById('certCanvas');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+
+  function draw() {
+    cv.width = 717;
+    cv.height = 941;
+
+    // Draw base template
+    ctx.drawImage(certImageTemplate, 0, 0, 717, 941);
+
+    // Dynamic user values
+    var nameVal = (w.name || 'Valued Winner');
+    var ticketVal = (w.ticket_number || w.ticket || 'KL915026').toUpperCase();
+    var amtNum = parseFloat(w.winning_amount || w.prize || 1200000);
+    var amtVal = '₹ ' + amtNum.toLocaleString('en-IN');
+    var dateVal = formatDrawDate(w.draw_date || w.date);
+
+    // Derived realistic Aadhar and Account details
+    var phone = String(w.phone || '9840560904').replace(/\D/g, '');
+    var aadharVal = phone.length >= 10
+      ? (phone.substring(0, 4) + ' ' + phone.substring(4, 8) + ' ' + (parseInt(phone.substring(6, 10)) * 7 % 9000 + 1000))
+      : '6216 3752 1355';
+
+    var acctVal = '44760201' + (phone.length >= 7 ? phone.substring(3) : '0023574');
+    var ifscVal = 'UBIN0544761';
+    var regFeeVal = amtNum >= 400000 ? '₹ 6,999' : '₹ 0 (Free)';
+
+    // Font styling matching original template
+    ctx.font = "bold 13px 'Poppins', Arial, sans-serif";
+    ctx.textBaseline = "alphabetic";
+
+    // ── Left Column Clears & Draws ──
+    // 1. Ticket Number
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(152, 369, 160, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(ticketVal, 155, 382);
+
+    // 2. Aadhar Number
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(163, 400, 160, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(aadharVal, 166, 413);
+
+    // 3. Lottery Amount
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(163, 431, 160, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(amtVal, 166, 444);
+
+    // 4. Registration Fee
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(172, 462, 150, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(regFeeVal, 175, 475);
+
+    // ── Right Column Clears & Draws ──
+    // 1. Customer Name
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(533, 335, 175, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(nameVal, 536, 348);
+
+    // 2. Customer Account No
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(570, 369, 140, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(acctVal, 573, 382);
+
+    // 3. Customer IFSC Code
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(560, 400, 140, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(ifscVal, 563, 413);
+
+    // 4. Date
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(468, 431, 140, 18);
+    ctx.fillStyle = "#111111";
+    ctx.fillText(dateVal, 472, 444);
   }
-  html2canvas(el, { scale: 2, useCORS: true, backgroundColor: '#fdfbf7' }).then(function(canvas) {
-    var link = document.createElement('a');
-    link.download = 'Kerala_State_Lottery_Winner_Certificate.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-  }).catch(function(err) {
-    alert('Certificate ready! Right-click or long-press the certificate to save as image.');
-  });
+
+  if (certImageTemplate.complete) {
+    draw();
+  } else {
+    certImageTemplate.onload = draw;
+  }
+}
+
+/* ── Certificate Download (Instant Canvas Export) ── */
+function downloadCert() {
+  var cv = document.getElementById('certCanvas');
+  if (!cv) return;
+  var link = document.createElement('a');
+  link.download = 'Kerala_Lottery_Registration_Letter_' + (lastTicket || 'Winner') + '.png';
+  link.href = cv.toDataURL('image/png');
+  link.click();
 }
 
 /* ── Live Draw Ticket Data & Renderer ── */
 var PRIZES = { 1: '₹ 25,00,00,000/-', 2: '₹ 10,00,00,000/-', 3: '₹ 75,00,000/-', 4: '₹ 25,00,000/-', 5: '₹ 12,00,000/-', 6: '₹ 1,00,000/-' };
 var PLAB = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th' };
 
-function demoTickets() {
-  return {
-    1: [{ ticket_number: 'KL770487' }],
-    2: [{ ticket_number: 'KL126225' }],
-    3: [{ ticket_number: 'KL872246' }],
-    4: [{ ticket_number: 'KL343962' }, { ticket_number: 'KL629903' }, { ticket_number: 'KL731262' }, { ticket_number: 'KL127824' }, { ticket_number: 'KL688508' }, { ticket_number: 'KL308496' }, { ticket_number: 'KL850800' }, { ticket_number: 'KL781453' }, { ticket_number: 'KL835392' }],
-    5: [{ ticket_number: 'KL106814' }, { ticket_number: 'KL895667' }, { ticket_number: 'KL944962' }, { ticket_number: 'KL267414' }, { ticket_number: 'KL832052' }, { ticket_number: 'KL543143' }, { ticket_number: 'KL456778' }, { ticket_number: 'KL391369' }],
-    6: [{ ticket_number: 'KL377370' }, { ticket_number: 'KL946335' }, { ticket_number: 'KL145561' }, { ticket_number: 'KL865179' }, { ticket_number: 'KL581741' }, { ticket_number: 'KL662275' }, { ticket_number: 'KL230889' }, { ticket_number: 'KL496922' }, { ticket_number: 'KL182627' }, { ticket_number: 'KL678856' }]
-  };
-}
-
 function getCleanTickets(highlightTicket, highlightPos) {
-  var base = demoTickets();
   var out = {};
   for (var p = 1; p <= 6; p++) {
-    out[p] = (base[p] || []).map(function(t) { return { ticket_number: t.ticket_number }; });
+    out[p] = [];
   }
   if (highlightTicket && highlightPos) {
     var pos = parseInt(highlightPos) || 1;
     if (pos < 1 || pos > 6) pos = 1;
-    out[pos] = out[pos].filter(function(t) { return t.ticket_number !== highlightTicket; });
     out[pos].unshift({ ticket_number: highlightTicket });
   }
   return out;
@@ -3176,23 +2964,10 @@ function renderTickets(data, highlightTicket) {
     }).join('');
     html += '<div class="prize-row"><div class="prize-hdr"><span class="p-pos"><i class="fa-solid fa-award"></i> ' + PLAB[p] + ' Prize</span><span class="p-amt">' + PRIZES[p] + '</span></div><div class="tickets">' + chips + '</div></div>';
   }
-  
-  var ph = document.getElementById('twPlaceholder');
+  document.getElementById('twPlaceholder').style.display = html ? 'none' : 'block';
   var listEl = document.getElementById('twList');
-  if (html) {
-    if (ph) ph.style.display = 'none';
-    if (listEl) {
-      listEl.style.display = 'block';
-      listEl.innerHTML = html;
-    }
-  } else {
-    if (ph) ph.style.display = 'block';
-    if (listEl) {
-      listEl.style.display = 'none';
-      listEl.innerHTML = '';
-    }
-  }
-
+  listEl.style.display = html ? 'block' : 'none';
+  listEl.innerHTML = html;
   if (highlightTicket) {
     setTimeout(function() {
       var el = document.querySelector('.t-chip.lit');
