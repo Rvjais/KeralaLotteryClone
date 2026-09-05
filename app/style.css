@@ -10,14 +10,16 @@ body {
 
 /* LETTER */
 .letter {
-    width: 794px;               /* A4 width */
-    height: 1123px;             /* A4 height */
+    width: 794px;               /* A4 width at 96 DPI */
+    height: 1123px;             /* A4 height at 96 DPI */
+    max-height: 1123px;
     margin: auto;
     background: #fff6ea;
     border: 2px solid red;
-    padding: 28px;
+    padding: 24px 28px 20px;
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -29,8 +31,8 @@ body {
     position: absolute;
     inset: 0;
     background: url("assets/images/emblem.png") center no-repeat;
-    background-size: 540px;
-    opacity: 0.09;
+    background-size: 500px;
+    opacity: 0.08;
     z-index: 0;
 }
 
@@ -44,33 +46,38 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
     text-align: center;
 }
 
 .logo {
-    width: 110px;
+    width: 88px;
+    height: auto;
 }
 
 .header-text h1 {
     margin: 0;
-    font-size: 30px;
+    font-size: 26px;
     color: #1a47b8;
+    letter-spacing: 0.5px;
 }
 
 .header-text p {
     margin: 2px 0 0;
-    font-size: 15px;
+    font-size: 14px;
+    color: #333;
 }
 
 /* ADDRESS */
 .address-box {
-    margin-top: 16px;
+    margin-top: 12px;
     border: 1px solid #cfcfcf;
-    padding: 14px;
+    padding: 8px 14px;
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.6);
 }
 
 /* TITLE + BARCODE */
@@ -78,64 +85,80 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 24px 0 18px;
+    margin: 14px 0 10px;
 }
 
 .title-barcode-box h2 {
-    font-size: 24px;
+    font-size: 22px;
     color: #1e6fe3;
+    margin: 0;
 }
 
 /* BARCODE */
 .barcode-box {
     border: 1px solid #cfcfcf;
-    padding: 8px 12px;
+    padding: 4px 8px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .barcode {
-    width: 140px;
+    width: 130px;
+    height: 42px;
+    object-fit: contain;
 }
 
 /* DETAILS */
 .details {
     display: flex;
     justify-content: space-between;
-    font-size: 15px;
+    font-size: 14px;
+    margin-top: 8px;
+    line-height: 1.45;
+}
+
+.details p {
+    margin: 3px 0;
 }
 
 /* TEXT */
 .para {
-    margin-top: 18px;
-    font-size: 15px;
-    line-height: 1.55;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #111;
 }
 
 /* PAYMENT */
 .payment-row {
     display: flex;
     justify-content: space-between;
-    margin-top: 22px;
-    font-size: 15px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.4;
 }
 
 .payment-left {
-    max-width: 60%;
+    max-width: 65%;
 }
 
 /* STAMP */
 .stamp-wrap {
-    margin-top: 14px;
+    margin-top: 8px;
 }
 
 .stamp {
-    width: 95px;
-    opacity: 0.9;
+    width: 85px;
+    height: auto;
+    opacity: 0.95;
 }
 
 /* PHOTO */
 .photo {
-    width: 125px;
-    height: 155px;
+    width: 120px;
+    height: 150px;
     border: 1px solid #999;
     overflow: hidden;
 }
@@ -148,26 +171,35 @@ body {
 
 /* FEE */
 .fee {
-    margin-top: 18px;
+    margin-top: 12px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
+    color: #111;
 }
 
 /* NOTE */
 .note {
-    margin-top: 18px;
-    border-top: 1px solid red;
-    padding-top: 12px;
+    margin-top: 10px;
+    border-top: 1.5px solid red;
+    padding-top: 8px;
 }
 
 .note h3 {
     color: red;
-    font-size: 16px;
+    font-size: 14.5px;
+    margin: 0 0 4px 0;
 }
 
 .note ol {
     color: red;
-    font-size: 14px;
+    font-size: 13px;
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.4;
+}
+
+.note li {
+    margin-bottom: 2px;
 }
 
 /* DOWNLOAD BUTTON */
@@ -176,22 +208,51 @@ body {
     margin-top: 20px;
 }
 
+.download-wrap button {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    background: #1a47b8;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(26, 71, 184, 0.3);
+    transition: all 0.2s;
+}
+
+.download-wrap button:hover {
+    background: #14368f;
+    transform: translateY(-1px);
+}
+
 /* PRINT */
 @media print {
     @page {
-        size: A4;
+        size: A4 portrait;
         margin: 0;
     }
 
     body {
         background: #fff;
+        margin: 0;
+        padding: 0;
     }
 
     .page {
         padding: 0;
     }
 
+    .letter {
+        border: 2px solid red;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        page-break-inside: avoid;
+    }
+
     .download-wrap {
-        display: none;
+        display: none !important;
     }
 }

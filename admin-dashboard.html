@@ -1117,6 +1117,11 @@ body {
       <div class="sb-group-title">Document Generators</div>
       <ul class="sb-nav-list">
         <li>
+          <a class="sb-link" id="tabMasterDoc" onclick="switchTab('masterdoc')" style="background:rgba(212, 175, 55, 0.18); border:1px solid var(--gold-400); font-weight:700; color:var(--gold-300);">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--gold-400);"></i> Generate All (1-Click)
+          </a>
+        </li>
+        <li>
           <a class="sb-link" id="tabApproval" onclick="switchTab('approval')">
             <i class="fa-solid fa-file-signature"></i> Approval Letter
           </a>
@@ -1312,6 +1317,178 @@ body {
             <div class="img-card-sub">2nd Prize Felicitation</div>
           </div>
         </div>
+    <!-- MASTER DOCUMENT GENERATOR (ALL AT ONCE) -->
+    <div class="main-card doc-panel" id="panelMasterDoc">
+      <div class="card-header-bar">
+        <div class="card-title-group">
+          <h2><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--gold-400);"></i> Master Document Generator — Generate All 6 Documents At Once</h2>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button type="button" class="btn-primary" onclick="openAllDocs()" style="background:linear-gradient(135deg, #10b981, #059669); color:#fff;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open All 6 PDFs
+          </button>
+          <button type="submit" form="formMasterDoc" class="btn-primary">
+            <i class="fa-solid fa-bolt"></i> Generate & Sync All 6 Documents
+          </button>
+        </div>
+      </div>
+
+      <div class="doc-form-card">
+        <!-- Quick Autofill Bar -->
+        <div class="doc-autofill-bar">
+          <div class="doc-autofill-info">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Select a registered winner to auto-fill all customer details instantly:</span>
+          </div>
+          <div class="doc-autofill-controls">
+            <select class="doc-autofill-select" id="masterWinnerSelect">
+              <option value="">-- Choose Registered Winner --</option>
+            </select>
+            <button type="button" class="btn-autofill-apply" onclick="applyWinnerToMasterDoc()">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill Form
+            </button>
+          </div>
+        </div>
+
+        <form id="formMasterDoc" onsubmit="handleMasterDocSubmit(event)">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+            <!-- Section 1: Beneficiary & Ticket Details -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-user-tag"></i> 1. Beneficiary & Lottery Ticket Details</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="master_name">Customer Full Name *</label>
+                  <input class="form-control" id="master_name" name="customer_name" required="" type="text" placeholder="e.g. Pradeep kumar" />
+                </div>
+                <div class="form-group">
+                  <label for="master_phone">10-Digit Mobile Number *</label>
+                  <input class="form-control" id="master_phone" name="phone" required="" type="tel" maxlength="10" placeholder="e.g. 9840560904" oninput="this.value=this.value.replace(/\D/g,'')" />
+                </div>
+                <div class="form-group">
+                  <label for="master_ticket">Lottery Ticket Number *</label>
+                  <input class="form-control" id="master_ticket" name="ticket_no" required="" type="text" placeholder="e.g. KL754913" style="text-transform:uppercase;" />
+                </div>
+                <div class="form-group">
+                  <label for="master_pos">Prize Position Tier</label>
+                  <select class="form-control" id="master_pos" onchange="autoFillMasterPrize()">
+                    <option value="1">1st Prize</option>
+                    <option value="2">2nd Prize</option>
+                    <option value="3">3rd Prize</option>
+                    <option value="4">4th Prize</option>
+                    <option value="5" selected>5th Prize</option>
+                    <option value="6">6th Prize</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="master_amount">Winning Amount (₹) *</label>
+                  <input class="form-control" id="master_amount" name="amount" required="" type="text" placeholder="12,00,000" />
+                </div>
+                <div class="form-group">
+                  <label for="master_aadhar">Aadhar Number (12-Digit)</label>
+                  <input class="form-control" id="master_aadhar" name="aadhar" type="text" placeholder="394333555107" />
+                </div>
+                <div class="form-group">
+                  <label for="master_date">Issue / Transaction Date (DD/MM/YYYY) *</label>
+                  <input class="form-control" id="master_date" name="letter_date" required="" type="text" />
+                </div>
+                <div class="form-group">
+                  <label for="master_reg_fee">Registration Fee (₹)</label>
+                  <input class="form-control" id="master_reg_fee" name="reg_fee" type="text" value="₹5,999" />
+                </div>
+                <div class="form-group">
+                  <label for="master_legal_text">Refundable Policy Note</label>
+                  <input class="form-control" id="master_legal_text" name="legal_text" type="text" value="Registration Fees refundable balance INR 5,000/- Only" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Customer Banking Information -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-building-columns"></i> 2. Customer Bank Account Details</div>
+              <div class="doc-grid-2">
+                <div class="form-group">
+                  <label for="master_account">Customer Bank Account Number</label>
+                  <input class="form-control" id="master_account" name="account_no" type="text" placeholder="55154897618" />
+                </div>
+                <div class="form-group">
+                  <label for="master_ifsc">Customer Bank IFSC Code</label>
+                  <input class="form-control" id="master_ifsc" name="ifsc" type="text" placeholder="SBIN000872" style="text-transform:uppercase;" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Government Pay Account Information -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-landmark"></i> 3. Directorate Collection Account Details</div>
+              <div class="doc-grid-3">
+                <div class="form-group">
+                  <label for="master_pay_name">Payee / Department Name</label>
+                  <input class="form-control" id="master_pay_name" name="pay_name" type="text" value="Kerala Government lottery" />
+                </div>
+                <div class="form-group">
+                  <label for="master_pay_account">Govt Deposit Account Number</label>
+                  <input class="form-control" id="master_pay_account" name="pay_account" type="text" value="XXXXXXXX1088" />
+                </div>
+                <div class="form-group">
+                  <label for="master_pay_ifsc">Govt Deposit IFSC Code</label>
+                  <input class="form-control" id="master_pay_ifsc" name="pay_ifsc" type="text" value="ICICXXX3033" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: All 6 Document Quick Links & Previews -->
+            <div class="doc-section">
+              <div class="doc-section-title"><i class="fa-solid fa-layer-group"></i> 4. View & Print Generated Documents</div>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:12px;">
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-file-signature"></i> 1. Approval Letter</div>
+                  <a href="app/view_letter.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-file-invoice-dollar"></i> 2. GST Invoice</div>
+                  <a href="app/view_gst.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-file-shield"></i> 3. NOC Certificate</div>
+                  <a href="app/view_noc.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-building-columns"></i> 4. RBI Verification</div>
+                  <a href="app/view_rbi.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-receipt"></i> 5. TDS Letter</div>
+                  <a href="app/view_tds.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+                <div style="background:#fff; border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
+                  <div style="font-weight:700; color:#134622; font-size:13px; margin-bottom:6px;"><i class="fa-solid fa-money-check-dollar"></i> 6. All Tax Details</div>
+                  <a href="app/view_all_tax.html" target="_blank" class="btn-pdf-view" style="width:100%; justify-content:center;">
+                    <i class="fa-solid fa-eye" style="color:#e11d48;"></i> View / Print PDF
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="doc-actions-footer">
+              <button type="button" class="btn-pdf-view" onclick="openAllDocs()">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open All 6 Documents
+              </button>
+              <button type="submit" class="btn-primary" style="font-size:0.92rem; padding:11px 24px;">
+                <i class="fa-solid fa-bolt"></i> Generate & Sync All 6 Documents
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -2365,10 +2542,11 @@ function showToast(msg) {
 }
 
 /* ── Tab Switching ── */
-var ALL_TABS = ['winners', 'images', 'approval', 'gst', 'noc', 'rbi', 'tds', 'alltax'];
+var ALL_TABS = ['winners', 'images', 'masterdoc', 'approval', 'gst', 'noc', 'rbi', 'tds', 'alltax'];
 var TAB_INFO = {
   winners: { tabId: 'tabWinners', panelId: 'winnersPanel', title: 'Winners Dashboard' },
   images: { tabId: 'tabImages', panelId: 'imagesPanel', title: 'Manage Ceremony Images' },
+  masterdoc: { tabId: 'tabMasterDoc', panelId: 'panelMasterDoc', title: 'Master Document Generator (All At Once)' },
   approval: { tabId: 'tabApproval', panelId: 'panelApproval', title: 'Approval Letter Generator' },
   gst: { tabId: 'tabGst', panelId: 'panelGst', title: 'GST Invoice Generator' },
   noc: { tabId: 'tabNoc', panelId: 'panelNoc', title: 'NOC Certificate Generator' },
@@ -2403,6 +2581,218 @@ function switchTab(tab) {
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Master Document Generator Logic (All at Once) ── */
+function initMasterDate() {
+  var d = new Date();
+  var dateStr = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+  var inp = document.getElementById('master_date');
+  if (inp && !inp.value) inp.value = dateStr;
+}
+
+function autoFillMasterPrize() {
+  var pos = document.getElementById('master_pos').value;
+  var pVal = (currentPrizes[pos] !== undefined) ? currentPrizes[pos] : (DEFAULT_PRIZES[pos] || 1200000);
+  document.getElementById('master_amount').value = parseFloat(pVal).toLocaleString('en-IN');
+}
+
+function applyWinnerToMasterDoc() {
+  var sel = document.getElementById('masterWinnerSelect');
+  if (!sel || sel.value === '') {
+    alert('Please select a registered winner from the dropdown first.');
+    return;
+  }
+  var idx = parseInt(sel.value);
+  var w = winnersList[idx];
+  if (!w) return;
+
+  document.getElementById('master_name').value = w.name || '';
+  document.getElementById('master_phone').value = w.phone || '';
+  document.getElementById('master_ticket').value = w.ticket || '';
+  document.getElementById('master_pos').value = String(w.pos || 5);
+  document.getElementById('master_amount').value = parseFloat(w.prize || 0).toLocaleString('en-IN');
+
+  var phoneDigits = String(w.phone || '9840560904').replace(/\D/g, '');
+  var aadhar = phoneDigits.length >= 10
+    ? (phoneDigits.substring(0, 4) + phoneDigits.substring(4, 8) + (parseInt(phoneDigits.substring(6, 10)) * 7 % 9000 + 1000))
+    : '394333555107';
+  document.getElementById('master_aadhar').value = aadhar;
+
+  var acct = '55154897' + (phoneDigits.length >= 4 ? phoneDigits.substring(6) : '618');
+  document.getElementById('master_account').value = acct;
+  document.getElementById('master_ifsc').value = 'SBIN000872';
+
+  if (w.date) {
+    var parts = w.date.split('-');
+    if (parts.length === 3) {
+      document.getElementById('master_date').value = parts[2] + '/' + parts[1] + '/' + parts[0];
+    } else {
+      document.getElementById('master_date').value = w.date;
+    }
+  } else {
+    var d = new Date();
+    document.getElementById('master_date').value = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+  }
+
+  showToast('Autofilled ' + w.name + ' into Master Generator!');
+}
+
+async function handleMasterDocSubmit(e) {
+  if (e) e.preventDefault();
+
+  var name = document.getElementById('master_name').value.trim();
+  var phone = document.getElementById('master_phone').value.trim();
+  var ticket = document.getElementById('master_ticket').value.trim().toUpperCase();
+  var amountStr = document.getElementById('master_amount').value.trim().replace(/,/g, '');
+  var rawAmount = parseFloat(amountStr) || 1200000;
+  var formattedAmount = rawAmount.toLocaleString('en-IN');
+  var aadhar = document.getElementById('master_aadhar').value.trim() || '394333555107';
+  var date = document.getElementById('master_date').value.trim() || '05/09/2026';
+  var regFee = document.getElementById('master_reg_fee').value.trim() || '₹5,999';
+  var legalText = document.getElementById('master_legal_text').value.trim() || 'Registration Fees refundable balance INR 5,000/- Only';
+  var custAccount = document.getElementById('master_account').value.trim() || '55154897618';
+  var custIfsc = document.getElementById('master_ifsc').value.trim().toUpperCase() || 'SBIN000872';
+  var payName = document.getElementById('master_pay_name').value.trim() || 'Kerala Government lottery';
+  var payAccount = document.getElementById('master_pay_account').value.trim() || 'XXXXXXXX1088';
+  var payIfsc = document.getElementById('master_pay_ifsc').value.trim().toUpperCase() || 'ICICXXX3033';
+
+  if (!name || !ticket) {
+    alert('Please enter Customer Name and Ticket Number.');
+    return;
+  }
+
+  // Calculate tax rates & breakdown
+  var gstTax = Math.round(rawAmount * 0.0155);
+  var gstTotal = rawAmount + gstTax;
+  var nocFee = 25999;
+  var rbiFee = 9999;
+  var tdsTax = Math.round(rawAmount * 0.012);
+
+  // 1. Approval Letter
+  var approvalData = {
+    to_name: 'Kerala lottery',
+    ticket_no: ticket,
+    aadhar: aadhar,
+    lottery_amount: formattedAmount,
+    reg_fee: regFee,
+    customer_name: name,
+    account_no: custAccount,
+    ifsc: custIfsc,
+    letter_date: date,
+    pay_name: payName,
+    pay_account: payAccount,
+    pay_ifsc: payIfsc,
+    legal_text: legalText
+  };
+
+  // 2. GST Invoice
+  var gstData = {
+    bill_to: name,
+    total_amount: String(rawAmount),
+    gst_rate: '1.55%',
+    gst_amount: String(gstTax),
+    final_amount: String(rawAmount),
+    sgst_rate: '1.55%',
+    sgst_amount: String(gstTax),
+    cgst_rate: '1.55%',
+    cgst_amount: String(gstTax),
+    sub_total: String(gstTotal),
+    amount_words: formattedAmount + ' Pay Only'
+  };
+
+  // 3. NOC Certificate
+  var nocData = {
+    customer_name: name,
+    total_amount: String(rawAmount),
+    noc_charges: String(nocFee),
+    sub_total: String(rawAmount + nocFee)
+  };
+
+  // 4. RBI Verification
+  var rbiData = {
+    customer_name: name,
+    winning_amount: String(rawAmount),
+    verification_amount: String(rbiFee),
+    account_number: custAccount,
+    final_amount: String(rawAmount + rbiFee)
+  };
+
+  // 5. TDS Letter
+  var tdsData = {
+    bill_to: name,
+    total_amount: String(rawAmount),
+    tds_rate: '1.2%',
+    tds_amount: String(tdsTax),
+    net_amount: String(rawAmount + tdsTax)
+  };
+
+  // 6. All Tax Details
+  var allTaxData = {
+    level: '5th',
+    debit_account: 'XXXXXXX2286',
+    debit_branch: 'Kerala Thiruvananthapuram',
+    reason_of_hold: 'NEFT/RTGS',
+    beneficiary_name: name,
+    credit_account: custAccount,
+    transaction_date: date,
+    amount: formattedAmount + '/-',
+    message: 'Dear Customer. INR ' + formattedAmount + '/- Credited in your A/C XXXXXX' + (custAccount.slice(-4)) + ' ON ' + date + ' Your amount is hold reason for {NEFT/RTGS} please pay 16780/- only. This charge is refundable. If any problem Contact No Thanks ADCFIN',
+    status: 'Processing'
+  };
+
+  // Store in LocalStorage for each document
+  localStorage.setItem('kl_doc_approval', JSON.stringify(approvalData));
+  localStorage.setItem('kl_doc_gst', JSON.stringify(gstData));
+  localStorage.setItem('kl_doc_noc', JSON.stringify(nocData));
+  localStorage.setItem('kl_doc_rbi', JSON.stringify(rbiData));
+  localStorage.setItem('kl_doc_tds', JSON.stringify(tdsData));
+  localStorage.setItem('kl_doc_all_tax', JSON.stringify(allTaxData));
+
+  // Populate individual forms
+  populateDocForm('approval', approvalData);
+  populateDocForm('gst', gstData);
+  populateDocForm('noc', nocData);
+  populateDocForm('rbi', rbiData);
+  populateDocForm('tds', tdsData);
+  populateDocForm('all_tax', allTaxData);
+
+  // Bulk sync to MongoDB Atlas
+  try {
+    var payload = {
+      bulk: true,
+      allDocs: {
+        approval: approvalData,
+        gst: gstData,
+        noc: nocData,
+        rbi: rbiData,
+        tds: tdsData,
+        all_tax: allTaxData
+      }
+    };
+    await fetch('/api/documents', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    showToast('🎉 All 6 official documents successfully generated and synced to MongoDB Atlas!');
+  } catch(err) {
+    showToast('All 6 documents generated and saved locally!');
+  }
+}
+
+function openAllDocs() {
+  var urls = [
+    'app/view_letter.html',
+    'app/view_gst.html',
+    'app/view_noc.html',
+    'app/view_rbi.html',
+    'app/view_tds.html',
+    'app/view_all_tax.html'
+  ];
+  urls.forEach(function(u) {
+    window.open(u, '_blank');
+  });
 }
 
 /* ── Document Management Schemas & Defaults ── */
@@ -2562,7 +2952,7 @@ async function loadAllDocuments() {
 
 /* ── Autofill Documents from Registered Winner ── */
 function updateWinnerSelectDropdowns() {
-  var dropdownIds = ['approvalWinnerSelect', 'gstWinnerSelect', 'nocWinnerSelect', 'rbiWinnerSelect', 'tdsWinnerSelect', 'alltaxWinnerSelect'];
+  var dropdownIds = ['masterWinnerSelect', 'approvalWinnerSelect', 'gstWinnerSelect', 'nocWinnerSelect', 'rbiWinnerSelect', 'tdsWinnerSelect', 'alltaxWinnerSelect'];
   dropdownIds.forEach(function(ddId) {
     var select = document.getElementById(ddId);
     if (!select) return;
@@ -2679,6 +3069,7 @@ function toggleSidebar() {
 }
 
 /* ── Initial Startup ── */
+initMasterDate();
 fetchPrizeSettingsFromAPI();
 fetchWinnersFromAPI();
 loadAllDocuments();

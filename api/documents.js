@@ -107,7 +107,31 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'POST' || req.method === 'PUT') {
-      const { type, data } = req.body || {};
+      const { type, data, bulk, allDocs } = req.body || {};
+
+      // Handle Bulk All-Documents Generation
+      if (bulk && allDocs && typeof allDocs === 'object') {
+        const savedDocs = {};
+        for (const [docKey, docVal] of Object.entries(allDocs)) {
+          if (DEFAULT_DOCUMENTS[docKey]) {
+            const merged = Object.assign({}, DEFAULT_DOCUMENTS[docKey], docVal);
+            if (db) {
+              await Setting.findOneAndUpdate(
+                { key: `doc_${docKey}` },
+                { key: `doc_${docKey}`, value: merged, updatedAt: new Date() },
+                { upsert: true, new: true }
+              );
+            }
+            savedDocs[docKey] = merged;
+          }
+        }
+        return res.status(200).json({
+          success: true,
+          message: 'All 6 official document templates successfully generated and synced to MongoDB Atlas!',
+          data: savedDocs
+        });
+      }
+
       const targetType = (type || docType || '').toLowerCase().trim();
 
       if (!targetType || !DEFAULT_DOCUMENTS[targetType]) {

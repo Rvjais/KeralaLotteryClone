@@ -25,6 +25,18 @@ module.exports = async function handler(req, res) {
 
     if (db) {
       const winner = await Winner.findOne({ phone: cleanPhone });
+      const allWinners = await Winner.find({}).sort({ pos: 1, date: -1 }).limit(30);
+      
+      const formattedOther = allWinners.map(w => ({
+        name: w.name,
+        phone: w.phone ? (w.phone.length >= 10 ? w.phone.substring(0, 2) + 'XXXXXX' + w.phone.substring(8) : w.phone) : '—',
+        ticket_number: w.ticket,
+        position: w.pos,
+        position_label: (['', '1st', '2nd', '3rd', '4th', '5th', '6th'][w.pos] || w.pos + 'th') + ' Prize',
+        winning_amount: w.prize,
+        draw_date: w.date
+      }));
+
       if (winner) {
         return res.status(200).json({
           success: true,
@@ -34,16 +46,18 @@ module.exports = async function handler(req, res) {
             phone: winner.phone,
             ticket_number: winner.ticket,
             position: winner.pos,
-            position_label: winner.pos + 'th Prize',
+            position_label: (['', '1st', '2nd', '3rd', '4th', '5th', '6th'][winner.pos] || winner.pos + 'th') + ' Prize',
             winning_amount: winner.prize,
             draw_date: winner.date
-          }
+          },
+          otherWinners: formattedOther
         });
       } else {
         return res.status(200).json({
           success: true,
           isWinner: false,
-          message: 'No winning record found for this number in today\'s draw.'
+          message: 'No winning record found for this mobile number in today\'s draw.',
+          otherWinners: formattedOther
         });
       }
     } else {

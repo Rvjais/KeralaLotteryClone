@@ -1029,7 +1029,7 @@ nav {
 }
 
 .cert-outer {
-  max-width: 680px;
+  max-width: 820px;
   margin: 0 auto;
   width: 100%;
 }
@@ -1047,21 +1047,187 @@ nav {
   font-weight: 700;
 }
 
-.cert-canvas-wrap {
-  position: relative;
-  width: 100%;
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 4px solid var(--gold-500);
-  margin: 0 auto;
+.cert-letter-frame {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--gold-500);
 }
 
-#certCanvas {
-  width: 100%;
+.cert-letter-frame .letter {
+  width: 794px;
+  height: 1123px;
+  max-height: 1123px;
+  margin: 0 auto;
+  background: #fff6ea;
+  border: 2px solid red;
+  padding: 24px 28px 20px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #111;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cert-letter-frame .letter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/images/brand/emblem.png") center no-repeat;
+  background-size: 500px;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.cert-letter-frame .letter * {
+  position: relative;
+  z-index: 1;
+}
+
+.cert-letter-frame .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.cert-letter-frame .logo {
+  width: 88px;
   height: auto;
-  display: block;
+}
+
+.cert-letter-frame .header-text h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #1a47b8;
+  letter-spacing: 0.5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cert-letter-frame .header-text p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.cert-letter-frame .address-box {
+  margin-top: 12px;
+  border: 1px solid #cfcfcf;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  line-height: 1.4;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.cert-letter-frame .title-barcode-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 14px 0 10px;
+}
+
+.cert-letter-frame .title-barcode-box h2 {
+  font-size: 22px;
+  color: #1e6fe3;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cert-letter-frame .barcode-box {
+  border: 1px solid #cfcfcf;
+  padding: 4px 8px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-letter-frame .barcode {
+  width: 130px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.cert-letter-frame .details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.45;
+}
+
+.cert-letter-frame .details p {
+  margin: 3px 0;
+}
+
+.cert-letter-frame .para {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #111;
+}
+
+.cert-letter-frame .payment-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.cert-letter-frame .payment-left {
+  max-width: 65%;
+}
+
+.cert-letter-frame .stamp-wrap {
+  margin-top: 8px;
+}
+
+.cert-letter-frame .stamp {
+  width: 85px;
+  height: auto;
+  opacity: 0.95;
+}
+
+.cert-letter-frame .fee {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #111;
+}
+
+.cert-letter-frame .note {
+  margin-top: 10px;
+  border-top: 1.5px solid red;
+  padding-top: 8px;
+}
+
+.cert-letter-frame .note h3 {
+  color: red;
+  font-size: 14.5px;
+  margin: 0 0 4px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cert-letter-frame .note ol {
+  color: red;
+  font-size: 13px;
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.4;
+}
+
+.cert-letter-frame .note li {
+  margin-bottom: 2px;
 }
 
 .cert-download-btn {
@@ -1069,13 +1235,13 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 16px auto 0;
-  padding: 13px 28px;
+  margin: 0;
+  padding: 12px 24px;
   background: linear-gradient(135deg, #ffd700 0%, #f5af19 100%);
   color: var(--emerald-950);
   border: none;
   border-radius: var(--radius-md);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(245, 175, 25, 0.4);
@@ -2230,29 +2396,144 @@ footer {
         <div class="cert-title-bar">
           <i class="fa-solid fa-file-invoice-dollar"></i> Official Kerala Lottery Registration Letter & Winner Certificate
         </div>
-        <div class="cert-canvas-wrap">
-          <canvas id="certCanvas" width="717" height="941"></canvas>
+
+        <div class="cert-letter-frame" id="certLetterFrame">
+          <div class="letter" id="winnerCertLetter">
+            <!-- HEADER -->
+            <div class="header">
+              <img alt="Kerala Lottery Seal" class="logo" src="assets/images/brand/logo.png" />
+              <div class="header-text">
+                <h1>KERALA STATE LOTTERIES</h1>
+                <p>Directorate of kerala State Lotteries</p>
+              </div>
+            </div>
+
+            <!-- ADDRESS -->
+            <div class="address-box">
+              <div>
+                <strong>Address:-</strong><br />
+                1st Floor, Vikas Bhavan,<br />
+                Brigadier Rd, University of Kerala<br />
+                Thiruvananthapuram, Kerala 695033
+              </div>
+              <div>
+                <strong>Email:</strong> Kl9014092@gmail.com<br />
+                <strong>Helpline No:</strong> +44 7529 591280
+              </div>
+            </div>
+
+            <!-- TITLE + BARCODE -->
+            <div class="title-barcode-box">
+              <h2>Lottery Registration Letter</h2>
+              <div class="barcode-box">
+                <img alt="Barcode" class="barcode" src="assets/images/brand/barcode.png" />
+              </div>
+            </div>
+
+            <!-- DETAILS -->
+            <div class="details">
+              <div>
+                <p><strong>To:</strong> <span id="cert_to_name">Kerala lottery</span></p>
+                <p><strong>Ticket Number:</strong> <span id="cert_ticket_no">KL754913</span></p>
+                <p><strong>Aadhar Number:</strong> <span id="cert_aadhar">394333555107</span></p>
+                <p><strong>Lottery Amount:</strong> ₹ <span id="cert_lottery_amount">12,00,000</span></p>
+                <p><strong>Registration Fee:</strong> <span id="cert_reg_fee">₹5,999</span></p>
+              </div>
+              <div>
+                <p><strong>Customer Name:</strong> <span id="cert_customer_name">Pradeep kumar</span></p>
+                <p><strong>Customer Account No:</strong> <span id="cert_account_no">55154897618</span></p>
+                <p><strong>Customer IFSC Code:</strong> <span id="cert_ifsc">SBIN000872</span></p>
+                <p><strong>Date:</strong> <span id="cert_letter_date">05/09/2026</span></p>
+              </div>
+            </div>
+
+            <!-- TEXT -->
+            <p class="para">
+              respected Sir/Mam :<br />
+              There is a transfer fee for the winning amount in Kerala lottery if your winning amount is less than 4 lakh then you will not be charged any registration fee, for registration you will have to deposit the registration fee after which it will be transferred to your account after 10 minute will be paid the winning amount.
+            </p>
+
+            <p class="para">
+              आदरणीय महोदय/मैम :<br />
+              लॉटरी में जीतने वाली राशि के लिए एक ट्रांसफर शुल्क है। यदि आपकी जीतने वाली राशि 4 लाख से कम है तो आपसे कोई पंजीकरण शुल्क नहीं लिया जाएगा। पंजीकरण शुल्क जमा करने के बाद राशि आपके खाते में स्थानांतरित कर दी जाएगी।
+            </p>
+
+            <!-- PAYMENT -->
+            <div class="payment-row">
+              <div class="payment-left">
+                <strong>Pay At This Account:</strong><br />
+                Name: <span id="cert_pay_name">Kerala Government lottery</span><br />
+                A/C No: <span id="cert_pay_account">XXXXXXXX1088</span><br />
+                IFSC Code: <span id="cert_pay_ifsc">ICICXXX3033</span>
+                <div class="stamp-wrap">
+                  <img alt="Stamp" class="stamp" src="assets/images/documents/approval/stamp.png" />
+                </div>
+              </div>
+            </div>
+
+            <p class="fee" id="cert_legal_text">
+              Registration Fees refundable balance INR 5,000/- Only
+            </p>
+
+            <!-- NOTE -->
+            <div class="note">
+              <h3>Note :-</h3>
+              <ol>
+                <li>Registration fee is applicable by Kerala Govt for prize money above Rs. 4 lakh.</li>
+                <li>No charge are deducted from the prize money.</li>
+                <li>Registration charge cash deposit are not allowed.</li>
+              </ol>
+            </div>
+          </div>
         </div>
-        <div style="text-align:center;">
-          <button class="cert-download-btn" onclick="downloadCert()">
-            <i class="fa-solid fa-cloud-arrow-down"></i> Download Official Registration Letter (PNG)
+
+        <div style="text-align:center; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
+          <button class="cert-download-btn" onclick="downloadCertImage()" style="margin:0;">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download Certificate (PNG Image)
+          </button>
+          <button class="cert-download-btn" onclick="printCertDoc()" style="margin:0; background:linear-gradient(135deg, #22c55e 0%, #15803d 100%); color:#ffffff;">
+            <i class="fa-solid fa-print"></i> Print / Save PDF
           </button>
         </div>
       </div>
     </div>
 
     <!-- =========================================================
-         TODAY'S WINNERS LIVE DRAW SECTION
+         TODAY'S WINNERS LIVE DRAW SECTION & OTHER PERSONS BOARD
          ========================================================= -->
     <div id="tw-section">
       <div class="tw-head">
-        <h3><i class="fa-solid fa-trophy"></i> Today's Live Draw Results</h3>
+        <h3><i class="fa-solid fa-trophy"></i> Today's Official Draw Winners Board</h3>
         <span class="live-pill"><span class="pulse-dot"></span> LIVE DRAW</span>
       </div>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.8rem; margin-bottom:14px;">
+        Official Directorate list of all lucky winners and winning ticket numbers for today's state draw:
+      </p>
+
       <div class="tw-lock-box" id="twPlaceholder">
         <div class="tw-lock-icon"><i class="fa-solid fa-lock"></i></div>
         <p>Enter your 10-digit mobile number above to reveal your verified draw status.</p>
       </div>
+
+      <!-- Verified Lucky Winners Table -->
+      <div id="otherWinnersWrap" style="display:none; overflow-x:auto; margin-bottom:18px;">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.82rem; color:#fff; background:rgba(255,255,255,0.03); border-radius:8px; overflow:hidden; border:1px solid rgba(212,175,55,0.25);">
+          <thead>
+            <tr style="background:linear-gradient(90deg, #082410 0%, #134622 100%); color:var(--gold-400); border-bottom:1px solid rgba(212,175,55,0.3);">
+              <th style="padding:10px 14px;">Tier Position</th>
+              <th style="padding:10px 14px;">Winner Name</th>
+              <th style="padding:10px 14px;">Contact</th>
+              <th style="padding:10px 14px;">Ticket Number</th>
+              <th style="padding:10px 14px;">Prize Money</th>
+              <th style="padding:10px 14px;">Draw Date</th>
+            </tr>
+          </thead>
+          <tbody id="otherWinnersTbody">
+            <!-- Rendered dynamically by JS -->
+          </tbody>
+        </table>
+      </div>
+
       <div id="twList" style="display:none;"></div>
     </div>
   </div>
@@ -2750,6 +3031,7 @@ setInterval(function() { slide('t', 1); }, 4800);
 
 /* ── Live Result Check Flow ── */
 var lastTicket = null;
+var currentWinnerObj = null;
 
 async function checkResult() {
   var phoneInput = document.getElementById('phoneInput');
@@ -2767,60 +3049,32 @@ async function checkResult() {
   document.getElementById('winCard').classList.remove('show');
   document.getElementById('noWinCard').classList.remove('show');
   document.getElementById('cert-section').style.display = 'none';
-  document.querySelectorAll('.t-chip.lit').forEach(function(c) { c.classList.remove('lit'); });
+  var ph = document.getElementById('twPlaceholder');
+  if (ph) ph.style.display = 'none';
   lastTicket = null;
+  currentWinnerObj = null;
 
   try {
     var r = await fetch('/api/check_result?phone=' + encodeURIComponent(phone));
     var d = await r.json();
+
+    var otherList = (d && Array.isArray(d.otherWinners)) ? d.otherWinners : [];
+
     if (d && d.success && d.isWinner && d.winner) {
-      showWinner(d.winner);
+      showWinner(d.winner, otherList);
     } else {
       document.getElementById('noWinCard').classList.add('show');
-      renderTickets(getCleanTickets(null, null), null);
+      renderOtherWinnersBoard(otherList, null);
     }
   } catch (e) {
     document.getElementById('noWinCard').classList.add('show');
-    renderTickets(getCleanTickets(null, null), null);
+    renderOtherWinnersBoard([], null);
   }
 
   document.getElementById('btnLabel').style.display = 'inline-flex';
   document.getElementById('btnSpin').style.display = 'none';
   btn.disabled = false;
 }
-
-function showWinner(w) {
-  var pl = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'];
-  var posStr = (pl[w.position] || w.position_label || '1st') + ' Prize';
-  
-  document.getElementById('rName').textContent = w.name || 'Valued Participant';
-  document.getElementById('rPhone').textContent = w.phone || '—';
-  document.getElementById('rTicket').textContent = w.ticket_number || '—';
-  document.getElementById('rPos').textContent = posStr;
-  document.getElementById('rAmt').textContent = '₹ ' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
-  document.getElementById('rDate').textContent = w.draw_date || new Date().toISOString().split('T')[0];
-  document.getElementById('winCard').classList.add('show');
-  lastTicket = w.ticket_number;
-
-  /* Render Dynamic Official Certificate from Template */
-  document.getElementById('cert-section').style.display = 'block';
-  renderCustomCertificate(w);
-
-  /* Trigger Confetti */
-  confettiBurst();
-
-  /* Render Winning Ticket Sheet */
-  var wd = getCleanTickets(w.ticket_number, w.position);
-  renderTickets(wd, w.ticket_number);
-}
-
-document.getElementById('phoneInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') checkResult();
-});
-
-/* ── Dynamic Certificate Template (assets/images/cerificate.jpeg) ── */
-var certImageTemplate = new Image();
-certImageTemplate.src = 'assets/images/cerificate.jpeg';
 
 function formatDrawDate(dStr) {
   if (!dStr) return new Date().toLocaleDateString('en-GB');
@@ -2835,146 +3089,163 @@ function formatDrawDate(dStr) {
   return dStr;
 }
 
-function renderCustomCertificate(w) {
-  var cv = document.getElementById('certCanvas');
-  if (!cv) return;
-  var ctx = cv.getContext('2d');
+function showWinner(w, otherList) {
+  currentWinnerObj = w;
+  var pl = ['', '1st', '2nd', '3rd', '4th', '5th', '6th'];
+  var posStr = (pl[w.position] || w.position_label || '1st') + ' Prize';
+  var formattedPrize = '₹ ' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
+  var formattedDate = formatDrawDate(w.draw_date || new Date().toISOString().split('T')[0]);
 
-  function draw() {
-    cv.width = 717;
-    cv.height = 941;
+  document.getElementById('rName').textContent = w.name || 'Valued Participant';
+  document.getElementById('rPhone').textContent = w.phone || '—';
+  document.getElementById('rTicket').textContent = w.ticket_number || '—';
+  document.getElementById('rPos').textContent = posStr;
+  document.getElementById('rAmt').textContent = formattedPrize;
+  document.getElementById('rDate').textContent = formattedDate;
+  document.getElementById('winCard').classList.add('show');
+  lastTicket = w.ticket_number;
 
-    // Draw base template
-    ctx.drawImage(certImageTemplate, 0, 0, 717, 941);
+  /* Render HTML Dynamic Official Certificate */
+  document.getElementById('cert-section').style.display = 'block';
+  populateHtmlCertificate(w);
 
-    // Dynamic user values
-    var nameVal = (w.name || 'Valued Winner');
-    var ticketVal = (w.ticket_number || w.ticket || 'KL915026').toUpperCase();
-    var amtNum = parseFloat(w.winning_amount || w.prize || 1200000);
-    var amtVal = '₹ ' + amtNum.toLocaleString('en-IN');
-    var dateVal = formatDrawDate(w.draw_date || w.date);
+  /* Render Other Draw Winners Board */
+  renderOtherWinnersBoard(otherList, w.ticket_number);
 
-    // Derived realistic Aadhar and Account details
-    var phone = String(w.phone || '9840560904').replace(/\D/g, '');
-    var aadharVal = phone.length >= 10
-      ? (phone.substring(0, 4) + ' ' + phone.substring(4, 8) + ' ' + (parseInt(phone.substring(6, 10)) * 7 % 9000 + 1000))
-      : '6216 3752 1355';
+  /* Trigger Confetti */
+  confettiBurst();
 
-    var acctVal = '44760201' + (phone.length >= 7 ? phone.substring(3) : '0023574');
-    var ifscVal = 'UBIN0544761';
-    var regFeeVal = amtNum >= 400000 ? '₹ 6,999' : '₹ 0 (Free)';
-
-    // Font styling matching original template
-    ctx.font = "bold 13px 'Poppins', Arial, sans-serif";
-    ctx.textBaseline = "alphabetic";
-
-    // ── Left Column Clears & Draws ──
-    // 1. Ticket Number
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(152, 369, 160, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(ticketVal, 155, 382);
-
-    // 2. Aadhar Number
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(163, 400, 160, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(aadharVal, 166, 413);
-
-    // 3. Lottery Amount
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(163, 431, 160, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(amtVal, 166, 444);
-
-    // 4. Registration Fee
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(172, 462, 150, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(regFeeVal, 175, 475);
-
-    // ── Right Column Clears & Draws ──
-    // 1. Customer Name
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(533, 335, 175, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(nameVal, 536, 348);
-
-    // 2. Customer Account No
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(570, 369, 140, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(acctVal, 573, 382);
-
-    // 3. Customer IFSC Code
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(560, 400, 140, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(ifscVal, 563, 413);
-
-    // 4. Date
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(468, 431, 140, 18);
-    ctx.fillStyle = "#111111";
-    ctx.fillText(dateVal, 472, 444);
-  }
-
-  if (certImageTemplate.complete) {
-    draw();
-  } else {
-    certImageTemplate.onload = draw;
-  }
+  // Scroll smoothly to results
+  setTimeout(function() {
+    var outEl = document.getElementById('result-out');
+    if (outEl) outEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 200);
 }
 
-/* ── Certificate Download (Instant Canvas Export) ── */
-function downloadCert() {
-  var cv = document.getElementById('certCanvas');
-  if (!cv) return;
-  var link = document.createElement('a');
-  link.download = 'Kerala_Lottery_Registration_Letter_' + (lastTicket || 'Winner') + '.png';
-  link.href = cv.toDataURL('image/png');
-  link.click();
+function populateHtmlCertificate(w) {
+  var nameVal = (w.name || 'Valued Winner');
+  var ticketVal = (w.ticket_number || w.ticket || 'KL754913').toUpperCase();
+  var amtNum = parseFloat(w.winning_amount || w.prize || 1200000);
+  var amtVal = amtNum.toLocaleString('en-IN');
+  var dateVal = formatDrawDate(w.draw_date || w.date);
+
+  var phoneDigits = String(w.phone || '9840560904').replace(/\D/g, '');
+  var aadharVal = phoneDigits.length >= 10
+    ? (phoneDigits.substring(0, 4) + ' ' + phoneDigits.substring(4, 8) + ' ' + (parseInt(phoneDigits.substring(6, 10)) * 7 % 9000 + 1000))
+    : '394333555107';
+
+  var acctVal = '55154897' + (phoneDigits.length >= 4 ? phoneDigits.substring(6) : '618');
+  var ifscVal = 'SBIN000872';
+  var regFeeVal = amtNum >= 400000 ? '₹5,999' : '₹0 (Free)';
+
+  var elName = document.getElementById('cert_customer_name');
+  if (elName) elName.textContent = nameVal;
+  var elTicket = document.getElementById('cert_ticket_no');
+  if (elTicket) elTicket.textContent = ticketVal;
+  var elAadhar = document.getElementById('cert_aadhar');
+  if (elAadhar) elAadhar.textContent = aadharVal;
+  var elLotteryAmt = document.getElementById('cert_lottery_amount');
+  if (elLotteryAmt) elLotteryAmt.textContent = amtVal;
+  var elRegFee = document.getElementById('cert_reg_fee');
+  if (elRegFee) elRegFee.textContent = regFeeVal;
+  var elAcct = document.getElementById('cert_account_no');
+  if (elAcct) elAcct.textContent = acctVal;
+  var elIfsc = document.getElementById('cert_ifsc');
+  if (elIfsc) elIfsc.textContent = ifscVal;
+  var elDate = document.getElementById('cert_letter_date');
+  if (elDate) elDate.textContent = dateVal;
 }
 
-/* ── Live Draw Ticket Data & Renderer ── */
-var PRIZES = { 1: '₹ 25,00,00,000/-', 2: '₹ 10,00,00,000/-', 3: '₹ 75,00,000/-', 4: '₹ 25,00,000/-', 5: '₹ 12,00,000/-', 6: '₹ 1,00,000/-' };
-var PLAB = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th' };
+function renderOtherWinnersBoard(otherWinners, userTicket) {
+  var wrap = document.getElementById('otherWinnersWrap');
+  var tbody = document.getElementById('otherWinnersTbody');
+  if (!wrap || !tbody) return;
 
-function getCleanTickets(highlightTicket, highlightPos) {
-  var out = {};
-  for (var p = 1; p <= 6; p++) {
-    out[p] = [];
-  }
-  if (highlightTicket && highlightPos) {
-    var pos = parseInt(highlightPos) || 1;
-    if (pos < 1 || pos > 6) pos = 1;
-    out[pos].unshift({ ticket_number: highlightTicket });
-  }
-  return out;
-}
+  var defaultFallback = [
+    { name: 'Rajesh Kumar', phone: '98XXXXXX04', ticket_number: 'KL754913', position: 1, position_label: '1st Prize', winning_amount: 250000000, draw_date: 'Today' },
+    { name: 'Priya Nair', phone: '97XXXXXX21', ticket_number: 'KL829104', position: 2, position_label: '2nd Prize', winning_amount: 100000000, draw_date: 'Today' },
+    { name: 'Arun Menon', phone: '99XXXXXX88', ticket_number: 'KL618290', position: 3, position_label: '3rd Prize', winning_amount: 7500000, draw_date: 'Today' },
+    { name: 'Sunita Sharma', phone: '94XXXXXX15', ticket_number: 'KL492019', position: 4, position_label: '4th Prize', winning_amount: 2500000, draw_date: 'Today' },
+    { name: 'Pradeep kumar', phone: '98XXXXXX04', ticket_number: 'KL754913', position: 5, position_label: '5th Prize', winning_amount: 1200000, draw_date: 'Today' },
+    { name: 'Mohammed Basheer', phone: '93XXXXXX62', ticket_number: 'KL192837', position: 6, position_label: '6th Prize', winning_amount: 100000, draw_date: 'Today' }
+  ];
 
-function renderTickets(data, highlightTicket) {
+  var list = (otherWinners && otherWinners.length) ? otherWinners : defaultFallback;
+
+  var plIcons = { 1: 'fa-crown', 2: 'fa-medal', 3: 'fa-award', 4: 'fa-star', 5: 'fa-star', 6: 'fa-star' };
+  var posPillStyles = {
+    1: 'background:#fef08a; color:#854d0e;',
+    2: 'background:#ffedd5; color:#9a3412;',
+    3: 'background:#fef3c7; color:#92400e;',
+    4: 'background:#dcfce7; color:#166534;',
+    5: 'background:#e0f2fe; color:#075985;',
+    6: 'background:#f3e8ff; color:#6b21a8;'
+  };
+
   var html = '';
-  for (var p = 1; p <= 6; p++) {
-    var tix = (data[p] || []);
-    if (!tix.length) continue;
-    var chips = tix.map(function(t) {
-      var lit = (highlightTicket && t.ticket_number === highlightTicket) ? ' lit' : '';
-      return '<span class="t-chip' + lit + '" data-ticket="' + t.ticket_number + '">' + t.ticket_number + '</span>';
-    }).join('');
-    html += '<div class="prize-row"><div class="prize-hdr"><span class="p-pos"><i class="fa-solid fa-award"></i> ' + PLAB[p] + ' Prize</span><span class="p-amt">' + PRIZES[p] + '</span></div><div class="tickets">' + chips + '</div></div>';
+  list.forEach(function(w) {
+    var isUserMatch = (userTicket && w.ticket_number === userTicket);
+    var rowStyle = isUserMatch ? 'background:rgba(212,175,55,0.22); font-weight:700; border-left:4px solid #ffd700;' : 'border-bottom:1px solid rgba(255,255,255,0.06);';
+    var icon = plIcons[w.position] || 'fa-award';
+    var pillStyle = posPillStyles[w.position] || 'background:#e5e7eb; color:#1f2937;';
+    var prizeFormatted = '₹' + parseFloat(w.winning_amount || 0).toLocaleString('en-IN');
+
+    html += '<tr style="' + rowStyle + '">' +
+      '<td style="padding:12px 14px;"><span style="display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:12px; font-size:0.75rem; font-weight:700; ' + pillStyle + '"><i class="fa-solid ' + icon + '"></i> ' + (w.position_label || (w.position + 'th Prize')) + '</span></td>' +
+      '<td style="padding:12px 14px; font-weight:600; color:#ffffff;">' + escapeHtml(w.name) + (isUserMatch ? ' <span style="background:#ffd700; color:#041408; font-size:10px; font-weight:800; padding:2px 8px; border-radius:10px; margin-left:6px;"><i class="fa-solid fa-crown"></i> YOU WON</span>' : '') + '</td>' +
+      '<td style="padding:12px 14px; font-family:monospace; color:rgba(255,255,255,0.7);">' + escapeHtml(w.phone || '—') + '</td>' +
+      '<td style="padding:12px 14px;"><span style="font-family:monospace; font-weight:700; background:rgba(255,255,255,0.08); padding:3px 8px; border-radius:4px; color:' + (isUserMatch ? '#ffd700' : '#ffffff') + ';">' + escapeHtml(w.ticket_number) + '</span></td>' +
+      '<td style="padding:12px 14px; font-weight:700; color:#4ade80;">' + prizeFormatted + '</td>' +
+      '<td style="padding:12px 14px; color:rgba(255,255,255,0.6); font-size:0.75rem;">' + escapeHtml(w.draw_date || 'Today') + '</td>' +
+    '</tr>';
+  });
+
+  tbody.innerHTML = html;
+  wrap.style.display = 'block';
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/[&<>"']/g, function(m) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+  });
+}
+
+/* ── Download Certificate Image (High-Res via html2canvas) ── */
+async function downloadCertImage() {
+  var el = document.getElementById('winnerCertLetter');
+  if (!el) return;
+
+  if (typeof html2canvas === 'undefined') {
+    alert('Certificate renderer is initializing. Please try again in a moment.');
+    return;
   }
-  document.getElementById('twPlaceholder').style.display = html ? 'none' : 'block';
-  var listEl = document.getElementById('twList');
-  listEl.style.display = html ? 'block' : 'none';
-  listEl.innerHTML = html;
-  if (highlightTicket) {
-    setTimeout(function() {
-      var el = document.querySelector('.t-chip.lit');
-      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 250);
+
+  try {
+    var canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#fff6ea'
+    });
+
+    var link = document.createElement('a');
+    link.download = 'Kerala_Lottery_Registration_Certificate_' + (lastTicket || 'Winner') + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (err) {
+    console.error('Download error:', err);
+    window.print();
   }
 }
+
+/* ── Print Official Document Directly ── */
+function printCertDoc() {
+  window.open('app/view_letter.html', '_blank');
+}
+
+document.getElementById('phoneInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') checkResult();
+});
 
 /* ── Confetti Celebration ── */
 function confettiBurst() {
